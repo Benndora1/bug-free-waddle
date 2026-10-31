@@ -347,5 +347,26 @@ fixtures = [
         "filters": [
             ["fund", "in", ["SBG-BAL", "SBG-MMF"]]
         ]
+    },
+    {
+        "dt": "Print Format",
+        "filters": [
+            ["name", "in", [
+                "Unit Trust Contract Note",
+                "Statement of Investment",
+                "Stanbic Custody Instruction"
+            ]]
+        ]
+    },
+    {
+        "dt": "Report",
+        "filters": [
+            ["name", "in", [
+                "Unit Holders Register",
+                "Daily Fund Valuation Summary",
+                "Portfolio Performance and Asset Allocation",
+                "Maturity Profile and Cash Flow Projection"
+            ]]
+        ]
     }
 ]

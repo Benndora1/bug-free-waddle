@@ -1,0 +1,71 @@
+<div style="font-family: Arial, sans-serif; font-size: 12px; color: #111; padding: 25px; line-height: 1.5;">
+    <div style="margin-bottom: 15px;">
+        <p style="margin: 0; font-weight: bold;">{{ frappe.utils.format_date(doc.instruction_date, "EEEE, MMMM d, yyyy") }}.</p>
+        <p style="margin: 5px 0 0 0;">
+            <strong>Stanbic Bank Uganda Limited,</strong><br>
+            Corporate & Investment Banking,<br>
+            17 Hannington Road, Crested Towers, Kampala.<br>
+            <strong>Attention: Head, Investor Services (TPS)</strong>
+        </p>
+    </div>
+
+    <p style="font-size: 14px; font-weight: bold; margin: 15px 0 10px 0; text-transform: uppercase; color: #003366;">
+        RE: {{ doc.transaction_type }}:
+    </p>
+    <p style="margin: 0 0 15px 0;">Please action the transactions as per details indicated below:</p>
+
+    <div style="margin-bottom: 15px;">
+        <strong>Counterparty:</strong> {{ doc.counterparty }}
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 11px;">
+        <tr style="background-color: #f2f2f2; font-weight: bold; border-bottom: 1px solid #333; border-top: 1px solid #333;">
+            <td style="padding: 6px;">Fund Account</td>
+            <td style="padding: 6px;">Security Description</td>
+            <td style="padding: 6px; text-align: center;">Maturity</td>
+            <td style="padding: 6px; text-align: right;">Coupon</td>
+            <td style="padding: 6px; text-align: right;">Yield</td>
+            <td style="padding: 6px; text-align: right;">Clean Price</td>
+            <td style="padding: 6px; text-align: right;">Face Value (UGX)</td>
+            <td style="padding: 6px; text-align: right;">Settlement Amount (UGX)</td>
+            <td style="padding: 6px; text-align: center;">Settle Date</td>
+            <td style="padding: 6px; text-align: center;">Custodian</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 8px;"><strong>{{ doc.fund }}</strong></td>
+            <td style="padding: 8px;">{{ doc.security_description }}</td>
+            <td style="padding: 8px; text-align: center;">{{ doc.settlement_date }}</td>
+            <td style="padding: 8px; text-align: right;">{{ "{:.3f}%".format(doc.coupon_rate or 0) }}</td>
+            <td style="padding: 8px; text-align: right;">{{ "{:.3f}%".format(doc.yield_to_maturity or 0) }}</td>
+            <td style="padding: 8px; text-align: right;">{{ "{:.3f}".format(doc.clean_price or 100) }}</td>
+            <td style="padding: 8px; text-align: right;"><strong>{{ "{:,.0f}".format(doc.face_value) }}</strong></td>
+            <td style="padding: 8px; text-align: right;"><strong>{{ "{:,.0f}".format(doc.settlement_amount) }}</strong></td>
+            <td style="padding: 8px; text-align: center;">{{ doc.settlement_date }}</td>
+            <td style="padding: 8px; text-align: center;">SBU</td>
+        </tr>
+    </table>
+
+    <p style="margin: 20px 0 35px 0;">In case of further inquiries contact the undersigned.</p>
+
+    <table style="width: 100%; margin-top: 30px;">
+        <tr>
+            <td style="width: 45%; vertical-align: bottom;">
+                {% if doc.maker_signed %}
+                <span style="color: #003366; font-style: italic; font-weight: bold; font-size: 13px;">[Digitally Signed by Operations]</span><br>
+                {% endif %}
+                <strong>{{ doc.maker_signatory }}</strong><br>
+                <span>Fund Operations / Administrator</span><br>
+                <span>SBG Securities Limited</span>
+            </td>
+            <td style="width: 10%;"></td>
+            <td style="width: 45%; vertical-align: bottom;">
+                {% if doc.checker_signed %}
+                <span style="color: #003366; font-style: italic; font-weight: bold; font-size: 13px;">[Digitally Signed by Investment Manager]</span><br>
+                {% endif %}
+                <strong>{{ doc.checker_signatory }}</strong><br>
+                <span>Investment Manager</span><br>
+                <span>SBG Securities Limited</span>
+            </td>
+        </tr>
+    </table>
+</div>

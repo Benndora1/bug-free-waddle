@@ -1,0 +1,61 @@
+<div style="font-family: Arial, sans-serif; font-size: 13px; color: #1a1a1a; padding: 25px;">
+    <div style="border-bottom: 3px solid #003366; padding-bottom: 12px; margin-bottom: 20px;">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <h2 style="color: #003366; margin: 0; font-size: 22px;">SBG SECURITIES LIMITED</h2>
+                    <p style="margin: 3px 0; color: #555; font-size: 12px;">Asset Management Division | Statement of Portfolio Valuation</p>
+                </td>
+                <td style="text-align: right;">
+                    <span style="font-size: 11px; color: #555;">Statement Date:</span><br>
+                    <strong style="font-size: 14px; color: #003366;">{{ frappe.utils.nowdate() }}</strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0;">
+        <tr>
+            <td style="width: 50%;">
+                <span style="color: #64748b; font-size: 11px;">INVESTOR NAME</span><br>
+                <strong style="font-size: 15px; color: #0f172a;">{{ doc.investor_name }}</strong><br>
+                <span style="font-size: 12px; color: #475569;">ID: {{ doc.investor }}</span>
+            </td>
+            <td style="width: 50%;">
+                <span style="color: #64748b; font-size: 11px;">SCHEME / FUND</span><br>
+                <strong style="font-size: 15px; color: #0f172a;">{{ doc.fund_name }}</strong><br>
+                <span style="font-size: 12px; color: #475569;">Currency: {{ doc.currency }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+        <table style="width: 100%; border: 1px solid #e2e8f0; border-collapse: collapse; text-align: center;">
+            <tr style="background: #003366; color: white;">
+                <th style="padding: 10px;">Units Held</th>
+                <th style="padding: 10px;">Current NAV / Unit</th>
+                <th style="padding: 10px;">Market Valuation ({{ doc.currency }})</th>
+                <th style="padding: 10px;">Net Capital Invested</th>
+                <th style="padding: 10px;">Unrealized Gain / Loss</th>
+            </tr>
+            <tr style="font-size: 14px; font-weight: bold; background: #ffffff;">
+                <td style="padding: 12px; color: #003366;">{{ "{:,.4f}".format(doc.total_units) }}</td>
+                <td style="padding: 12px;">{{ "{:,.4f}".format(doc.current_nav_per_unit) }}</td>
+                <td style="padding: 12px; color: #003366;">{{ "{:,.2f}".format(doc.current_market_value) }}</td>
+                <td style="padding: 12px;">{{ "{:,.2f}".format(doc.total_invested_amount - doc.total_withdrawn_amount) }}</td>
+                <td style="padding: 12px; color: {% if doc.unrealized_gain_loss >= 0 %}#16a34a{% else %}#dc2626{% endif %};">
+                    {{ "{:,.2f}".format(doc.unrealized_gain_loss) }}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h4 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 6px; margin-bottom: 10px;">Registered Settlement Account</h4>
+    <p style="font-size: 12px; margin: 0 0 20px 0;">
+        Bank: <strong>{{ doc.bank_name or 'Stanbic Bank Uganda' }}</strong> | Branch: <strong>{{ doc.bank_branch or 'Main' }}</strong> | Account No: <strong>{{ doc.bank_account_no or 'N/A' }}</strong> | Name: <strong>{{ doc.bank_account_name or doc.investor_name }}</strong>
+    </p>
+
+    <div style="font-size: 10px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 10px; text-align: center;">
+        This statement is issued for valuation and information purposes. For inquiries, please email support@sbgsecurities.co.ug.
+    </div>
+</div>

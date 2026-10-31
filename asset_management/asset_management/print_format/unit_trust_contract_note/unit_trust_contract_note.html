@@ -1,0 +1,102 @@
+<div style="font-family: Arial, sans-serif; font-size: 13px; color: #1a1a1a; padding: 25px;">
+    <div style="border-bottom: 3px solid #003366; padding-bottom: 12px; margin-bottom: 20px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 65%;">
+                    <h2 style="color: #003366; margin: 0; font-size: 22px; text-transform: uppercase;">SBG Securities Limited</h2>
+                    <p style="margin: 3px 0; color: #555; font-size: 12px;">Member of Uganda Securities Exchange | Stanbic Bank Uganda Group</p>
+                    <p style="margin: 3px 0; color: #555; font-size: 12px;">Crested Towers, Short Tower, 5th Floor, 17 Hannington Road, Kampala, Uganda</p>
+                </td>
+                <td style="width: 35%; text-align: right;">
+                    <div style="background-color: #f0f4f8; padding: 10px; border-radius: 4px; border: 1px solid #d0dbe5;">
+                        <span style="font-size: 11px; color: #555; text-transform: uppercase;">Contract Note No:</span><br>
+                        <strong style="font-size: 15px; color: #003366;">{{ doc.contract_note_no or doc.name }}</strong><br>
+                        <span style="font-size: 11px; color: #555;">Date: <strong>{{ doc.subscription_date }}</strong></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 25px;">
+        <h3 style="margin: 0; color: #003366; letter-spacing: 1px; font-size: 16px; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+            Unit Trust Subscription Contract Note
+        </h3>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 25px;">
+        <tr>
+            <td style="width: 48%; vertical-align: top; background: #fafafa; padding: 12px; border: 1px solid #eee; border-radius: 4px;">
+                <h4 style="margin: 0 0 10px 0; color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Investor Details</h4>
+                <table style="width: 100%; font-size: 12px;">
+                    <tr><td style="color: #666; width: 40%;">Account ID:</td><td><strong>{{ doc.investor }}</strong></td></tr>
+                    <tr><td style="color: #666;">Investor Name:</td><td><strong>{{ doc.investor_name }}</strong></td></tr>
+                    <tr><td style="color: #666;">Payment Method:</td><td>{{ doc.payment_method }}</td></tr>
+                    <tr><td style="color: #666;">Bank Reference:</td><td>{{ doc.bank_reference or 'N/A' }}</td></tr>
+                </table>
+            </td>
+            <td style="width: 4%;"></td>
+            <td style="width: 48%; vertical-align: top; background: #fafafa; padding: 12px; border: 1px solid #eee; border-radius: 4px;">
+                <h4 style="margin: 0 0 10px 0; color: #003366; border-bottom: 1px solid #ccc; padding-bottom: 4px;">Collective Investment Scheme</h4>
+                <table style="width: 100%; font-size: 12px;">
+                    <tr><td style="color: #666; width: 40%;">Fund Code:</td><td><strong>{{ doc.fund }}</strong></td></tr>
+                    <tr><td style="color: #666;">Fund Name:</td><td><strong>{{ doc.fund_name }}</strong></td></tr>
+                    <tr><td style="color: #666;">Currency:</td><td>{{ doc.currency }}</td></tr>
+                    <tr><td style="color: #666;">Value Date:</td><td>{{ doc.value_date }}</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+        <thead>
+            <tr style="background-color: #003366; color: white;">
+                <th style="padding: 10px; text-align: left;">Transaction Description</th>
+                <th style="padding: 10px; text-align: right;">Unit Offer Price</th>
+                <th style="padding: 10px; text-align: right;">Units Allocated</th>
+                <th style="padding: 10px; text-align: right;">Gross Investment ({{ doc.currency }})</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 10px;">Subscription to {{ doc.fund_name }}</td>
+                <td style="padding: 10px; text-align: right;">{{ "{:,.4f}".format(doc.applicable_nav_price) }}</td>
+                <td style="padding: 10px; text-align: right;"><strong>{{ "{:,.4f}".format(doc.units_allocated) }}</strong></td>
+                <td style="padding: 10px; text-align: right;">{{ "{:,.2f}".format(doc.gross_amount) }}</td>
+            </tr>
+            {% if doc.entry_fee_amount and doc.entry_fee_amount > 0 %}
+            <tr style="border-bottom: 1px solid #eee; color: #888;">
+                <td style="padding: 10px;" colspan="3">Less Entry Fee ({{ doc.entry_fee_pct }}%)</td>
+                <td style="padding: 10px; text-align: right;">-{{ "{:,.2f}".format(doc.entry_fee_amount) }}</td>
+            </tr>
+            {% endif %}
+            <tr style="background-color: #f5f8fa; font-weight: bold; border-top: 2px solid #003366;">
+                <td style="padding: 10px;" colspan="2">Net Capital Invested:</td>
+                <td style="padding: 10px; text-align: right; color: #003366;">{{ "{:,.4f}".format(doc.units_allocated) }} Units</td>
+                <td style="padding: 10px; text-align: right; color: #003366;">{{ "{:,.2f}".format(doc.net_invested_amount) }} {{ doc.currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 45%; text-align: center;">
+                    <div style="border-bottom: 1px dashed #666; width: 80%; margin: 0 auto 5px auto; height: 30px;"></div>
+                    <span style="font-size: 11px; color: #555;">Authorized Signatory - Operations</span><br>
+                    <strong style="font-size: 12px;">SBG Securities Limited</strong>
+                </td>
+                <td style="width: 10%;"></td>
+                <td style="width: 45%; text-align: center;">
+                    <div style="border-bottom: 1px dashed #666; width: 80%; margin: 0 auto 5px auto; height: 30px;"></div>
+                    <span style="font-size: 11px; color: #555;">Fund Custodian & Trustee</span><br>
+                    <strong style="font-size: 12px;">Stanbic Bank Uganda Custody</strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top: 30px; font-size: 10px; color: #777; border-top: 1px solid #eee; padding-top: 10px; text-align: center;">
+        Regulated by the Capital Markets Authority (CMA) of Uganda under the Collective Investment Schemes Act. Unit values fluctuate with market changes.
+    </div>
+</div>
