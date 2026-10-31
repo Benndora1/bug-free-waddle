@@ -95,7 +95,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Stanbic Custody Confirmation Tickets",
+   "label": "Custodian Confirmation & Settlement Tickets",
    "link_count": 0,
    "link_to": "Asset Custody Instruction",
    "link_type": "DocType",
@@ -282,7 +282,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 16:55:48.367278",
+ "modified": "2026-10-31 17:03:57.849686",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Management",
