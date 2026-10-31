@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_profile",
   "sec_profile",
   "security_id",
   "security_name",
@@ -19,6 +20,7 @@
   "sector",
   "currency",
   "isin",
+  "tab_terms",
   "sec_terms",
   "issue_date",
   "maturity_date",
@@ -28,6 +30,7 @@
   "coupon_frequency",
   "day_count_convention",
   "current_market_price",
+  "tab_schedule",
   "sec_schedule",
   "coupon_schedule"
  ],
@@ -35,7 +38,7 @@
   {
    "fieldname": "sec_profile",
    "fieldtype": "Section Break",
-   "label": "Security Master Details"
+   "label": "Instrument Master Details"
   },
   {
    "fieldname": "security_id",
@@ -110,7 +113,7 @@
   {
    "fieldname": "sec_terms",
    "fieldtype": "Section Break",
-   "label": "Instrument Tenor & Pricing Terms"
+   "label": "Tenor & Coupon Terms"
   },
   {
    "fieldname": "issue_date",
@@ -160,19 +163,34 @@
   {
    "fieldname": "sec_schedule",
    "fieldtype": "Section Break",
-   "label": "Coupon Schedule & Cash Flows"
+   "label": "Coupon Cash Flows"
   },
   {
    "fieldname": "coupon_schedule",
    "fieldtype": "Table",
    "label": "Coupon Schedule",
    "options": "Asset Coupon Schedule Line"
+  },
+  {
+   "fieldname": "tab_profile",
+   "fieldtype": "Tab Break",
+   "label": "Security Profile"
+  },
+  {
+   "fieldname": "tab_terms",
+   "fieldtype": "Tab Break",
+   "label": "Pricing & Coupon Terms"
+  },
+  {
+   "fieldname": "tab_schedule",
+   "fieldtype": "Tab Break",
+   "label": "Coupon Schedules"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-31 13:37:54.061681",
+ "modified": "2026-10-31 16:22:04.366836",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Investment Security",
@@ -180,7 +198,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "security_id, isin, issuer, asset_class",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Blue",
+   "title": "Matured"
+  },
+  {
+   "color": "Gray",
+   "title": "Redeemed"
+  },
+  {
+   "color": "Red",
+   "title": "Defaulted"
+  }
+ ],
+ "title_field": "security_name"
 }

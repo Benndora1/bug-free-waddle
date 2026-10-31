@@ -2,7 +2,7 @@
  "app": "asset_management",
  "charts": [],
  "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Investment Manager & Trading Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Custody Instructions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Fund Holdings\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Securities Master\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Dealing Pot & Multi-Asset Execution\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Custody Confirmation Tickets\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Pre-Trade Compliance & Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Trading & Portfolio Reports\", \"col\": 6}}]",
- "creation": "2026-10-31 15:56:34.498856",
+ "creation": "2026-10-31 16:26:08.338614",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,7 +11,7 @@
  "idx": 0,
  "indicator_color": "green",
  "is_hidden": 0,
- "label": "Portfolio & Trading Desk",
+ "label": "Asset Portfolio & Trading",
  "link_type": "DocType",
  "links": [
   {
@@ -143,10 +143,10 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 15:56:34.498856",
+ "modified": "2026-10-31 16:26:08.338614",
  "modified_by": "Administrator",
  "module": "Asset Management",
- "name": "Portfolio & Trading Desk",
+ "name": "Asset Portfolio & Trading",
  "number_cards": [],
  "owner": "Administrator",
  "public": 1,
@@ -193,6 +193,6 @@
    "type": "DocType"
   }
  ],
- "title": "Portfolio & Trading Desk",
+ "title": "Asset Portfolio & Trading",
  "type": "Workspace"
 }

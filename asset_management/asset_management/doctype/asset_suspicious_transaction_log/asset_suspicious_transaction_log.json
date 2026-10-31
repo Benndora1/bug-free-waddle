@@ -3,11 +3,13 @@
  "allow_bulk_edit": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2026-10-31 13:09:28.735925",
+ "creation": "2026-10-31 13:26:02.212354",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_alert",
+  "sec_header",
   "naming_series",
   "log_date",
   "rule",
@@ -17,9 +19,11 @@
   "amount",
   "status",
   "action_taken",
-  "col_break_2",
+  "tab_investigation",
+  "sec_investigation",
   "reviewed_by",
   "review_date",
+  "col_break_2",
   "investigation_notes"
  ],
  "fields": [
@@ -51,9 +55,8 @@
    "fieldname": "investor",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Investor",
-   "options": "Asset Investor",
-   "reqd": 0
+   "label": "Investor Account",
+   "options": "Asset Investor"
   },
   {
    "fieldname": "transaction_reference",
@@ -93,7 +96,7 @@
   {
    "fieldname": "reviewed_by",
    "fieldtype": "Link",
-   "label": "Reviewed By",
+   "label": "Reviewed By (Compliance Officer)",
    "options": "User"
   },
   {
@@ -104,13 +107,33 @@
   {
    "fieldname": "investigation_notes",
    "fieldtype": "Small Text",
-   "label": "Investigation Findings"
+   "label": "Investigation Findings & Regulatory Filing Details"
+  },
+  {
+   "fieldname": "tab_alert",
+   "fieldtype": "Tab Break",
+   "label": "AML Alert Details"
+  },
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Alert & Transaction Information"
+  },
+  {
+   "fieldname": "tab_investigation",
+   "fieldtype": "Tab Break",
+   "label": "Investigation & Findings"
+  },
+  {
+   "fieldname": "sec_investigation",
+   "fieldtype": "Section Break",
+   "label": "Compliance Review"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-31 13:09:28.735925",
+ "modified": "2026-10-31 16:22:05.899799",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Suspicious Transaction Log",
@@ -156,8 +179,31 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "rule, investor, transaction_reference",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Red",
+   "title": "Open"
+  },
+  {
+   "color": "Orange",
+   "title": "Investigating"
+  },
+  {
+   "color": "Purple",
+   "title": "Escalated to CE"
+  },
+  {
+   "color": "Green",
+   "title": "Cleared"
+  },
+  {
+   "color": "Red",
+   "title": "Reported to FIA"
+  }
+ ],
+ "title_field": "transaction_reference",
  "track_changes": 1
 }

@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_header",
   "sec_header",
   "naming_series",
   "instruction_date",
@@ -19,6 +20,7 @@
   "fund",
   "transaction_type",
   "status",
+  "tab_deal",
   "sec_deal",
   "counterparty",
   "security_description",
@@ -31,6 +33,7 @@
   "yield_to_maturity",
   "accrued_interest",
   "settlement_amount",
+  "tab_auth",
   "sec_signatures",
   "maker_signatory",
   "maker_signed",
@@ -118,7 +121,7 @@
   {
    "fieldname": "sec_deal",
    "fieldtype": "Section Break",
-   "label": "Deal Specifications"
+   "label": "Securities & Financials"
   },
   {
    "fieldname": "counterparty",
@@ -158,7 +161,7 @@
   {
    "fieldname": "clean_price",
    "fieldtype": "Float",
-   "label": "Price",
+   "label": "Clean Price",
    "reqd": 1
   },
   {
@@ -186,7 +189,7 @@
   {
    "fieldname": "sec_signatures",
    "fieldtype": "Section Break",
-   "label": "Dual Maker-Checker Signatories"
+   "label": "Dual Maker-Checker Signatures"
   },
   {
    "fieldname": "maker_signatory",
@@ -225,15 +228,29 @@
    "no_copy": 1,
    "options": "Asset Custody Instruction",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_header",
+   "fieldtype": "Tab Break",
+   "label": "Custody Instruction"
+  },
+  {
+   "fieldname": "tab_deal",
+   "fieldtype": "Tab Break",
+   "label": "Deal Specifications"
+  },
+  {
+   "fieldname": "tab_auth",
+   "fieldtype": "Tab Break",
+   "label": "Dual Signatories"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 13:37:54.456464",
+ "modified": "2026-10-31 16:22:03.302811",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Custody Instruction",
@@ -241,7 +258,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "trade_order, fund, counterparty, isin",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Blue",
+   "title": "Authorized & Dispatched"
+  },
+  {
+   "color": "Green",
+   "title": "Settlement Confirmed"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ],
+ "title_field": "transaction_type"
 }

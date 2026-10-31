@@ -8,25 +8,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_profile",
   "sec_info",
   "investor_id",
   "investor_name",
   "investor_type",
   "client_category",
-  "status",
   "col_break_1",
-  "email",
-  "phone",
-  "tax_id",
+  "status",
   "country_of_residence",
+  "tax_id",
   "created_from_application",
-  "sec_bank",
-  "bank_name",
-  "bank_branch",
-  "col_break_bnk",
-  "bank_account_name",
-  "bank_account_no",
-  "settlement_currency",
+  "sec_contact_info",
+  "email",
+  "col_break_phone",
+  "phone",
+  "tab_kyc",
   "sec_kyc",
   "kyc_status",
   "pep_status",
@@ -36,6 +33,15 @@
   "verified_date",
   "last_review_date",
   "next_review_date",
+  "tab_banking",
+  "sec_bank",
+  "bank_name",
+  "bank_branch",
+  "settlement_currency",
+  "col_break_bnk",
+  "bank_account_name",
+  "bank_account_no",
+  "tab_portfolio",
   "sec_portfolio_summary",
   "total_portfolio_value",
   "col_break_pf",
@@ -45,7 +51,7 @@
   {
    "fieldname": "sec_info",
    "fieldtype": "Section Break",
-   "label": "Investor Account Information"
+   "label": "Investor Master Account"
   },
   {
    "fieldname": "investor_id",
@@ -101,7 +107,7 @@
   {
    "fieldname": "sec_kyc",
    "fieldtype": "Section Break",
-   "label": "Investor KYC & Compliance Status"
+   "label": "Screening & Periodic Review"
   },
   {
    "default": "Verified",
@@ -126,7 +132,7 @@
    "fieldname": "risk_tier",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Risk Tier",
+   "label": "Assigned Risk Tier",
    "options": "Low\nMedium\nHigh"
   },
   {
@@ -189,7 +195,7 @@
    "default": "UGX",
    "fieldname": "settlement_currency",
    "fieldtype": "Link",
-   "label": "Currency",
+   "label": "Settlement Currency",
    "options": "Currency"
   },
   {
@@ -212,7 +218,7 @@
   {
    "fieldname": "sec_portfolio_summary",
    "fieldtype": "Section Break",
-   "label": "Portfolio Holdings Summary"
+   "label": "Marked-to-Market Total Holdings"
   },
   {
    "fieldname": "total_portfolio_value",
@@ -227,14 +233,69 @@
   {
    "fieldname": "total_units_held",
    "fieldtype": "Float",
-   "label": "Total Units Held Across Funds",
+   "label": "Total Units Held Across Schemes",
    "read_only": 1
+  },
+  {
+   "fieldname": "tab_profile",
+   "fieldtype": "Tab Break",
+   "label": "Investor Profile"
+  },
+  {
+   "fieldname": "sec_contact_info",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
+   "fieldname": "col_break_phone",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_kyc",
+   "fieldtype": "Tab Break",
+   "label": "KYC & Compliance"
+  },
+  {
+   "fieldname": "tab_banking",
+   "fieldtype": "Tab Break",
+   "label": "Settlement Bank"
+  },
+  {
+   "fieldname": "tab_portfolio",
+   "fieldtype": "Tab Break",
+   "label": "Portfolio Summary"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-10-31 13:09:28.521532",
+ "links": [
+  {
+   "group": "Transactions",
+   "link_doctype": "Asset Subscription",
+   "link_fieldname": "investor"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Asset Redemption",
+   "link_fieldname": "investor"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Asset Fund Switch",
+   "link_fieldname": "investor"
+  },
+  {
+   "group": "Holdings",
+   "link_doctype": "Asset Investor Portfolio",
+   "link_fieldname": "investor"
+  },
+  {
+   "group": "CRM",
+   "link_doctype": "Asset Client Interaction",
+   "link_fieldname": "investor"
+  }
+ ],
+ "modified": "2026-10-31 16:22:00.547197",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Investor",
@@ -316,8 +377,27 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "investor_id, tax_id, email, phone",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Orange",
+   "title": "Dormant"
+  },
+  {
+   "color": "Red",
+   "title": "Suspended"
+  },
+  {
+   "color": "Gray",
+   "title": "Closed"
+  }
+ ],
+ "title_field": "investor_name",
  "track_changes": 1
 }

@@ -8,11 +8,15 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_identity",
+  "sec_channel",
   "naming_series",
   "application_date",
   "onboarding_channel",
   "agent",
+  "col_break_status",
   "status",
+  "rejection_reason",
   "sec_investor_details",
   "investor_type",
   "client_category",
@@ -29,17 +33,19 @@
   "physical_address",
   "postal_address",
   "city",
+  "tab_banking",
   "sec_bank",
   "bank_name",
   "bank_branch",
+  "settlement_currency",
   "col_break_bnk",
   "bank_account_name",
   "bank_account_no",
-  "settlement_currency",
   "sec_signatories",
   "signatories",
   "sec_beneficiaries",
   "beneficiaries",
+  "tab_compliance",
   "sec_compliance",
   "pep_status",
   "sanction_status",
@@ -48,13 +54,13 @@
   "risk_score",
   "risk_tier",
   "edd_notes",
+  "tab_approval",
   "sec_approval",
   "reviewed_by",
   "approved_by_ce",
   "approval_date",
-  "created_investor_account",
   "col_break_appr",
-  "rejection_reason",
+  "created_investor_account",
   "amended_from"
  ],
  "fields": [
@@ -99,7 +105,7 @@
   {
    "fieldname": "sec_investor_details",
    "fieldtype": "Section Break",
-   "label": "Investor Identity & Categorization"
+   "label": "Investor Identity"
   },
   {
    "default": "Individual",
@@ -133,7 +139,7 @@
    "default": "National ID",
    "fieldname": "identification_type",
    "fieldtype": "Select",
-   "label": "ID Type",
+   "label": "ID Document Type",
    "options": "National ID\nPassport\nAlien ID\nCertificate of Incorporation\nTrust Deed",
    "reqd": 1
   },
@@ -159,7 +165,7 @@
   {
    "fieldname": "sec_contact",
    "fieldtype": "Section Break",
-   "label": "Contact & Address"
+   "label": "Contact & Residential Address"
   },
   {
    "fieldname": "email",
@@ -240,7 +246,7 @@
   {
    "fieldname": "sec_signatories",
    "fieldtype": "Section Break",
-   "label": "Joint Holders & Mandated Signatories"
+   "label": "Joint Mandates & Authorized Signatories"
   },
   {
    "fieldname": "signatories",
@@ -262,13 +268,13 @@
   {
    "fieldname": "sec_compliance",
    "fieldtype": "Section Break",
-   "label": "PEP, Sanctions & Risk Scoring"
+   "label": "AML/CFT & Sanctions Screening"
   },
   {
    "default": "No",
    "fieldname": "pep_status",
    "fieldtype": "Select",
-   "label": "PEP Status",
+   "label": "Politically Exposed Person (PEP)",
    "options": "No\nYes\nAssociated"
   },
   {
@@ -292,31 +298,31 @@
   {
    "fieldname": "risk_score",
    "fieldtype": "Float",
-   "label": "Risk Score",
+   "label": "Calculated Risk Score",
    "read_only": 1
   },
   {
    "default": "Low",
    "fieldname": "risk_tier",
    "fieldtype": "Select",
-   "label": "Risk Tier",
+   "label": "Assigned Risk Tier",
    "options": "Low\nMedium\nHigh",
    "read_only": 1
   },
   {
    "fieldname": "edd_notes",
    "fieldtype": "Small Text",
-   "label": "EDD & Compliance Findings"
+   "label": "EDD Findings & Compliance Notes"
   },
   {
    "fieldname": "sec_approval",
    "fieldtype": "Section Break",
-   "label": "Approval & Account Creation"
+   "label": "Operations & Chief Executive Sign-off"
   },
   {
    "fieldname": "reviewed_by",
    "fieldtype": "Link",
-   "label": "Reviewed / Verified By",
+   "label": "Reviewed By (Compliance/Ops)",
    "options": "User",
    "read_only": 1
   },
@@ -324,7 +330,7 @@
    "default": "0",
    "fieldname": "approved_by_ce",
    "fieldtype": "Check",
-   "label": "Chief Executive (CE) Approval (Required for PEP/High-Risk)"
+   "label": "CE Approval (Required for PEP/High-Risk)"
   },
   {
    "fieldname": "approval_date",
@@ -335,7 +341,7 @@
   {
    "fieldname": "created_investor_account",
    "fieldtype": "Link",
-   "label": "Created Investor Account",
+   "label": "Created Investor Master Account",
    "options": "Asset Investor",
    "read_only": 1
   },
@@ -355,15 +361,43 @@
    "no_copy": 1,
    "options": "Asset Investor Application",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_identity",
+   "fieldtype": "Tab Break",
+   "label": "Identity & Categorization"
+  },
+  {
+   "fieldname": "sec_channel",
+   "fieldtype": "Section Break",
+   "label": "Application Channel"
+  },
+  {
+   "fieldname": "col_break_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_banking",
+   "fieldtype": "Tab Break",
+   "label": "Banking & Mandates"
+  },
+  {
+   "fieldname": "tab_compliance",
+   "fieldtype": "Tab Break",
+   "label": "AML, PEP & Risk Scoring"
+  },
+  {
+   "fieldname": "tab_approval",
+   "fieldtype": "Tab Break",
+   "label": "Approval & Account Creation"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 13:09:28.162622",
+ "modified": "2026-10-31 16:21:59.693694",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Investor Application",
@@ -429,8 +463,27 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "identification_no, tax_id, email, phone",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Orange",
+   "title": "Pending Approval"
+  },
+  {
+   "color": "Green",
+   "title": "Approved"
+  },
+  {
+   "color": "Red",
+   "title": "Rejected"
+  }
+ ],
+ "title_field": "investor_name",
  "track_changes": 1
 }

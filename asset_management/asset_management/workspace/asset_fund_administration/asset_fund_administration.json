@@ -2,7 +2,7 @@
  "app": "asset_management",
  "charts": [],
  "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Fund Administration & Accounting Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Funds\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Unit Ledger\", \"col\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Daily Valuation & Pricing Engine\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Collective Investment Schemes Master\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Registry & Ledger\", \"col\": 12}}]",
- "creation": "2026-10-31 15:56:34.546601",
+ "creation": "2026-10-31 16:26:08.400901",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,7 +11,7 @@
  "idx": 0,
  "indicator_color": "green",
  "is_hidden": 0,
- "label": "Fund Administration Desk",
+ "label": "Asset Fund Administration",
  "link_type": "DocType",
  "links": [
   {
@@ -114,10 +114,10 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 15:56:34.546601",
+ "modified": "2026-10-31 16:26:08.400901",
  "modified_by": "Administrator",
  "module": "Asset Management",
- "name": "Fund Administration Desk",
+ "name": "Asset Fund Administration",
  "number_cards": [],
  "owner": "Administrator",
  "public": 1,
@@ -160,6 +160,6 @@
    "type": "DocType"
   }
  ],
- "title": "Fund Administration Desk",
+ "title": "Asset Fund Administration",
  "type": "Workspace"
 }

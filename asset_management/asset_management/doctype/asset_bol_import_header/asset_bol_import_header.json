@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_summary",
   "sec_header",
   "naming_series",
   "import_date",
@@ -20,6 +21,7 @@
   "total_amount",
   "matched_lines",
   "exception_lines",
+  "tab_lines",
   "sec_lines",
   "lines"
  ],
@@ -106,19 +108,29 @@
   {
    "fieldname": "sec_lines",
    "fieldtype": "Section Break",
-   "label": "Imported Transactions"
+   "label": "Statement Transactions"
   },
   {
    "fieldname": "lines",
    "fieldtype": "Table",
    "label": "Statement Lines",
    "options": "Asset BOL Import Line"
+  },
+  {
+   "fieldname": "tab_summary",
+   "fieldtype": "Tab Break",
+   "label": "Statement Summary"
+  },
+  {
+   "fieldname": "tab_lines",
+   "fieldtype": "Tab Break",
+   "label": "Imported Transactions"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-31 13:19:54.017204",
+ "modified": "2026-10-31 16:22:05.043134",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset BOL Import Header",
@@ -126,7 +138,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "file_name, bank_account_no",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Orange",
+   "title": "Imported"
+  },
+  {
+   "color": "Blue",
+   "title": "Processed"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  }
+ ],
+ "title_field": "file_name"
 }

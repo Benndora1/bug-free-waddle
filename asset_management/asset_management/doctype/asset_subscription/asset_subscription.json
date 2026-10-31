@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_details",
   "sec_header",
   "naming_series",
   "investor",
@@ -27,6 +28,7 @@
   "agent",
   "agent_commission_pct",
   "agent_commission_amount",
+  "tab_pricing",
   "sec_calc",
   "gross_amount",
   "entry_fee_pct",
@@ -36,9 +38,11 @@
   "applicable_nav_price",
   "units_allocated",
   "contract_note_no",
+  "tab_audit",
   "sec_audit",
   "maker",
   "checker",
+  "col_break_audit",
   "approved_by_operations",
   "approval_date",
   "remarks",
@@ -62,7 +66,7 @@
    "fieldname": "investor",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Investor",
+   "label": "Investor Account",
    "options": "Asset Investor",
    "reqd": 1
   },
@@ -77,7 +81,7 @@
    "fieldname": "fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Fund / Scheme",
+   "label": "Collective Investment Scheme",
    "options": "Asset Fund",
    "reqd": 1
   },
@@ -123,7 +127,7 @@
   {
    "fieldname": "sec_payment",
    "fieldtype": "Section Break",
-   "label": "Payment & Intermediary"
+   "label": "Payment Details & Intermediary Agent"
   },
   {
    "default": "Bank Transfer / BOL",
@@ -134,14 +138,16 @@
    "reqd": 1
   },
   {
+   "description": "Bank OneLine deposit reference or payment confirmation code",
    "fieldname": "bank_reference",
    "fieldtype": "Data",
-   "label": "Bank / BOL Transaction Ref"
+   "label": "Bank / BOL Transaction Reference"
   },
   {
    "fieldname": "bol_line_ref",
    "fieldtype": "Data",
-   "label": "BOL Line ID"
+   "label": "BOL Statement Line ID",
+   "read_only": 1
   },
   {
    "fieldname": "col_break_agent",
@@ -163,14 +169,16 @@
    "default": "0.0",
    "fieldname": "agent_commission_amount",
    "fieldtype": "Currency",
-   "label": "Agent Commission Amount"
+   "label": "Agent Commission Amount",
+   "read_only": 1
   },
   {
    "fieldname": "sec_calc",
    "fieldtype": "Section Break",
-   "label": "Unit Allocation Calculation"
+   "label": "Investment Calculation & Consideration"
   },
   {
+   "description": "Total cash deposit amount from investor",
    "fieldname": "gross_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -187,12 +195,15 @@
    "default": "0.0",
    "fieldname": "entry_fee_amount",
    "fieldtype": "Currency",
-   "label": "Entry Fee Amount"
+   "label": "Entry Fee Deducted",
+   "read_only": 1
   },
   {
+   "description": "Gross amount minus applicable entry fees",
    "fieldname": "net_invested_amount",
    "fieldtype": "Currency",
    "label": "Net Invested Amount",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -200,12 +211,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "description": "Prevailing unit creation price from daily valuation",
    "fieldname": "applicable_nav_price",
    "fieldtype": "Currency",
    "label": "Applicable Offer Price",
    "reqd": 1
   },
   {
+   "description": "Net invested amount / Applicable offer price",
    "fieldname": "units_allocated",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -216,25 +229,27 @@
   {
    "fieldname": "contract_note_no",
    "fieldtype": "Data",
-   "label": "Contract Note No",
+   "label": "Contract Note Number",
    "read_only": 1
   },
   {
    "fieldname": "sec_audit",
    "fieldtype": "Section Break",
-   "label": "Maker-Checker Governance"
+   "label": "Maker-Checker Sign-off"
   },
   {
    "fieldname": "maker",
    "fieldtype": "Link",
-   "label": "Maker",
-   "options": "User"
+   "label": "Maker (Operations Officer)",
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "checker",
    "fieldtype": "Link",
-   "label": "Checker",
-   "options": "User"
+   "label": "Checker (Operations Manager)",
+   "options": "User",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -245,12 +260,13 @@
   {
    "fieldname": "approval_date",
    "fieldtype": "Date",
-   "label": "Approval Date"
+   "label": "Approval Date",
+   "read_only": 1
   },
   {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
-   "label": "Remarks"
+   "label": "Remarks / Processing Notes"
   },
   {
    "fieldname": "amended_from",
@@ -259,15 +275,33 @@
    "no_copy": 1,
    "options": "Asset Subscription",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_details",
+   "fieldtype": "Tab Break",
+   "label": "Subscription Details"
+  },
+  {
+   "fieldname": "tab_pricing",
+   "fieldtype": "Tab Break",
+   "label": "Unit Allocation & Pricing"
+  },
+  {
+   "fieldname": "tab_audit",
+   "fieldtype": "Tab Break",
+   "label": "Governance & Audit"
+  },
+  {
+   "fieldname": "col_break_audit",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 13:19:53.403577",
+ "modified": "2026-10-31 16:21:58.324348",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Subscription",
@@ -275,7 +309,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "investor, fund, contract_note_no, bank_reference",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Blue",
+   "title": "Approved"
+  },
+  {
+   "color": "Green",
+   "title": "Submitted"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ],
+ "title_field": "investor_name"
 }

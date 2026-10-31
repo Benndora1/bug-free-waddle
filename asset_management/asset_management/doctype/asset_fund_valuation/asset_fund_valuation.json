@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_pricing",
   "sec_header",
   "naming_series",
   "fund",
@@ -25,15 +26,6 @@
   "cash_bank_balance",
   "accrued_income_receivable",
   "total_gav",
-  "sec_expenses",
-  "management_fee_accrual",
-  "custody_fee_accrual",
-  "trustee_fee_accrual",
-  "col_break_exp",
-  "cma_regulatory_fee_accrual",
-  "audit_fee_accrual",
-  "other_liabilities",
-  "total_accrued_expenses",
   "sec_pricing",
   "total_nav",
   "total_units_in_issue",
@@ -44,12 +36,25 @@
   "bid_price",
   "previous_nav_per_unit",
   "daily_change_pct",
+  "tab_holdings",
+  "sec_lines",
+  "lines",
+  "tab_fees",
+  "sec_expenses",
+  "management_fee_accrual",
+  "custody_fee_accrual",
+  "trustee_fee_accrual",
+  "col_break_exp",
+  "cma_regulatory_fee_accrual",
+  "audit_fee_accrual",
+  "other_liabilities",
+  "total_accrued_expenses",
+  "tab_gov",
   "sec_audit",
   "prepared_by",
   "approved_by",
+  "col_break_sign",
   "approval_date",
-  "sec_lines",
-  "lines",
   "amended_from"
  ],
  "fields": [
@@ -70,7 +75,7 @@
    "fieldname": "fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Fund / Scheme",
+   "label": "Collective Investment Scheme",
    "options": "Asset Fund",
    "reqd": 1
   },
@@ -110,13 +115,13 @@
   {
    "fieldname": "sec_gav",
    "fieldtype": "Section Break",
-   "label": "Asset Aggregation & Gross Asset Value (GAV)"
+   "label": "Gross Asset Value (GAV) Aggregation"
   },
   {
    "default": "0.0",
    "fieldname": "bonds_market_value",
    "fieldtype": "Currency",
-   "label": "Treasury & Corp Bonds",
+   "label": "Treasury & Corporate Bonds",
    "read_only": 1
   },
   {
@@ -130,7 +135,7 @@
    "default": "0.0",
    "fieldname": "deposits_market_value",
    "fieldtype": "Currency",
-   "label": "Bank Placements / Deposits",
+   "label": "Bank Placements & Term Deposits",
    "read_only": 1
   },
   {
@@ -154,20 +159,20 @@
    "default": "0.0",
    "fieldname": "accrued_income_receivable",
    "fieldtype": "Currency",
-   "label": "Accrued Receivables"
+   "label": "Accrued Receivables & Coupons"
   },
   {
    "default": "0.0",
    "fieldname": "total_gav",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Gross Asset Value (GAV)",
+   "label": "Total Gross Asset Value (GAV)",
    "read_only": 1
   },
   {
    "fieldname": "sec_expenses",
    "fieldtype": "Section Break",
-   "label": "Daily Accrued Fees & Expenses"
+   "label": "Daily Statutory & Operational Fee Accruals"
   },
   {
    "default": "0.0",
@@ -198,7 +203,7 @@
    "default": "0.0",
    "fieldname": "cma_regulatory_fee_accrual",
    "fieldtype": "Currency",
-   "label": "CMA Regulatory Fee",
+   "label": "CMA Regulatory Fee Accrual",
    "read_only": 1
   },
   {
@@ -224,7 +229,7 @@
   {
    "fieldname": "sec_pricing",
    "fieldtype": "Section Break",
-   "label": "NAV & Pricing Output (Rule 1 Unlock)"
+   "label": "Net Asset Value (NAV) & Pricing Output"
   },
   {
    "default": "0.0",
@@ -279,13 +284,13 @@
   {
    "fieldname": "previous_nav_per_unit",
    "fieldtype": "Currency",
-   "label": "Previous NAV Per Unit",
+   "label": "Previous Day NAV Per Unit",
    "read_only": 1
   },
   {
    "fieldname": "daily_change_pct",
    "fieldtype": "Percent",
-   "label": "Daily Performance %",
+   "label": "Daily Yield / Change %",
    "read_only": 1
   },
   {
@@ -313,7 +318,7 @@
   {
    "fieldname": "sec_lines",
    "fieldtype": "Section Break",
-   "label": "Holdings Portfolio Breakdown"
+   "label": "Security Asset Breakdown"
   },
   {
    "fieldname": "lines",
@@ -328,15 +333,38 @@
    "no_copy": 1,
    "options": "Asset Fund Valuation",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_pricing",
+   "fieldtype": "Tab Break",
+   "label": "Daily Valuation & Pricing"
+  },
+  {
+   "fieldname": "tab_holdings",
+   "fieldtype": "Tab Break",
+   "label": "Holdings Portfolio Breakdown"
+  },
+  {
+   "fieldname": "tab_fees",
+   "fieldtype": "Tab Break",
+   "label": "Daily Fee Accruals"
+  },
+  {
+   "fieldname": "tab_gov",
+   "fieldtype": "Tab Break",
+   "label": "Governance & Sign-off"
+  },
+  {
+   "fieldname": "col_break_sign",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 13:43:08.755741",
+ "modified": "2026-10-31 16:22:01.909044",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Fund Valuation",
@@ -344,7 +372,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "fund, valuation_date",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Orange",
+   "title": "Pending Approval"
+  },
+  {
+   "color": "Green",
+   "title": "Approved"
+  },
+  {
+   "color": "Red",
+   "title": "Rejected"
+  }
+ ],
+ "title_field": "fund_name"
 }

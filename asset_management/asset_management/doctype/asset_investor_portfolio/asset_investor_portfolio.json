@@ -8,43 +8,41 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "sec_summary",
+  "tab_profile",
+  "sec_info",
   "investor",
   "investor_name",
   "fund",
   "fund_name",
-  "col_break_summary",
+  "col_break_1",
   "portfolio_status",
   "currency",
   "first_subscription_date",
   "last_transaction_date",
-  "sec_balances",
+  "tab_valuation",
+  "sec_holdings",
   "total_units",
   "current_nav_per_unit",
   "current_market_value",
-  "col_break_perf",
+  "col_break_val",
   "total_invested_amount",
   "total_withdrawn_amount",
   "unrealized_gain_loss",
   "realized_gain_loss",
+  "tab_bank",
   "sec_bank",
   "bank_name",
   "bank_branch",
-  "col_break_bank",
+  "col_break_bnk",
   "bank_account_name",
   "bank_account_no"
  ],
  "fields": [
   {
-   "fieldname": "sec_summary",
-   "fieldtype": "Section Break",
-   "label": "Portfolio Summary"
-  },
-  {
    "fieldname": "investor",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Investor",
+   "label": "Investor Account",
    "options": "Asset Investor",
    "reqd": 1
   },
@@ -59,49 +57,42 @@
    "fieldname": "fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Fund / Scheme",
+   "label": "Collective Investment Scheme",
    "options": "Asset Fund",
    "reqd": 1
   },
   {
    "fieldname": "fund_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "label": "Fund Name",
    "read_only": 1
-  },
-  {
-   "fieldname": "col_break_summary",
-   "fieldtype": "Column Break"
   },
   {
    "default": "Active",
    "fieldname": "portfolio_status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Status",
-   "options": "Active\nDormant\nFrozen\nClosed"
+   "label": "Portfolio Status",
+   "options": "Active\nSuspended\nClosed"
   },
   {
    "default": "UGX",
    "fieldname": "currency",
-   "fieldtype": "Data",
-   "label": "Currency"
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
   },
   {
    "fieldname": "first_subscription_date",
    "fieldtype": "Date",
-   "label": "First Investment Date"
+   "label": "First Subscription Date",
+   "read_only": 1
   },
   {
    "fieldname": "last_transaction_date",
    "fieldtype": "Date",
-   "label": "Last Transaction Date"
-  },
-  {
-   "fieldname": "sec_balances",
-   "fieldtype": "Section Break",
-   "label": "Units & Market Valuation"
+   "label": "Last Transaction Date",
+   "read_only": 1
   },
   {
    "default": "0.0",
@@ -112,10 +103,10 @@
    "read_only": 1
   },
   {
-   "default": "0.0",
+   "default": "100.0",
    "fieldname": "current_nav_per_unit",
    "fieldtype": "Currency",
-   "label": "Current NAV / Unit",
+   "label": "Current NAV Per Unit",
    "read_only": 1
   },
   {
@@ -123,45 +114,41 @@
    "fieldname": "current_market_value",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Current Market Value",
+   "label": "Current Market Value (AUM)",
    "read_only": 1
-  },
-  {
-   "fieldname": "col_break_perf",
-   "fieldtype": "Column Break"
   },
   {
    "default": "0.0",
    "fieldname": "total_invested_amount",
    "fieldtype": "Currency",
-   "label": "Total Subscriptions",
+   "label": "Total Subscribed Inflow",
    "read_only": 1
   },
   {
    "default": "0.0",
    "fieldname": "total_withdrawn_amount",
    "fieldtype": "Currency",
-   "label": "Total Redemptions",
+   "label": "Total Redeemed Outflow",
    "read_only": 1
   },
   {
    "default": "0.0",
    "fieldname": "unrealized_gain_loss",
    "fieldtype": "Currency",
-   "label": "Unrealized Gain / Loss",
+   "label": "Unrealized Capital Gain/Loss",
    "read_only": 1
   },
   {
    "default": "0.0",
    "fieldname": "realized_gain_loss",
    "fieldtype": "Currency",
-   "label": "Realized Gain / Loss",
+   "label": "Realized Gain/Loss",
    "read_only": 1
   },
   {
    "fieldname": "sec_bank",
    "fieldtype": "Section Break",
-   "label": "Settlement Bank Account"
+   "label": "Linked Bank Account"
   },
   {
    "fieldname": "bank_name",
@@ -171,11 +158,7 @@
   {
    "fieldname": "bank_branch",
    "fieldtype": "Data",
-   "label": "Branch"
-  },
-  {
-   "fieldname": "col_break_bank",
-   "fieldtype": "Column Break"
+   "label": "Branch Name"
   },
   {
    "fieldname": "bank_account_name",
@@ -186,12 +169,60 @@
    "fieldname": "bank_account_no",
    "fieldtype": "Data",
    "label": "Account Number"
+  },
+  {
+   "fieldname": "tab_profile",
+   "fieldtype": "Tab Break",
+   "label": "Portfolio Account"
+  },
+  {
+   "fieldname": "sec_info",
+   "fieldtype": "Section Break",
+   "label": "Investor & Fund Account"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_valuation",
+   "fieldtype": "Tab Break",
+   "label": "Holdings & Valuation"
+  },
+  {
+   "fieldname": "sec_holdings",
+   "fieldtype": "Section Break",
+   "label": "Current Holdings & Marked-to-Market Valuation"
+  },
+  {
+   "fieldname": "col_break_val",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_bank",
+   "fieldtype": "Tab Break",
+   "label": "Settlement Bank"
+  },
+  {
+   "fieldname": "col_break_bnk",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-10-31 13:19:53.019811",
+ "links": [
+  {
+   "group": "Transactions",
+   "link_doctype": "Asset Subscription",
+   "link_fieldname": "fund"
+  },
+  {
+   "group": "Transactions",
+   "link_doctype": "Asset Redemption",
+   "link_fieldname": "fund"
+  }
+ ],
+ "modified": "2026-10-31 16:22:06.889406",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Investor Portfolio",
@@ -200,7 +231,22 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "investor, fund",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Orange",
+   "title": "Suspended"
+  },
+  {
+   "color": "Gray",
+   "title": "Closed"
+  }
+ ],
+ "title_field": "fund_name"
 }

@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_profile",
+  "sec_agent",
   "agent_code",
   "agent_name",
   "agent_type",
@@ -17,8 +19,10 @@
   "email",
   "phone",
   "status",
+  "tab_banking",
   "sec_bank",
   "bank_name",
+  "col_break_bnk",
   "bank_account_no",
   "bank_account_name"
  ],
@@ -99,12 +103,42 @@
    "fieldname": "bank_account_name",
    "fieldtype": "Data",
    "label": "Account Name"
+  },
+  {
+   "fieldname": "tab_profile",
+   "fieldtype": "Tab Break",
+   "label": "Agent Profile"
+  },
+  {
+   "fieldname": "sec_agent",
+   "fieldtype": "Section Break",
+   "label": "Agent Master Profile"
+  },
+  {
+   "fieldname": "tab_banking",
+   "fieldtype": "Tab Break",
+   "label": "Payout Banking"
+  },
+  {
+   "fieldname": "col_break_bnk",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-10-31 13:19:53.287812",
+ "links": [
+  {
+   "group": "Referrals",
+   "link_doctype": "Asset Subscription",
+   "link_fieldname": "agent"
+  },
+  {
+   "group": "Commissions",
+   "link_doctype": "Asset Agent Commission",
+   "link_fieldname": "agent"
+  }
+ ],
+ "modified": "2026-10-31 16:22:06.485745",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Agent",
@@ -112,7 +146,22 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "agent_code, license_no, phone, email",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Orange",
+   "title": "Suspended"
+  },
+  {
+   "color": "Gray",
+   "title": "Inactive"
+  }
+ ],
+ "title_field": "agent_name"
 }

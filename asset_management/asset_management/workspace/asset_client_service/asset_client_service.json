@@ -2,7 +2,7 @@
  "app": "asset_management",
  "charts": [],
  "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Client Relationship Management Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Client Cases\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Applications\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Investors\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"SLA Rules\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Client Interactions & SLA Cases\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor Master & Onboarding\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"KYC & Mandate Documentation\", \"col\": 12}}]",
- "creation": "2026-10-31 15:56:34.639022",
+ "creation": "2026-10-31 16:26:08.520939",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -11,7 +11,7 @@
  "idx": 0,
  "indicator_color": "green",
  "is_hidden": 0,
- "label": "Client Service CRM Desk",
+ "label": "Asset Client Service",
  "link_type": "DocType",
  "links": [
   {
@@ -122,10 +122,10 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 15:56:34.639022",
+ "modified": "2026-10-31 16:26:08.520939",
  "modified_by": "Administrator",
  "module": "Asset Management",
- "name": "Client Service CRM Desk",
+ "name": "Asset Client Service",
  "number_cards": [],
  "owner": "Administrator",
  "public": 1,
@@ -172,6 +172,6 @@
    "type": "DocType"
   }
  ],
- "title": "Client Service CRM Desk",
+ "title": "Asset Client Service",
  "type": "Workspace"
 }

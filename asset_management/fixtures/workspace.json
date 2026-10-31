@@ -410,7 +410,7 @@
     "url": null
    }
   ],
-  "title": "Operations Desk",
+  "title": "Asset Operations",
   "type": "Workspace"
  },
  {
@@ -704,7 +704,7 @@
     "url": null
    }
   ],
-  "title": "Portfolio & Trading Desk",
+  "title": "Asset Portfolio & Trading",
   "type": "Workspace"
  },
  {
@@ -942,7 +942,7 @@
     "url": null
    }
   ],
-  "title": "Fund Administration Desk",
+  "title": "Asset Fund Administration",
   "type": "Workspace"
  },
  {
@@ -1236,7 +1236,7 @@
     "url": null
    }
   ],
-  "title": "Compliance & Risk Desk",
+  "title": "Asset Compliance & Risk",
   "type": "Workspace"
  },
  {
@@ -1500,7 +1500,7 @@
     "url": null
    }
   ],
-  "title": "Client Service CRM Desk",
+  "title": "Asset Client Service",
   "type": "Workspace"
  },
  {

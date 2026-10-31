@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_details",
+  "sec_header",
   "naming_series",
   "date_opened",
   "investor",
@@ -21,12 +23,14 @@
   "sec_details",
   "subject",
   "description",
+  "tab_sla",
   "sec_sla_tracking",
   "target_due_datetime",
   "is_overdue",
   "col_break_esc",
   "escalation_level",
   "escalated_to",
+  "tab_resolution",
   "sec_resolution",
   "resolution_datetime",
   "resolved_by",
@@ -164,7 +168,7 @@
   {
    "fieldname": "sec_resolution",
    "fieldtype": "Section Break",
-   "label": "Resolution & Feedback"
+   "label": "Resolution Action Taken"
   },
   {
    "fieldname": "resolution_datetime",
@@ -182,7 +186,7 @@
   {
    "fieldname": "resolution_summary",
    "fieldtype": "Small Text",
-   "label": "Resolution Action Taken"
+   "label": "Resolution Summary"
   },
   {
    "fieldname": "col_break_fb",
@@ -199,12 +203,32 @@
    "fieldname": "feedback_comments",
    "fieldtype": "Small Text",
    "label": "Client Feedback Comments"
+  },
+  {
+   "fieldname": "tab_details",
+   "fieldtype": "Tab Break",
+   "label": "Case Details"
+  },
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Client Interaction Header"
+  },
+  {
+   "fieldname": "tab_sla",
+   "fieldtype": "Tab Break",
+   "label": "SLA & Escalation"
+  },
+  {
+   "fieldname": "tab_resolution",
+   "fieldtype": "Tab Break",
+   "label": "Resolution & Feedback"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-31 13:09:28.850221",
+ "modified": "2026-10-31 16:22:03.828360",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Client Interaction",
@@ -262,8 +286,31 @@
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "investor, sla_setup, subject",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Red",
+   "title": "Open"
+  },
+  {
+   "color": "Orange",
+   "title": "In Progress"
+  },
+  {
+   "color": "Purple",
+   "title": "Escalated"
+  },
+  {
+   "color": "Blue",
+   "title": "Resolved"
+  },
+  {
+   "color": "Green",
+   "title": "Closed"
+  }
+ ],
+ "title_field": "subject",
  "track_changes": 1
 }

@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_profile",
   "sec_fund_details",
   "fund_id",
   "fund_name",
@@ -18,6 +19,7 @@
   "launch_date",
   "accounting_basis",
   "valuation_frequency",
+  "tab_pricing",
   "sec_pricing",
   "initial_nav_per_unit",
   "current_nav_per_unit",
@@ -27,9 +29,12 @@
   "current_bid_price",
   "last_valuation_date",
   "prior_day_valuation_approved",
+  "sec_aggregates",
   "total_units_in_issue",
   "total_gav",
+  "col_break_nav",
   "total_nav",
+  "tab_limits",
   "sec_limits",
   "min_subscription_amount",
   "min_additional_amount",
@@ -39,6 +44,7 @@
   "redemption_settlement_days",
   "early_redemption_penalty_pct",
   "early_redemption_period_days",
+  "tab_parties",
   "sec_counterparties",
   "custodian_name",
   "custodian_account",
@@ -53,7 +59,7 @@
   {
    "fieldname": "sec_fund_details",
    "fieldtype": "Section Break",
-   "label": "Fund Profile"
+   "label": "CIS Fund Profile"
   },
   {
    "fieldname": "fund_id",
@@ -121,13 +127,13 @@
   {
    "fieldname": "sec_pricing",
    "fieldtype": "Section Break",
-   "label": "Pricing & NAV (Rule 1 Compliance)"
+   "label": "Prevailing NAV & Bid/Offer Pricing"
   },
   {
    "default": "100.0",
    "fieldname": "initial_nav_per_unit",
    "fieldtype": "Currency",
-   "label": "Initial NAV Per Unit",
+   "label": "Inception NAV Per Unit",
    "reqd": 1
   },
   {
@@ -246,7 +252,7 @@
   {
    "fieldname": "sec_counterparties",
    "fieldtype": "Section Break",
-   "label": "Trustees, Custodians & Service Providers"
+   "label": "Trustees, Custodians & Auditors"
   },
   {
    "default": "Stanbic Bank Uganda Custody",
@@ -283,19 +289,69 @@
   {
    "fieldname": "sec_fees",
    "fieldtype": "Section Break",
-   "label": "Fee Structures"
+   "label": "Fund Fee Tier Setup"
   },
   {
    "fieldname": "fees",
    "fieldtype": "Table",
    "label": "Fund Fees",
    "options": "Asset Fund Fee Tier"
+  },
+  {
+   "fieldname": "tab_profile",
+   "fieldtype": "Tab Break",
+   "label": "Fund Profile"
+  },
+  {
+   "fieldname": "tab_pricing",
+   "fieldtype": "Tab Break",
+   "label": "Pricing & NAV (Rule 1)"
+  },
+  {
+   "fieldname": "sec_aggregates",
+   "fieldtype": "Section Break",
+   "label": "Fund Aggregates"
+  },
+  {
+   "fieldname": "col_break_nav",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_limits",
+   "fieldtype": "Tab Break",
+   "label": "Limits & Thresholds"
+  },
+  {
+   "fieldname": "tab_parties",
+   "fieldtype": "Tab Break",
+   "label": "Providers & Fees"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-10-31 13:19:52.844201",
+ "links": [
+  {
+   "group": "Operations",
+   "link_doctype": "Asset Subscription",
+   "link_fieldname": "fund"
+  },
+  {
+   "group": "Operations",
+   "link_doctype": "Asset Redemption",
+   "link_fieldname": "fund"
+  },
+  {
+   "group": "Valuation",
+   "link_doctype": "Asset Fund Valuation",
+   "link_fieldname": "fund"
+  },
+  {
+   "group": "Holdings",
+   "link_doctype": "Asset Portfolio Holding",
+   "link_fieldname": "fund"
+  }
+ ],
+ "modified": "2026-10-31 16:22:01.333350",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Fund",
@@ -303,7 +359,22 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "fund_id, fund_type, currency",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Orange",
+   "title": "Suspended"
+  },
+  {
+   "color": "Red",
+   "title": "Closed"
+  }
+ ],
+ "title_field": "fund_name"
 }

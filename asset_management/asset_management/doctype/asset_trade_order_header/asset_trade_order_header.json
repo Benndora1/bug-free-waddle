@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_order",
   "sec_header",
   "naming_series",
   "order_date",
@@ -32,12 +33,14 @@
   "dirty_price",
   "consideration_amount",
   "settlement_amount",
+  "tab_deposit",
   "sec_deposit",
   "deposit_tenor_days",
   "maturity_date",
   "col_break_dep",
   "interest_rate",
   "expected_interest",
+  "tab_compliance",
   "sec_compliance",
   "compliance_checked",
   "compliance_status",
@@ -48,6 +51,7 @@
   "override_approved",
   "override_justification",
   "override_approved_by",
+  "tab_custody",
   "sec_auth",
   "dealer",
   "approver",
@@ -61,7 +65,7 @@
   {
    "fieldname": "sec_header",
    "fieldtype": "Section Break",
-   "label": "Trade Details"
+   "label": "Dealing Pot Order"
   },
   {
    "default": "ORD-.YYYY.-.#####",
@@ -81,7 +85,6 @@
   {
    "fieldname": "settlement_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Settlement Date",
    "reqd": 1
   },
@@ -98,7 +101,7 @@
    "fieldname": "fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Fund",
+   "label": "Fund Account",
    "options": "Asset Fund",
    "reqd": 1
   },
@@ -110,7 +113,7 @@
    "fieldname": "security",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Security",
+   "label": "Investment Security",
    "options": "Asset Investment Security",
    "reqd": 1
   },
@@ -211,7 +214,7 @@
   {
    "fieldname": "sec_deposit",
    "fieldtype": "Section Break",
-   "label": "Money Market / Deposit Terms"
+   "label": "Deposit Specifications"
   },
   {
    "fieldname": "deposit_tenor_days",
@@ -240,7 +243,7 @@
   {
    "fieldname": "sec_compliance",
    "fieldtype": "Section Break",
-   "label": "Pre-Trade Compliance & Cash Guard (Rule 2)"
+   "label": "Cash Availability Guard & Concentration Limits"
   },
   {
    "default": "0",
@@ -270,13 +273,13 @@
   {
    "fieldname": "cash_available_before_trade",
    "fieldtype": "Currency",
-   "label": "Fund Cash Available",
+   "label": "Fund Cash Available Before Trade",
    "read_only": 1
   },
   {
    "fieldname": "cash_after_trade",
    "fieldtype": "Currency",
-   "label": "Projected Cash Balance",
+   "label": "Projected Cash Balance After Trade",
    "read_only": 1
   },
   {
@@ -346,15 +349,40 @@
    "no_copy": 1,
    "options": "Asset Trade Order Header",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_order",
+   "fieldtype": "Tab Break",
+   "label": "Trade Details & Pricing"
+  },
+  {
+   "fieldname": "tab_deposit",
+   "fieldtype": "Tab Break",
+   "label": "Money Market Terms"
+  },
+  {
+   "fieldname": "tab_compliance",
+   "fieldtype": "Tab Break",
+   "label": "Pre-Trade Compliance (Rule 2)"
+  },
+  {
+   "fieldname": "tab_custody",
+   "fieldtype": "Tab Break",
+   "label": "Custody & Execution"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2026-10-31 13:37:54.306379",
+ "links": [
+  {
+   "group": "Custody",
+   "link_doctype": "Asset Custody Instruction",
+   "link_fieldname": "trade_order"
+  }
+ ],
+ "modified": "2026-10-31 16:22:02.564515",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Trade Order Header",
@@ -362,7 +390,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "security, fund, counterparty, custody_instruction_ref",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Blue",
+   "title": "Approved"
+  },
+  {
+   "color": "Green",
+   "title": "Settled"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ],
+ "title_field": "security_name"
 }

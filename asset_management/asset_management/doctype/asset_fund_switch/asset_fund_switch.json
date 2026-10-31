@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "tab_routing",
   "sec_header",
   "naming_series",
   "investor",
@@ -20,6 +21,7 @@
   "switch_by",
   "switch_units",
   "switch_amount",
+  "tab_pricing",
   "sec_pricing",
   "from_fund_bid_price",
   "gross_switch_amount",
@@ -29,9 +31,11 @@
   "col_break_to",
   "to_fund_offer_price",
   "units_allocated_to_fund",
+  "tab_audit",
   "sec_audit",
   "maker",
   "checker",
+  "col_break_chk",
   "approved_by_checker",
   "amended_from"
  ],
@@ -53,7 +57,7 @@
    "fieldname": "investor",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Investor",
+   "label": "Investor Account",
    "options": "Asset Investor",
    "reqd": 1
   },
@@ -75,7 +79,7 @@
    "fieldname": "from_fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Source Fund (Out)",
+   "label": "Source Fund (Outflow)",
    "options": "Asset Fund",
    "reqd": 1
   },
@@ -83,7 +87,7 @@
    "fieldname": "to_fund",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Target Fund (In)",
+   "label": "Target Fund (Inflow)",
    "options": "Asset Fund",
    "reqd": 1
   },
@@ -103,7 +107,7 @@
    "default": "Units",
    "fieldname": "switch_by",
    "fieldtype": "Select",
-   "label": "Switch By",
+   "label": "Switch Basis",
    "options": "Units\nAmount\nFull Balance",
    "reqd": 1
   },
@@ -121,18 +125,18 @@
   {
    "fieldname": "sec_pricing",
    "fieldtype": "Section Break",
-   "label": "Pricing & Unit Allocation"
+   "label": "Unit Allocation & Pricing"
   },
   {
    "fieldname": "from_fund_bid_price",
    "fieldtype": "Currency",
-   "label": "Source Bid Price",
+   "label": "Source Fund Bid Price",
    "reqd": 1
   },
   {
    "fieldname": "gross_switch_amount",
    "fieldtype": "Currency",
-   "label": "Gross Outflow",
+   "label": "Gross Outflow Consideration",
    "reqd": 1
   },
   {
@@ -150,7 +154,7 @@
   {
    "fieldname": "net_switch_amount",
    "fieldtype": "Currency",
-   "label": "Net Inflow",
+   "label": "Net Inflow Consideration",
    "reqd": 1
   },
   {
@@ -160,7 +164,7 @@
   {
    "fieldname": "to_fund_offer_price",
    "fieldtype": "Currency",
-   "label": "Target Offer Price",
+   "label": "Target Fund Offer Price",
    "reqd": 1
   },
   {
@@ -180,13 +184,15 @@
    "fieldname": "maker",
    "fieldtype": "Link",
    "label": "Maker",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "checker",
    "fieldtype": "Link",
    "label": "Checker",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -201,15 +207,33 @@
    "no_copy": 1,
    "options": "Asset Fund Switch",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_routing",
+   "fieldtype": "Tab Break",
+   "label": "Switch Routing"
+  },
+  {
+   "fieldname": "tab_pricing",
+   "fieldtype": "Tab Break",
+   "label": "Pricing & Allocation"
+  },
+  {
+   "fieldname": "tab_audit",
+   "fieldtype": "Tab Break",
+   "label": "Maker-Checker"
+  },
+  {
+   "fieldname": "col_break_chk",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 13:19:53.830981",
+ "modified": "2026-10-31 16:22:05.471288",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Fund Switch",
@@ -217,7 +241,26 @@
  "permissions": [],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "search_fields": "investor, from_fund, to_fund",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Blue",
+   "title": "Approved"
+  },
+  {
+   "color": "Green",
+   "title": "Submitted"
+  },
+  {
+   "color": "Red",
+   "title": "Cancelled"
+  }
+ ],
+ "title_field": "investor_name"
 }
