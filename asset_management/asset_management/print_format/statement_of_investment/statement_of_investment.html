@@ -3,8 +3,8 @@
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <h2 style="color: #003366; margin: 0; font-size: 22px;">SBG SECURITIES LIMITED</h2>
-                    <p style="margin: 3px 0; color: #555; font-size: 12px;">Asset Management Division | Statement of Portfolio Valuation</p>
+                    <h2 style="color: #003366; margin: 0; font-size: 22px;">{{ doc.company or "INSTITUTIONAL ASSET MANAGEMENT" }}</h2>
+                    <p style="margin: 3px 0; color: #555; font-size: 12px;">Institutional Asset Management | Statement of Portfolio Valuation</p>
                 </td>
                 <td style="text-align: right;">
                     <span style="font-size: 11px; color: #555;">Statement Date:</span><br>
@@ -52,10 +52,10 @@
 
     <h4 style="color: #003366; border-bottom: 2px solid #003366; padding-bottom: 6px; margin-bottom: 10px;">Registered Settlement Account</h4>
     <p style="font-size: 12px; margin: 0 0 20px 0;">
-        Bank: <strong>{{ doc.bank_name or 'Stanbic Bank Uganda' }}</strong> | Branch: <strong>{{ doc.bank_branch or 'Main' }}</strong> | Account No: <strong>{{ doc.bank_account_no or 'N/A' }}</strong> | Name: <strong>{{ doc.bank_account_name or doc.investor_name }}</strong>
+        Bank: <strong>{{ doc.bank_name or 'Settlement Bank' }}</strong> | Branch: <strong>{{ doc.bank_branch or 'Main' }}</strong> | Account No: <strong>{{ doc.bank_account_no or 'N/A' }}</strong> | Name: <strong>{{ doc.bank_account_name or doc.investor_name }}</strong>
     </p>
 
     <div style="font-size: 10px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 10px; text-align: center;">
-        This statement is issued for valuation and information purposes. For inquiries, please email support@sbgsecurities.co.ug.
+        This statement is issued for valuation and information purposes. For inquiries, please email support@assetmanagement.cloud.
     </div>
 </div>

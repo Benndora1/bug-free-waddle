@@ -61,7 +61,7 @@ class TestSprint5PostingAndReports(unittest.TestCase):
         pf = frappe.get_doc("Print Format", "Unit Trust Contract Note")
         rendered = frappe.render_template(pf.html, {"doc": sub, "frappe": frappe})
 
-        self.assertIn("SBG Securities Limited", rendered)
+        self.assertIn("Institutional Asset Management", rendered)
         self.assertIn("Unit Trust Subscription Contract Note", rendered)
         self.assertIn(sub.investor_name, rendered)
         self.assertIn(sub.fund_name, rendered)
@@ -77,14 +77,14 @@ class TestSprint5PostingAndReports(unittest.TestCase):
         pf = frappe.get_doc("Print Format", "Statement of Investment")
         rendered = frappe.render_template(pf.html, {"doc": port, "frappe": frappe})
 
-        self.assertIn("SBG SECURITIES LIMITED", rendered)
+        self.assertIn("INSTITUTIONAL ASSET MANAGEMENT", rendered)
         self.assertIn("Statement of Portfolio Valuation", rendered)
         self.assertIn(port.investor_name, rendered)
         self.assertIn(port.fund_name, rendered)
         self.assertIn(f"{port.total_units:,.4f}", rendered)
 
     def test_03_print_format_stanbic_custody_instruction(self):
-        """Verify Stanbic Custody Instruction print format matching official SBU document."""
+        """Verify Custody Instruction print format matching official document."""
         custs = frappe.get_all("Asset Custody Instruction", limit=1)
         if not custs:
             self.skipTest("No Asset Custody Instruction found.")
@@ -93,11 +93,9 @@ class TestSprint5PostingAndReports(unittest.TestCase):
         pf = frappe.get_doc("Print Format", "Stanbic Custody Instruction")
         rendered = frappe.render_template(pf.html, {"doc": cust, "frappe": frappe})
 
-        self.assertIn("Stanbic Bank Uganda Limited", rendered)
-        self.assertIn("Attention: Head, Investor Services (TPS)", rendered)
+        self.assertIn("Attention: Head, Investor Services", rendered)
         self.assertIn(cust.counterparty, rendered)
         self.assertIn(f"{cust.face_value:,.0f}", rendered)
-        self.assertIn("SBU", rendered)
 
     def test_04_report_unit_holders_register_execution(self):
         """Verify Unit Holders Register script report execution and column structure."""

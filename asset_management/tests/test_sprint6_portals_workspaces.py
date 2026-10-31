@@ -261,8 +261,8 @@ class TestSprint6PortalsWorkspaces(unittest.TestCase):
             content = get_response_content(path)
             self.assertIsNotNone(content, f"Route {path} should return content")
             self.assertGreater(len(content), 500, f"Route {path} should have non-trivial HTML body")
-            has_branding = ("STANBIC ASSET MANAGEMENT" in content) or ("Stanbic Asset Management" in content)
-            self.assertTrue(has_branding, f"Route {path} should contain Stanbic branding")
+            has_branding = ("ASSET MANAGEMENT" in content) or ("Asset Management" in content)
+            self.assertTrue(has_branding, f"Route {path} should contain Asset Management branding")
 
 if __name__ == "__main__":
     frappe.init(site="erp.site.com")

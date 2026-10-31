@@ -2,9 +2,9 @@
     <div style="margin-bottom: 15px;">
         <p style="margin: 0; font-weight: bold;">{{ frappe.utils.format_date(doc.instruction_date, "EEEE, MMMM d, yyyy") }}.</p>
         <p style="margin: 5px 0 0 0;">
-            <strong>Stanbic Bank Uganda Limited,</strong><br>
+            <strong>{{ doc.custodian_bank or "Institutional Custodian Bank Limited" }},</strong><br>
             Corporate & Investment Banking,<br>
-            17 Hannington Road, Crested Towers, Kampala.<br>
+            Global Custody & Securities Settlement Division.<br>
             <strong>Attention: Head, Investor Services (TPS)</strong>
         </p>
     </div>
@@ -55,7 +55,7 @@
                 {% endif %}
                 <strong>{{ doc.maker_signatory }}</strong><br>
                 <span>Fund Operations / Administrator</span><br>
-                <span>SBG Securities Limited</span>
+                <span>{{ doc.company or "Institutional Asset Management" }}</span>
             </td>
             <td style="width: 10%;"></td>
             <td style="width: 45%; vertical-align: bottom;">
@@ -64,7 +64,7 @@
                 {% endif %}
                 <strong>{{ doc.checker_signatory }}</strong><br>
                 <span>Investment Manager</span><br>
-                <span>SBG Securities Limited</span>
+                <span>{{ doc.company or "Institutional Asset Management" }}</span>
             </td>
         </tr>
     </table>

@@ -1,8 +1,8 @@
 {
  "app": "asset_management",
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Stanbic Asset Management Central Hub\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions (Rule 1)\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"BOL Imports\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Client Cases\", \"col\": 2}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Operations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Portfolio Dealing & Multi-Asset Trading\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Fund Administration & Valuation\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Compliance, Risk & Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor CRM & Agent Distribution\", \"col\": 12}}]",
- "creation": "2026-10-31 16:26:08.586814",
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Institutional Asset Management Suite\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions (Rule 1)\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"BOL Imports\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Client Cases\", \"col\": 2}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Operations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Portfolio Dealing & Multi-Asset Trading\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Fund Administration & Valuation\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Compliance, Risk & Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor CRM & Agent Distribution\", \"col\": 12}}]",
+ "creation": "2026-10-31 16:26:29.405861",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -282,7 +282,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 16:26:08.586814",
+ "modified": "2026-10-31 16:55:48.367278",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Management",
