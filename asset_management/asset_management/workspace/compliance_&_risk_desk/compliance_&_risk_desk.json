@@ -1,8 +1,8 @@
 {
  "app": "asset_management",
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"AML/CFT Compliance, PEP Screening & Limits\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Regulatory & Risk Controls\", \"col\": 12}}]",
- "creation": "2026-10-31 13:57:44.720109",
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Compliance & Risk Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"AML Logs\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Limit Rules\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"PEP & Sanctions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Risk Matrix\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"AML/CFT Suspicious Activity Monitoring\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"PEP & Sanctions Screening\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Pre-Trade Concentration Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Risk Profiling & Tiers\", \"col\": 6}}]",
+ "creation": "2026-10-31 15:56:34.591927",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -17,8 +17,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Regulatory & Risk Controls",
-   "link_count": 4,
+   "label": "AML/CFT Suspicious Activity Monitoring",
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -36,9 +36,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Pre-Trade Limit Rules",
+   "label": "AML Detection Rules",
    "link_count": 0,
-   "link_to": "Asset Investment Limit Setup",
+   "link_to": "Asset Suspicious Transaction Rule",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -46,7 +46,26 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "PEP & Sanctions Rules",
+   "label": "48hr Unallocated BOL Deposits",
+   "link_count": 0,
+   "link_to": "Asset BOL Import Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PEP & Sanctions Screening",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PEP & Sanction Screening Setup",
    "link_count": 0,
    "link_to": "Asset PEP Sanction Setup",
    "link_type": "DocType",
@@ -56,15 +75,73 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Risk Profiling Matrix",
+   "label": "Screen Onboarding Applications",
+   "link_count": 0,
+   "link_to": "Asset Investor Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pre-Trade Concentration Limits",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pre-Trade Limit Rules Setup",
+   "link_count": 0,
+   "link_to": "Asset Investment Limit Setup",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Review CE Override Approvals",
+   "link_count": 0,
+   "link_to": "Asset Trade Order Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Risk Profiling & Tiers",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Risk Profiling Scoring Matrix",
    "link_count": 0,
    "link_to": "Asset Risk Profile",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor Risk Tier Distribution",
+   "link_count": 0,
+   "link_to": "Asset Investor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-10-31 13:57:44.720109",
+ "modified": "2026-10-31 15:56:34.591927",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Compliance & Risk Desk",
@@ -97,6 +174,20 @@
    "doc_view": "",
    "label": "Limit Rules",
    "link_to": "Asset Investment Limit Setup",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "",
+   "label": "PEP & Sanctions",
+   "link_to": "Asset PEP Sanction Setup",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Risk Matrix",
+   "link_to": "Asset Risk Profile",
    "type": "DocType"
   }
  ],

@@ -1,6 +1,6 @@
 {
  "app": "asset_management",
- "creation": "2026-10-31 13:57:44.867743",
+ "creation": "2026-10-31 15:46:19.822575",
  "docstatus": 0,
  "doctype": "Workspace Sidebar",
  "header_icon": "briefcase",
@@ -78,7 +78,7 @@
    "icon": "file-text",
    "indent": 1,
    "keep_closed": 0,
-   "label": "Transactions & Orders",
+   "label": "Unit Trust Operations",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Section Break"
@@ -110,11 +110,44 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
-   "label": "Inter-Fund Switches",
+   "label": "Inter-Fund Transfers",
    "link_to": "Asset Fund Switch",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "BOL Statement Imports",
+   "link_to": "Asset BOL Import Header",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Unit Holders Ledger",
+   "link_to": "Asset Investor Register Line",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "trending-up",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Portfolio & Dealing",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
   },
   {
    "child": 0,
@@ -143,30 +176,8 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
-   "label": "BOL Statement Imports",
-   "link_to": "Asset BOL Import Header",
-   "link_type": "DocType",
-   "show_arrow": 0,
-   "type": "Link"
-  },
-  {
-   "child": 0,
-   "collapsible": 1,
-   "icon": "database",
-   "indent": 1,
-   "keep_closed": 0,
-   "label": "Masters & Schemes",
-   "link_type": "DocType",
-   "show_arrow": 0,
-   "type": "Section Break"
-  },
-  {
-   "child": 0,
-   "collapsible": 1,
-   "indent": 0,
-   "keep_closed": 0,
-   "label": "Asset Funds & Schemes",
-   "link_to": "Asset Fund",
+   "label": "Fund Investment Holdings",
+   "link_to": "Asset Portfolio Holding",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -185,10 +196,109 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "calendar",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Fund Administration",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
-   "label": "Investor Master Accounts",
-   "link_to": "Asset Investor",
+   "label": "Daily Fund Valuation",
+   "link_to": "Asset Fund Valuation",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Collective Investment Schemes",
+   "link_to": "Asset Fund",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "shield",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Compliance & Risk",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Suspicious Transaction Logs",
+   "link_to": "Asset Suspicious Transaction Log",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Pre-Trade Limit Rules",
+   "link_to": "Asset Investment Limit Setup",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "PEP & Sanctions Rules",
+   "link_to": "Asset PEP Sanction Setup",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Risk Profiling Matrix",
+   "link_to": "Asset Risk Profile",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "users",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Investor CRM & Agents",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Client Service Inquiries",
+   "link_to": "Asset Client Interaction",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -209,8 +319,41 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
-   "label": "Agent Distribution Network",
+   "label": "Investor Master Accounts",
+   "link_to": "Asset Investor",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Investor Portfolios",
+   "link_to": "Asset Investor Portfolio",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Distribution Agents",
    "link_to": "Asset Agent",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Agent Commission Ledger",
+   "link_to": "Asset Agent Commission",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -221,21 +364,10 @@
    "icon": "pie-chart",
    "indent": 1,
    "keep_closed": 0,
-   "label": "Valuation & Analytics",
+   "label": "Reports & Analytics",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Section Break"
-  },
-  {
-   "child": 0,
-   "collapsible": 1,
-   "indent": 0,
-   "keep_closed": 0,
-   "label": "Daily Fund Valuation",
-   "link_to": "Asset Fund Valuation",
-   "link_type": "DocType",
-   "show_arrow": 0,
-   "type": "Link"
   },
   {
    "child": 0,
@@ -282,7 +414,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-31 13:57:44.867743",
+ "modified": "2026-10-31 15:56:34.999524",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Management",

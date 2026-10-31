@@ -120,11 +120,15 @@ class TestSprint6PortalsWorkspaces(unittest.TestCase):
         self.assertIn("Fund Administration", labels)
         self.assertIn("Compliance & Risk", labels)
         self.assertIn("Client Service CRM", labels)
-        # Check transaction links
-        self.assertIn("Transactions & Orders", labels)
+        # Check transaction and functional sections matching BC
+        self.assertIn("Unit Trust Operations", labels)
         self.assertIn("Subscriptions", labels)
         self.assertIn("Redemptions (Rule 1)", labels)
         self.assertIn("Trade Orders (Dealer Pot)", labels)
+        self.assertIn("Portfolio & Dealing", labels)
+        self.assertIn("Compliance & Risk", labels)
+        self.assertIn("Investor CRM & Agents", labels)
+        self.assertIn("Reports & Analytics", labels)
 
     def test_03_desktop_icon_configured(self):
         """Verify Desktop Icon 'Asset Management' links to sidebar and contains authorized roles"""

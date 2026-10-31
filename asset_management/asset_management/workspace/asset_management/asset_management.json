@@ -1,23 +1,24 @@
 {
  "app": "asset_management",
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Stanbic Asset & Investment Management\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Operations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Portfolio & Multi-Asset Trading\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Fund Administration & Valuation\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor Relations & CRM\", \"col\": 6}}]",
- "creation": "2026-10-31 01:31:15.623734",
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Stanbic Asset Management Central Hub\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions (Rule 1)\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"BOL Imports\", \"col\": 2}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Client Cases\", \"col\": 2}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Operations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Portfolio Dealing & Multi-Asset Trading\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Fund Administration & Valuation\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Compliance, Risk & Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor CRM & Agent Distribution\", \"col\": 12}}]",
+ "creation": "2026-10-31 15:56:34.687773",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
- "for_user": "",
  "hide_custom": 0,
  "icon": "briefcase",
  "idx": 0,
+ "indicator_color": "green",
  "is_hidden": 0,
  "label": "Asset Management",
+ "link_type": "DocType",
  "links": [
   {
    "hidden": 0,
    "is_query_report": 0,
    "label": "Unit Trust Operations",
-   "link_count": 4,
+   "link_count": 5,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -45,7 +46,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Inter-Fund Switches",
+   "label": "Inter-Fund Transfers & Switches",
    "link_count": 0,
    "link_to": "Asset Fund Switch",
    "link_type": "DocType",
@@ -55,7 +56,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "BOL Statement Imports",
+   "label": "BOL Statement Imports (48hr SLA)",
    "link_count": 0,
    "link_to": "Asset BOL Import Header",
    "link_type": "DocType",
@@ -65,7 +66,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Portfolio & Multi-Asset Trading",
+   "label": "Unit Holders Ledger",
+   "link_count": 0,
+   "link_to": "Asset Investor Register Line",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Portfolio Dealing & Multi-Asset Trading",
    "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
@@ -84,7 +95,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Custody Confirmation Tickets",
+   "label": "Stanbic Custody Confirmation Tickets",
    "link_count": 0,
    "link_to": "Asset Custody Instruction",
    "link_type": "DocType",
@@ -104,7 +115,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Securities Master (Bonds, Bills, Equities)",
+   "label": "Securities Master (Bonds, Bills, Equities, FDs)",
    "link_count": 0,
    "link_to": "Asset Investment Security",
    "link_type": "DocType",
@@ -123,7 +134,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Collective Investment Schemes / Funds",
+   "label": "Collective Investment Schemes (CIS Funds)",
    "link_count": 0,
    "link_to": "Asset Fund",
    "link_type": "DocType",
@@ -165,7 +176,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Investor Relations & CRM",
+   "label": "Compliance, Risk & Limits",
    "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
@@ -174,7 +185,56 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Onboarding Applications",
+   "label": "Suspicious Transaction Logs (AML)",
+   "link_count": 0,
+   "link_to": "Asset Suspicious Transaction Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pre-Trade Concentration Limits",
+   "link_count": 0,
+   "link_to": "Asset Investment Limit Setup",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PEP & Sanctions Rules",
+   "link_count": 0,
+   "link_to": "Asset PEP Sanction Setup",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Risk Profiling Matrix",
+   "link_count": 0,
+   "link_to": "Asset Risk Profile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor CRM & Agent Distribution",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor Onboarding Applications",
    "link_count": 0,
    "link_to": "Asset Investor Application",
    "link_type": "DocType",
@@ -204,15 +264,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Distribution Agents & Commissions",
+   "label": "Distribution Agents Network",
    "link_count": 0,
    "link_to": "Asset Agent",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agent Commission Ledger",
+   "link_count": 0,
+   "link_to": "Asset Agent Commission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-10-31 13:57:44.455269",
+ "modified": "2026-10-31 15:56:34.687773",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Asset Management",
@@ -246,7 +316,7 @@
    "role": "System Manager"
   }
  ],
- "sequence_id": 1.0,
+ "sequence_id": 0.0,
  "shortcuts": [
   {
    "color": "Blue",
@@ -258,7 +328,7 @@
   {
    "color": "Orange",
    "doc_view": "",
-   "label": "Redemptions",
+   "label": "Redemptions (Rule 1)",
    "link_to": "Asset Redemption",
    "type": "DocType"
   },
@@ -274,6 +344,20 @@
    "doc_view": "",
    "label": "Trade Orders",
    "link_to": "Asset Trade Order Header",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "",
+   "label": "BOL Imports",
+   "link_to": "Asset BOL Import Header",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "",
+   "label": "Client Cases",
+   "link_to": "Asset Client Interaction",
    "type": "DocType"
   }
  ],

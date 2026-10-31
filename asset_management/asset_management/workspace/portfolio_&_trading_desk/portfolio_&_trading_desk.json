@@ -1,8 +1,8 @@
 {
  "app": "asset_management",
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Dealing Pot & Investment Execution\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Multi-Asset Execution\", \"col\": 12}}]",
- "creation": "2026-10-31 13:57:44.663961",
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Investment Manager & Trading Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Custody Instructions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Fund Holdings\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Securities Master\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Dealing Pot & Multi-Asset Execution\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Custody Confirmation Tickets\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Pre-Trade Compliance & Limits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Trading & Portfolio Reports\", \"col\": 6}}]",
+ "creation": "2026-10-31 15:56:34.498856",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -17,8 +17,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Multi-Asset Execution",
-   "link_count": 4,
+   "label": "Dealing Pot & Multi-Asset Execution",
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -26,7 +26,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Execute Trade Orders",
+   "label": "Trade Orders (Dealer Pot)",
    "link_count": 0,
    "link_to": "Asset Trade Order Header",
    "link_type": "DocType",
@@ -36,17 +36,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Custody Confirmation Letters",
-   "link_count": 0,
-   "link_to": "Asset Custody Instruction",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Securities Master",
+   "label": "Securities Master (Bonds, Bills, Equities, FDs)",
    "link_count": 0,
    "link_to": "Asset Investment Security",
    "link_type": "DocType",
@@ -56,16 +46,104 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Portfolio Performance Report",
+   "label": "Fund Investment Holdings",
+   "link_count": 0,
+   "link_to": "Asset Portfolio Holding",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custody Confirmation Tickets",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custody Confirmation Instructions",
+   "link_count": 0,
+   "link_to": "Asset Custody Instruction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custodian Account Mapping",
+   "link_count": 0,
+   "link_to": "Asset Investment Security",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pre-Trade Compliance & Limits",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Pre-Trade Concentration Limits",
+   "link_count": 0,
+   "link_to": "Asset Investment Limit Setup",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CE Override Authorizations",
+   "link_count": 0,
+   "link_to": "Asset Trade Order Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trading & Portfolio Reports",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Portfolio Performance and Asset Allocation",
    "link_count": 0,
    "link_to": "Portfolio Performance and Asset Allocation",
    "link_type": "Report",
    "onboard": 0,
    "report_ref_doctype": "Asset Fund",
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Maturity Profile and Cash Flow Projection",
+   "link_count": 0,
+   "link_to": "Maturity Profile and Cash Flow Projection",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Investment Security",
+   "type": "Link"
   }
  ],
- "modified": "2026-10-31 13:57:44.663961",
+ "modified": "2026-10-31 15:56:34.498856",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Portfolio & Trading Desk",
@@ -98,6 +176,20 @@
    "doc_view": "",
    "label": "Custody Instructions",
    "link_to": "Asset Custody Instruction",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Fund Holdings",
+   "link_to": "Asset Portfolio Holding",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "label": "Securities Master",
+   "link_to": "Asset Investment Security",
    "type": "DocType"
   }
  ],

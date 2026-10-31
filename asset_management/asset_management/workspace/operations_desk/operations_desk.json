@@ -1,8 +1,8 @@
 {
  "app": "asset_management",
  "charts": [],
- "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Fund Operations & Processing Desk\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Transaction Processing\", \"col\": 12}}]",
- "creation": "2026-10-31 13:57:44.631379",
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Investment Operations Role Center\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions (Rule 1)\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Switches\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"BOL Imports\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Subscriptions\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Redemptions & Liquidation (Rule 1)\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Inter-Fund Transfers & Switches\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Bank OneLine (BOL) & Cash Deposits\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Distribution Agents & Commissions\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Operations Reports\", \"col\": 6}}]",
+ "creation": "2026-10-31 15:56:34.186492",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -17,8 +17,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Transaction Processing",
-   "link_count": 4,
+   "label": "Unit Trust Subscriptions",
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -26,7 +26,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Process Subscriptions",
+   "label": "Open & Submitted Subscriptions",
    "link_count": 0,
    "link_to": "Asset Subscription",
    "link_type": "DocType",
@@ -36,7 +36,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Process Redemptions",
+   "label": "Approved Subscriptions (Units Allocated)",
+   "link_count": 0,
+   "link_to": "Asset Subscription",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Holders Ledger",
+   "link_count": 0,
+   "link_to": "Asset Investor Register Line",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Redemptions & Liquidation (Rule 1)",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Open Redemptions",
    "link_count": 0,
    "link_to": "Asset Redemption",
    "link_type": "DocType",
@@ -46,7 +75,36 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Process Switches",
+   "label": "Approved & Paid Redemptions",
+   "link_count": 0,
+   "link_to": "Asset Redemption",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Check Rule 1 Valuation Status",
+   "link_count": 0,
+   "link_to": "Asset Fund",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inter-Fund Transfers & Switches",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inter-Fund Transfers & Switches",
    "link_count": 0,
    "link_to": "Asset Fund Switch",
    "link_type": "DocType",
@@ -56,15 +114,115 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "BOL Statements (48hr SLA)",
+   "label": "Investor Portfolio Balances",
+   "link_count": 0,
+   "link_to": "Asset Investor Portfolio",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bank OneLine (BOL) & Cash Deposits",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "BOL Bank Statement Imports",
    "link_count": 0,
    "link_to": "Asset BOL Import Header",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "48hr Unallocated Deposit Alerts",
+   "link_count": 0,
+   "link_to": "Asset Suspicious Transaction Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Distribution Agents & Commissions",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agent Directory",
+   "link_count": 0,
+   "link_to": "Asset Agent",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agent Commission Ledger",
+   "link_count": 0,
+   "link_to": "Asset Agent Commission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Operations Reports",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Holders Register",
+   "link_count": 0,
+   "link_to": "Unit Holders Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Valuation Summary",
+   "link_count": 0,
+   "link_to": "Daily Fund Valuation Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund Valuation",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Maturity & Cash Flow Projection",
+   "link_count": 0,
+   "link_to": "Maturity Profile and Cash Flow Projection",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Investment Security",
+   "type": "Link"
   }
  ],
- "modified": "2026-10-31 13:57:44.631379",
+ "modified": "2026-10-31 15:56:34.186492",
  "modified_by": "Administrator",
  "module": "Asset Management",
  "name": "Operations Desk",
@@ -95,8 +253,22 @@
   {
    "color": "Orange",
    "doc_view": "",
-   "label": "Redemptions",
+   "label": "Redemptions (Rule 1)",
    "link_to": "Asset Redemption",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Switches",
+   "link_to": "Asset Fund Switch",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "",
+   "label": "BOL Imports",
+   "link_to": "Asset BOL Import Header",
    "type": "DocType"
   }
  ],
