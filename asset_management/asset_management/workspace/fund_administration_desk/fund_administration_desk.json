@@ -1,0 +1,109 @@
+{
+ "app": "asset_management",
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Fund Accounting, Valuation & Unit Registry\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Daily Valuation & NAV Pricing\", \"col\": 12}}]",
+ "creation": "2026-10-31 13:57:44.692870",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "calendar",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Fund Administration Desk",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Valuation & NAV Pricing",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Fund Valuation Run",
+   "link_count": 0,
+   "link_to": "Asset Fund Valuation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fund Master Profiles",
+   "link_count": 0,
+   "link_to": "Asset Fund",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Holders Ledger",
+   "link_count": 0,
+   "link_to": "Asset Investor Register Line",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Holders Register",
+   "link_count": 0,
+   "link_to": "Unit Holders Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund",
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-31 13:57:44.692870",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Fund Administration Desk",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Asset Fund Administrator"
+  },
+  {
+   "role": "Asset Finance Officer"
+  },
+  {
+   "role": "Asset Management Admin"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Daily Valuation",
+   "link_to": "Asset Fund Valuation",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Funds",
+   "link_to": "Asset Fund",
+   "type": "DocType"
+  }
+ ],
+ "title": "Fund Administration Desk",
+ "type": "Workspace"
+}

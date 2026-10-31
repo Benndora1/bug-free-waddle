@@ -1,0 +1,209 @@
+{% extends "asset_management/templates/asset_portal_base.html" %}
+
+{% block title %}Investment Overview{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1 text-navy">Investor Portfolio Dashboard</h3>
+        <p class="text-muted mb-0">Welcome, {{ investor.investor_name }}. Real-time valuation of your collective investment schemes.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/asset_portal/subscribe" class="btn btn-sb-primary">
+            <i class="fa-solid fa-plus me-1"></i> New Subscription
+        </a>
+        <a href="/asset_portal/redeem" class="btn btn-sb-gold">
+            <i class="fa-solid fa-arrow-down me-1"></i> Liquidate / Redeem
+        </a>
+    </div>
+</div>
+
+<!-- 4 Key Stat Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card-stat">
+            <div class="stat-label">Total Portfolio Value (AUM)</div>
+            <div class="stat-value text-primary">UGX {{ "{:,.2f}".format(total_value) }}</div>
+            <small class="text-muted"><i class="fa-solid fa-clock me-1"></i> Marked to Market</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-stat">
+            <div class="stat-label">Total Units Held</div>
+            <div class="stat-value text-dark">{{ "{:,.4f}".format(total_units) }}</div>
+            <small class="text-muted">Across {{ portfolios|length }} Fund(s)</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-stat">
+            <div class="stat-label">Total Capital Invested</div>
+            <div class="stat-value text-secondary">UGX {{ "{:,.2f}".format(total_invested) }}</div>
+            <small class="text-muted">Net Inflow</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card-stat">
+            <div class="stat-label">Total Unrealized Return</div>
+            <div class="stat-value {% if total_unrealized >= 0 %}text-success{% else %}text-danger{% endif %}">
+                {% if total_unrealized >= 0 %}+{% endif %}UGX {{ "{:,.2f}".format(total_unrealized) }}
+            </div>
+            <small class="{% if total_unrealized >= 0 %}text-success{% else %}text-danger{% endif %}">
+                <i class="fa-solid {% if total_unrealized >= 0 %}fa-arrow-trend-up{% else %}fa-arrow-trend-down{% endif %} me-1"></i>
+                Capital Growth & Yield
+            </small>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolios Table -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold text-navy"><i class="fa-solid fa-pie-chart me-2 text-primary"></i>My Fund Holdings</h5>
+        <a href="/asset_portal/holdings" class="btn btn-sm btn-outline-primary">View Detailed Holdings</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Fund / Scheme</th>
+                    <th class="text-end">Units Held</th>
+                    <th class="text-end">Current NAV (UGX)</th>
+                    <th class="text-end">Market Value (UGX)</th>
+                    <th class="text-end">Unrealized Gain / Loss</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-end">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if portfolios %}
+                    {% for p in portfolios %}
+                    <tr>
+                        <td>
+                            <strong>{{ p.fund_name or p.fund }}</strong>
+                            <div class="text-muted small">Code: {{ p.fund }} | Currency: {{ p.currency }}</div>
+                        </td>
+                        <td class="text-end fw-semibold">{{ "{:,.4f}".format(p.total_units) }}</td>
+                        <td class="text-end">{{ "{:,.4f}".format(p.current_nav_per_unit) }}</td>
+                        <td class="text-end fw-bold text-navy">{{ "{:,.2f}".format(p.current_market_value) }}</td>
+                        <td class="text-end {% if p.unrealized_gain_loss >= 0 %}text-success{% else %}text-danger{% endif %} fw-semibold">
+                            {% if p.unrealized_gain_loss >= 0 %}+{% endif %}{{ "{:,.2f}".format(p.unrealized_gain_loss) }}
+                        </td>
+                        <td class="text-center">
+                            <span class="badge bg-success-subtle text-success border border-success">{{ p.portfolio_status }}</span>
+                        </td>
+                        <td class="text-end">
+                            <a href="/asset_portal/subscribe?fund={{ p.fund }}" class="btn btn-sm btn-outline-success me-1" title="Top Up">
+                                <i class="fa-solid fa-plus"></i> Top Up
+                            </a>
+                            <a href="/asset_portal/redeem?fund={{ p.fund }}" class="btn btn-sm btn-outline-danger" title="Redeem">
+                                <i class="fa-solid fa-arrow-down"></i> Redeem
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">
+                            <i class="fa-solid fa-folder-open fs-3 mb-2 d-block text-secondary"></i>
+                            No active fund holdings found. <a href="/asset_portal/subscribe" class="text-primary fw-semibold">Subscribe to your first fund now.</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 2 Column Section: Recent Transactions & Available Funds -->
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-clock-rotate-left me-2 text-primary"></i>Recent Transactions</h5>
+                <a href="/asset_portal/statement" class="btn btn-sm btn-outline-secondary">Full Statement</a>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                    {% if recent_subscriptions or recent_redemptions %}
+                        {% for sub in recent_subscriptions %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="badge rounded-circle p-2 bg-success-subtle text-success">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold">Subscription - {{ sub.fund }}</div>
+                                    <small class="text-muted">{{ sub.subscription_date }} | Ref: {{ sub.name }}</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-success">+UGX {{ "{:,.2f}".format(sub.gross_amount) }}</div>
+                                <span class="badge bg-light text-dark border">{{ sub.status }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% for red in recent_redemptions %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="badge rounded-circle p-2 bg-danger-subtle text-danger">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold">Redemption - {{ red.fund }}</div>
+                                    <small class="text-muted">{{ red.redemption_date }} | Ref: {{ red.name }}</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fw-bold text-danger">-UGX {{ "{:,.2f}".format(red.net_payout_amount) }}</div>
+                                <span class="badge bg-light text-dark border">{{ red.status }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item text-center py-4 text-muted">No recent transactions recorded.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-building-columns me-2 text-warning"></i>Stanbic CIS Funds & NAVs</h5>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Fund Name</th>
+                            <th class="text-end">NAV Price</th>
+                            <th class="text-end">Offer Price</th>
+                            <th class="text-center">Valuation (Rule 1)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mf in market_funds %}
+                        <tr>
+                            <td>
+                                <strong>{{ mf.fund_name }}</strong>
+                                <div class="text-muted small">{{ mf.fund_type }} | {{ mf.currency }}</div>
+                            </td>
+                            <td class="text-end fw-semibold">{{ "{:,.4f}".format(mf.current_nav_per_unit) }}</td>
+                            <td class="text-end fw-semibold text-primary">{{ "{:,.4f}".format(mf.current_offer_price) }}</td>
+                            <td class="text-center">
+                                {% if mf.prior_day_valuation_approved %}
+                                    <span class="badge bg-success"><i class="fa-solid fa-check me-1"></i>Approved</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark"><i class="fa-solid fa-clock me-1"></i>Pending Run</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

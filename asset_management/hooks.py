@@ -368,5 +368,30 @@ fixtures = [
                 "Maturity Profile and Cash Flow Projection"
             ]]
         ]
+    },
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "in", [
+                "Asset Management",
+                "Asset Operations",
+                "Asset Portfolio & Trading",
+                "Asset Fund Administration",
+                "Asset Compliance & Risk",
+                "Asset Client Service"
+            ]]
+        ]
+    },
+    {
+        "dt": "Workspace Sidebar",
+        "filters": [
+            ["name", "in", ["Asset Management"]]
+        ]
+    },
+    {
+        "dt": "Desktop Icon",
+        "filters": [
+            ["name", "in", ["Asset Management"]]
+        ]
     }
 ]

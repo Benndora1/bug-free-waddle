@@ -1,182 +1,282 @@
 {
-  "charts": [],
-  "content": "[{\"id\":\"header\",\"type\":\"header\",\"data\":{\"text\":\"Asset Management & Valuation\",\"level\":3}},{\"id\":\"shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Financial Instruments\"}},{\"id\":\"shortcuts2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Investment Portfolios\"}},{\"id\":\"shortcuts3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Asset Investors\"}},{\"id\":\"card1\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup & Configuration\"}},{\"id\":\"card2\",\"type\":\"card\",\"data\":{\"card_name\":\"Instruments & Market Data\"}},{\"id\":\"card3\",\"type\":\"card\",\"data\":{\"card_name\":\"Investors & KYC\"}}]",
-  "custom_blocks": [],
-  "docstatus": 0,
-  "doctype": "Workspace",
-  "for_user": "",
-  "hide_custom": 0,
-  "icon": "pie-chart",
-  "is_hidden": 0,
-  "label": "Asset Management",
-  "links": [
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Setup & Configuration",
-      "link_count": 0,
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Card Break"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Investment Setup",
-      "link_count": 0,
-      "link_to": "Investment Setup",
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Asset Types",
-      "link_count": 0,
-      "link_to": "Asset Type",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Instrument Categories",
-      "link_count": 0,
-      "link_to": "Instrument Category",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Instrument Types",
-      "link_count": 0,
-      "link_to": "Instrument Type",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Instruments & Market Data",
-      "link_count": 0,
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Card Break"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Financial Instruments",
-      "link_count": 0,
-      "link_to": "Financial Instrument",
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Instrument Prices",
-      "link_count": 0,
-      "link_to": "Instrument Price",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Investment Portfolios",
-      "link_count": 0,
-      "link_to": "Investment Portfolio",
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Fund Fee Setup",
-      "link_count": 0,
-      "link_to": "Fund Fee Setup",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    },
-    {
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Investors & KYC",
-      "link_count": 0,
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Card Break"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Asset Investors",
-      "link_count": 0,
-      "link_to": "Asset Investor",
-      "link_type": "DocType",
-      "onboard": 1,
-      "type": "Link"
-    },
-    {
-      "dependencies": "",
-      "hidden": 0,
-      "is_query_report": 0,
-      "label": "Asset Investor KYC Documents",
-      "link_count": 0,
-      "link_to": "Asset Investor KYC Document",
-      "link_type": "DocType",
-      "onboard": 0,
-      "type": "Link"
-    }
-  ],
-  "module": "Asset Management",
-  "name": "Asset Management",
-  "owner": "Administrator",
-  "public": 1,
-  "quick_lists": [],
-  "roles": [],
-  "sequence_id": 1.0,
-  "shortcuts": [
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Financial Instruments",
-      "link_to": "Financial Instrument",
-      "type": "DocType"
-    },
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Investment Portfolios",
-      "link_to": "Investment Portfolio",
-      "type": "DocType"
-    },
-    {
-      "color": "Grey",
-      "doc_view": "List",
-      "label": "Asset Investors",
-      "link_to": "Asset Investor",
-      "type": "DocType"
-    }
-  ],
-  "title": "Asset Management"
+ "app": "asset_management",
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Stanbic Asset & Investment Management\", \"level\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Subscriptions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Redemptions\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Daily Valuation\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Trade Orders\", \"col\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Unit Trust Operations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Portfolio & Multi-Asset Trading\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Fund Administration & Valuation\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Investor Relations & CRM\", \"col\": 6}}]",
+ "creation": "2026-10-31 01:31:15.623734",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "briefcase",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Asset Management",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Trust Operations",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Subscriptions & Unit Allocation",
+   "link_count": 0,
+   "link_to": "Asset Subscription",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Redemptions & Liquidation (Rule 1)",
+   "link_count": 0,
+   "link_to": "Asset Redemption",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inter-Fund Switches",
+   "link_count": 0,
+   "link_to": "Asset Fund Switch",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "BOL Statement Imports",
+   "link_count": 0,
+   "link_to": "Asset BOL Import Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Portfolio & Multi-Asset Trading",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Trade Orders (Dealer Pot)",
+   "link_count": 0,
+   "link_to": "Asset Trade Order Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custody Confirmation Tickets",
+   "link_count": 0,
+   "link_to": "Asset Custody Instruction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fund Investment Holdings",
+   "link_count": 0,
+   "link_to": "Asset Portfolio Holding",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Securities Master (Bonds, Bills, Equities)",
+   "link_count": 0,
+   "link_to": "Asset Investment Security",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fund Administration & Valuation",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Collective Investment Schemes / Funds",
+   "link_count": 0,
+   "link_to": "Asset Fund",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Fund Valuation & NAV Pricing",
+   "link_count": 0,
+   "link_to": "Asset Fund Valuation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Unit Holders Register Report",
+   "link_count": 0,
+   "link_to": "Unit Holders Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Daily Valuation Summary Report",
+   "link_count": 0,
+   "link_to": "Daily Fund Valuation Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund Valuation",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor Relations & CRM",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Onboarding Applications",
+   "link_count": 0,
+   "link_to": "Asset Investor Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor Master Accounts",
+   "link_count": 0,
+   "link_to": "Asset Investor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Service Inquiries & Cases",
+   "link_count": 0,
+   "link_to": "Asset Client Interaction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Distribution Agents & Commissions",
+   "link_count": 0,
+   "link_to": "Asset Agent",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-31 13:57:44.455269",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Management",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Asset Management Admin"
+  },
+  {
+   "role": "Asset Management Operations"
+  },
+  {
+   "role": "Asset Investment Manager"
+  },
+  {
+   "role": "Asset Fund Administrator"
+  },
+  {
+   "role": "Asset Finance Officer"
+  },
+  {
+   "role": "Asset Compliance Officer"
+  },
+  {
+   "role": "Asset Client Service"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Subscriptions",
+   "link_to": "Asset Subscription",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "label": "Redemptions",
+   "link_to": "Asset Redemption",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Daily Valuation",
+   "link_to": "Asset Fund Valuation",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "doc_view": "",
+   "label": "Trade Orders",
+   "link_to": "Asset Trade Order Header",
+   "type": "DocType"
+  }
+ ],
+ "title": "Asset Management",
+ "type": "Workspace"
 }

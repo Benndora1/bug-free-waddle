@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Investor Portal{% endblock %} - Stanbic Asset Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sb-navy: #002D62;
+            --sb-navy-dark: #001f44;
+            --sb-blue: #0056b3;
+            --sb-accent-blue: #0284c7;
+            --sb-gold: #D4AF37;
+            --sb-bg: #f8fafc;
+            --sb-card-bg: #ffffff;
+            --sb-text: #1e293b;
+            --sb-muted: #64748b;
+            --sb-border: #e2e8f0;
+            --sb-green: #10b981;
+            --sb-red: #ef4444;
+        }
+
+        body {
+            background-color: var(--sb-bg);
+            color: var(--sb-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .portal-header {
+            background-color: var(--sb-navy);
+            color: #ffffff;
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--sb-gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .portal-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .portal-brand:hover {
+            color: var(--sb-gold);
+        }
+
+        .investor-pill {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .aum-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            border: 1px solid #10b981;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .portal-wrapper {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        .portal-sidebar {
+            width: 260px;
+            background-color: #ffffff;
+            border-right: 1px solid var(--sb-border);
+            padding: 24px 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: var(--sb-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav-item:hover {
+            background-color: #f1f5f9;
+            color: var(--sb-blue);
+        }
+
+        .sidebar-nav-item.active {
+            background-color: #e0f2fe;
+            color: var(--sb-navy);
+            font-weight: 700;
+            border-left: 4px solid var(--sb-navy);
+        }
+
+        .sidebar-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--sb-muted);
+            letter-spacing: 0.8px;
+            padding: 16px 24px 8px 24px;
+        }
+
+        .portal-content {
+            flex: 1;
+            padding: 28px 36px;
+            overflow-y: auto;
+        }
+
+        .card-stat {
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid var(--sb-border);
+            padding: 20px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--sb-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--sb-navy);
+        }
+
+        .badge-risk {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .badge-low-risk { background: #dcfce7; color: #15803d; }
+        .badge-med-risk { background: #fef3c7; color: #b45309; }
+        .badge-high-risk { background: #fee2e2; color: #b91c1c; }
+
+        .btn-sb-primary {
+            background-color: var(--sb-navy);
+            border-color: var(--sb-navy);
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .btn-sb-primary:hover {
+            background-color: var(--sb-navy-dark);
+            border-color: var(--sb-navy-dark);
+            color: #ffffff;
+        }
+
+        .btn-sb-gold {
+            background-color: var(--sb-gold);
+            border-color: var(--sb-gold);
+            color: #000000;
+            font-weight: 600;
+        }
+        .btn-sb-gold:hover {
+            background-color: #b89728;
+            border-color: #b89728;
+            color: #000000;
+        }
+    </style>
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <header class="portal-header">
+        <a href="/asset_portal/dashboard" class="portal-brand">
+            <i class="fa-solid fa-chart-line text-warning"></i>
+            <span>STANBIC ASSET MANAGEMENT</span>
+            <span class="text-white-50 ms-2 fs-6">| Unit Trust Investor Portal</span>
+        </a>
+
+        <div class="d-flex align-items-center gap-3">
+            <div class="investor-pill">
+                <i class="fa-solid fa-user-circle fs-5 text-warning"></i>
+                <div>
+                    <strong>{{ investor.investor_name or "Investor Account" }}</strong>
+                    <span class="text-white-50 ms-1">({{ investor.name or "INV-000" }})</span>
+                </div>
+                {% if investor.risk_rating %}
+                <span class="badge badge-risk badge-low-risk ms-1">{{ investor.risk_rating }}</span>
+                {% endif %}
+            </div>
+
+            <div class="aum-badge">
+                <i class="fa-solid fa-wallet me-1"></i>
+                <span>AUM: UGX {{ "{:,.2f}".format(total_value or 0) }}</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="portal-wrapper">
+        <aside class="portal-sidebar">
+            <div class="sidebar-section-title">My Investments</div>
+            <a href="/asset_portal/dashboard" class="sidebar-nav-item {% if active_page == 'dashboard' %}active{% endif %}">
+                <i class="fa-solid fa-gauge-high"></i> Overview & Dashboard
+            </a>
+            <a href="/asset_portal/holdings" class="sidebar-nav-item {% if active_page == 'holdings' %}active{% endif %}">
+                <i class="fa-solid fa-pie-chart"></i> Portfolio Holdings
+            </a>
+            <a href="/asset_portal/statement" class="sidebar-nav-item {% if active_page == 'statement' %}active{% endif %}">
+                <i class="fa-solid fa-receipt"></i> Statement of Account
+            </a>
+
+            <div class="sidebar-section-title">Operations & Transactions</div>
+            <a href="/asset_portal/subscribe" class="sidebar-nav-item {% if active_page == 'subscribe' %}active{% endif %}">
+                <i class="fa-solid fa-circle-plus text-success"></i> Subscribe / Invest
+            </a>
+            <a href="/asset_portal/redeem" class="sidebar-nav-item {% if active_page == 'redeem' %}active{% endif %}">
+                <i class="fa-solid fa-circle-minus text-danger"></i> Liquidate / Redeem (Rule 1)
+            </a>
+
+            <div class="sidebar-section-title">Support & Compliance</div>
+            <a href="/desk" class="sidebar-nav-item text-secondary" target="_blank">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Frappe Desk
+            </a>
+        </aside>
+
+        <main class="portal-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block script %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,138 @@
+{% extends "asset_management/templates/asset_portal_base.html" %}
+
+{% block title %}Online Subscription{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">New Fund Subscription</h3>
+                <p class="text-muted mb-0">Invest in Stanbic Collective Investment Schemes. Unit allocation is calculated using the applicable offer price.</p>
+            </div>
+            <a href="/asset_portal/dashboard" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-arrow-left me-1"></i> Dashboard
+            </a>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-circle-plus me-2 text-success"></i>Subscription Details</h5>
+            </div>
+            <div class="card-body p-4">
+                <div id="alertBox" class="alert d-none" role="alert"></div>
+
+                <form id="subscriptionForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Investor Master Account</label>
+                        <input type="text" class="form-control" value="{{ investor.investor_name }} ({{ investor.name }})" readonly>
+                        <input type="hidden" id="investorId" value="{{ investor.name }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Select Fund / Scheme <span class="text-danger">*</span></label>
+                        <select id="fundSelect" class="form-select" required>
+                            <option value="">-- Choose Collective Investment Scheme --</option>
+                            {% for f in funds %}
+                            <option value="{{ f.fund_id }}" {% if preselected_fund == f.fund_id %}selected{% endif %}
+                                data-price="{{ f.current_offer_price }}"
+                                data-min-initial="{{ f.min_subscription_amount }}"
+                                data-currency="{{ f.currency }}">
+                                {{ f.fund_name }} ({{ f.fund_id }}) - Offer Price: {{ "{:,.4f}".format(f.current_offer_price) }} {{ f.currency }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Gross Investment Amount <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">UGX</span>
+                                <input type="number" step="0.01" min="1000" id="grossAmount" class="form-control" placeholder="e.g. 500000" required>
+                            </div>
+                            <small class="text-muted" id="minAmountHelp"></small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Payment Method <span class="text-danger">*</span></label>
+                            <select id="paymentMethod" class="form-select">
+                                <option value="Bank Transfer / BOL" selected>Bank Transfer / BOL</option>
+                                <option value="EFT">Electronic Funds Transfer (EFT)</option>
+                                <option value="RTGS">Real Time Gross Settlement (RTGS)</option>
+                                <option value="Direct Deposit">Direct Branch Cash Deposit</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Payment Reference / Transaction ID</label>
+                        <input type="text" id="paymentReference" class="form-control" placeholder="e.g. BOL-REF-202610-0987">
+                        <small class="text-muted">Enter your Bank OneLine deposit reference or bank confirmation code.</small>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" id="submitBtn" class="btn btn-sb-primary py-2 fw-bold">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Submit Subscription Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+document.getElementById('subscriptionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const alertBox = document.getElementById('alertBox');
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Submitting...';
+    alertBox.className = 'alert d-none';
+
+    const investor = document.getElementById('investorId').value;
+    const fund = document.getElementById('fundSelect').value;
+    const amount = document.getElementById('grossAmount').value;
+    const paymentMode = document.getElementById('paymentMethod').value;
+    const paymentRef = document.getElementById('paymentReference').value;
+
+    try {
+        const response = await fetch('/api/method/asset_management.asset_management.portal_api.submit_online_subscription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Frappe-CSRF-Token': '{{ frappe.session.csrf_token }}'
+            },
+            body: JSON.stringify({
+                investor: investor,
+                fund: fund,
+                amount: amount,
+                payment_mode: paymentMode,
+                payment_reference: paymentRef
+            })
+        });
+
+        const data = await response.json();
+        if (response.ok && data.message && data.message.success) {
+            alertBox.className = 'alert alert-success d-block';
+            alertBox.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i> ' + data.message.message +
+                ' <br><a href="/asset_portal/dashboard" class="fw-bold">Return to Dashboard</a>';
+            document.getElementById('subscriptionForm').reset();
+        } else {
+            const errMsg = data._server_messages ? JSON.parse(JSON.parse(data._server_messages)[0]).message : (data.message || 'Error creating subscription');
+            alertBox.className = 'alert alert-danger d-block';
+            alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i> ' + errMsg;
+        }
+    } catch (err) {
+        alertBox.className = 'alert alert-danger d-block';
+        alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i> An unexpected error occurred: ' + err.message;
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Submit Subscription Request';
+    }
+});
+</script>
+{% endblock %}

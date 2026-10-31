@@ -1,0 +1,88 @@
+{% extends "asset_management/templates/asset_portal_base.html" %}
+
+{% block title %}Portfolio Holdings{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-1">Portfolio Holdings & Breakdown</h3>
+        <p class="text-muted mb-0">Detailed analysis of unit allocations, acquisition costs, NAV pricing and mark-to-market performance.</p>
+    </div>
+    <div>
+        <a href="/asset_portal/statement" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-receipt me-1"></i> Transaction Ledger
+        </a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card-stat">
+            <div class="stat-label">Total Current Market Value</div>
+            <div class="stat-value text-primary">UGX {{ "{:,.2f}".format(total_value) }}</div>
+            <small class="text-muted">Total marked-to-market valuation across all schemes</small>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-stat">
+            <div class="stat-label">Aggregate Units</div>
+            <div class="stat-value text-dark">{{ "{:,.4f}".format(total_units) }}</div>
+            <small class="text-muted">Total unit balances held</small>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white py-3">
+        <h5 class="mb-0 fw-bold"><i class="fa-solid fa-layer-group me-2 text-primary"></i>Active Portfolio Accounts</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Fund / Portfolio Name</th>
+                    <th>Inception Date</th>
+                    <th class="text-end">Units Held</th>
+                    <th class="text-end">Avg Cost (UGX)</th>
+                    <th class="text-end">Current NAV (UGX)</th>
+                    <th class="text-end">Total Market Value (UGX)</th>
+                    <th class="text-end">Gain / Loss (%)</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if portfolios %}
+                    {% for p in portfolios %}
+                    <tr>
+                        <td>
+                            <strong>{{ p.fund_name or p.fund }}</strong>
+                            <div class="text-muted small">Account ID: {{ p.name }}</div>
+                        </td>
+                        <td>{{ p.first_subscription_date or "N/A" }}</td>
+                        <td class="text-end fw-semibold">{{ "{:,.4f}".format(p.total_units) }}</td>
+                        <td class="text-end">{{ "{:,.4f}".format(p.avg_cost or 0) }}</td>
+                        <td class="text-end fw-bold">{{ "{:,.4f}".format(p.current_nav_per_unit) }}</td>
+                        <td class="text-end fw-bold text-navy">{{ "{:,.2f}".format(p.current_market_value) }}</td>
+                        <td class="text-end {% if p.gain_pct >= 0 %}text-success{% else %}text-danger{% endif %} fw-bold">
+                            {% if p.gain_pct >= 0 %}+{% endif %}{{ "{:,.2f}%".format(p.gain_pct or 0) }}
+                        </td>
+                        <td class="text-end">
+                            <a href="/asset_portal/subscribe?fund={{ p.fund }}" class="btn btn-sm btn-outline-success me-1">
+                                <i class="fa-solid fa-plus"></i> Invest
+                            </a>
+                            <a href="/asset_portal/redeem?fund={{ p.fund }}" class="btn btn-sm btn-outline-danger">
+                                <i class="fa-solid fa-arrow-down"></i> Redeem
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center py-4 text-muted">No holdings found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

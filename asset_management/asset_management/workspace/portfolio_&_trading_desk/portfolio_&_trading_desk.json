@@ -1,0 +1,106 @@
+{
+ "app": "asset_management",
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Dealing Pot & Investment Execution\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Multi-Asset Execution\", \"col\": 12}}]",
+ "creation": "2026-10-31 13:57:44.663961",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "trending-up",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Portfolio & Trading Desk",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Multi-Asset Execution",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Execute Trade Orders",
+   "link_count": 0,
+   "link_to": "Asset Trade Order Header",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custody Confirmation Letters",
+   "link_count": 0,
+   "link_to": "Asset Custody Instruction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Securities Master",
+   "link_count": 0,
+   "link_to": "Asset Investment Security",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Portfolio Performance Report",
+   "link_count": 0,
+   "link_to": "Portfolio Performance and Asset Allocation",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Asset Fund",
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-31 13:57:44.663961",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Portfolio & Trading Desk",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Asset Investment Manager"
+  },
+  {
+   "role": "Asset Management Admin"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Purple",
+   "doc_view": "",
+   "label": "Trade Orders",
+   "link_to": "Asset Trade Order Header",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Custody Instructions",
+   "link_to": "Asset Custody Instruction",
+   "type": "DocType"
+  }
+ ],
+ "title": "Portfolio & Trading Desk",
+ "type": "Workspace"
+}

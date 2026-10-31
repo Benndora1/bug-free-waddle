@@ -1,0 +1,105 @@
+{
+ "app": "asset_management",
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Client Relationship Management & Inquiries\", \"level\": 3}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Client Cases & Accounts\", \"col\": 12}}]",
+ "creation": "2026-10-31 13:57:44.748783",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "users",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Client Service CRM Desk",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Cases & Accounts",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Interactions & SLA Cases",
+   "link_count": 0,
+   "link_to": "Asset Client Interaction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Investor Master Profiles",
+   "link_count": 0,
+   "link_to": "Asset Investor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Onboarding Applications",
+   "link_count": 0,
+   "link_to": "Asset Investor Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "CRM SLA Rules",
+   "link_count": 0,
+   "link_to": "Asset CRM SLA Setup",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-31 13:57:44.748783",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Client Service CRM Desk",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Asset Client Service"
+  },
+  {
+   "role": "Asset Management Admin"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Client Cases",
+   "link_to": "Asset Client Interaction",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Applications",
+   "link_to": "Asset Investor Application",
+   "type": "DocType"
+  }
+ ],
+ "title": "Client Service CRM Desk",
+ "type": "Workspace"
+}

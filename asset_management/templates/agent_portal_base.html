@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Agent Distribution Portal{% endblock %} - Stanbic Asset Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sb-navy: #002D62;
+            --sb-navy-dark: #001f44;
+            --sb-blue: #0056b3;
+            --sb-accent-blue: #0284c7;
+            --sb-gold: #D4AF37;
+            --sb-bg: #f8fafc;
+            --sb-card-bg: #ffffff;
+            --sb-text: #1e293b;
+            --sb-muted: #64748b;
+            --sb-border: #e2e8f0;
+            --sb-green: #10b981;
+        }
+
+        body {
+            background-color: var(--sb-bg);
+            color: var(--sb-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .portal-header {
+            background-color: var(--sb-navy);
+            color: #ffffff;
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--sb-gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .portal-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .portal-wrapper {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        .portal-sidebar {
+            width: 260px;
+            background-color: #ffffff;
+            border-right: 1px solid var(--sb-border);
+            padding: 24px 0;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: var(--sb-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .sidebar-nav-item:hover, .sidebar-nav-item.active {
+            background-color: #e0f2fe;
+            color: var(--sb-navy);
+            font-weight: 700;
+            border-left: 4px solid var(--sb-navy);
+        }
+
+        .portal-content {
+            flex: 1;
+            padding: 28px 36px;
+            overflow-y: auto;
+        }
+
+        .card-stat {
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid var(--sb-border);
+            padding: 20px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--sb-muted);
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--sb-navy);
+        }
+    </style>
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <header class="portal-header">
+        <a href="/agent_portal/dashboard" class="portal-brand">
+            <i class="fa-solid fa-handshake text-warning"></i>
+            <span>STANBIC ASSET MANAGEMENT</span>
+            <span class="text-white-50 ms-2 fs-6">| Agent & Distribution Portal</span>
+        </a>
+
+        <div class="d-flex align-items-center gap-3">
+            <div class="badge bg-secondary p-2">
+                <i class="fa-solid fa-id-badge me-1"></i>
+                <span>Agent: {{ agent.agent_code or "AGT" }} - {{ agent.agent_name or "Agent Name" }}</span>
+            </div>
+            <div class="badge bg-success p-2">
+                <i class="fa-solid fa-percent me-1"></i>
+                <span>Commission: {{ agent.commission_rate or 0 }}%</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="portal-wrapper">
+        <aside class="portal-sidebar">
+            <a href="/agent_portal/dashboard" class="sidebar-nav-item active">
+                <i class="fa-solid fa-gauge-high"></i> Agent Overview
+            </a>
+            <a href="/desk" class="sidebar-nav-item text-secondary" target="_blank">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Frappe Desk
+            </a>
+        </aside>
+
+        <main class="portal-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block script %}{% endblock %}
+</body>
+</html>

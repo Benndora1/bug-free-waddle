@@ -1,0 +1,154 @@
+{% extends "asset_management/templates/asset_portal_base.html" %}
+
+{% block title %}Redemption & Liquidation{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Liquidate / Redeem Units</h3>
+                <p class="text-muted mb-0">Submit a redemption request. Payouts are executed at the prevailing bid price following daily valuation approval (Rule 1).</p>
+            </div>
+            <a href="/asset_portal/dashboard" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-arrow-left me-1"></i> Dashboard
+            </a>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-circle-minus me-2 text-danger"></i>Redemption Request</h5>
+            </div>
+            <div class="card-body p-4">
+                <div id="alertBox" class="alert d-none" role="alert"></div>
+
+                {% if portfolios %}
+                <form id="redemptionForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Investor Master Account</label>
+                        <input type="text" class="form-control" value="{{ investor.investor_name }} ({{ investor.name }})" readonly>
+                        <input type="hidden" id="investorId" value="{{ investor.name }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Select Fund Portfolio <span class="text-danger">*</span></label>
+                        <select id="fundSelect" class="form-select" required>
+                            <option value="">-- Choose Fund with Available Balance --</option>
+                            {% for p in portfolios %}
+                            <option value="{{ p.fund }}" {% if preselected_fund == p.fund %}selected{% endif %}
+                                data-units="{{ p.total_units }}"
+                                data-nav="{{ p.current_nav_per_unit }}"
+                                data-market-val="{{ p.current_market_value }}">
+                                {{ p.fund_name or p.fund }} - Available: {{ "{:,.4f}".format(p.total_units) }} units (UGX {{ "{:,.2f}".format(p.current_market_value) }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Redemption Basis <span class="text-danger">*</span></label>
+                            <select id="redemptionBasis" class="form-select">
+                                <option value="Amount" selected>Specific Amount (UGX)</option>
+                                <option value="Units">Specific Number of Units</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6" id="amountContainer">
+                            <label class="form-label fw-semibold">Requested Gross Amount (UGX) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" min="1000" id="requestedAmount" class="form-control" placeholder="e.g. 200000">
+                        </div>
+                        <div class="col-md-6 d-none" id="unitsContainer">
+                            <label class="form-label fw-semibold">Requested Units <span class="text-danger">*</span></label>
+                            <input type="number" step="0.0001" min="0.0001" id="requestedUnits" class="form-control" placeholder="e.g. 500">
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info py-2 small mb-4">
+                        <i class="fa-solid fa-shield-halved me-1"></i>
+                        <strong>Foundational Rule 1 (Valuation Guard):</strong> Redemptions require formal approval of the prior-day (T-1) Net Asset Value run. Payout will be disbursed into your verified settlement bank account.
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" id="submitBtn" class="btn btn-sb-gold py-2 fw-bold text-dark">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Submit Liquidation Request
+                        </button>
+                    </div>
+                </form>
+                {% else %}
+                <div class="text-center py-4 text-muted">
+                    <i class="fa-solid fa-circle-exclamation fs-2 text-warning mb-2 d-block"></i>
+                    You have no active fund balances available for redemption.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+const basisSelect = document.getElementById('redemptionBasis');
+if (basisSelect) {
+    basisSelect.addEventListener('change', function() {
+        const isUnits = this.value === 'Units';
+        document.getElementById('unitsContainer').classList.toggle('d-none', !isUnits);
+        document.getElementById('amountContainer').classList.toggle('d-none', isUnits);
+    });
+}
+
+const form = document.getElementById('redemptionForm');
+if (form) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const alertBox = document.getElementById('alertBox');
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Submitting...';
+        alertBox.className = 'alert d-none';
+
+        const investor = document.getElementById('investorId').value;
+        const fund = document.getElementById('fundSelect').value;
+        const basis = document.getElementById('redemptionBasis').value;
+        const reqAmount = document.getElementById('requestedAmount').value || 0;
+        const reqUnits = document.getElementById('requestedUnits').value || 0;
+
+        try {
+            const response = await fetch('/api/method/asset_management.asset_management.portal_api.submit_online_redemption', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Frappe-CSRF-Token': '{{ frappe.session.csrf_token }}'
+                },
+                body: JSON.stringify({
+                    investor: investor,
+                    fund: fund,
+                    redemption_by: basis,
+                    requested_amount: reqAmount,
+                    requested_units: reqUnits
+                })
+            });
+
+            const data = await response.json();
+            if (response.ok && data.message && data.message.success) {
+                alertBox.className = 'alert alert-success d-block';
+                alertBox.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i> ' + data.message.message +
+                    ' <br><a href="/asset_portal/dashboard" class="fw-bold">Return to Dashboard</a>';
+                form.reset();
+            } else {
+                const errMsg = data._server_messages ? JSON.parse(JSON.parse(data._server_messages)[0]).message : (data.message || 'Error creating redemption');
+                alertBox.className = 'alert alert-danger d-block';
+                alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i> ' + errMsg;
+            }
+        } catch (err) {
+            alertBox.className = 'alert alert-danger d-block';
+            alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i> An unexpected error occurred: ' + err.message;
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Submit Liquidation Request';
+        }
+    });
+}
+</script>
+{% endblock %}
