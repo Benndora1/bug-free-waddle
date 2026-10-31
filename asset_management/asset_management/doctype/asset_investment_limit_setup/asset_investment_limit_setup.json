@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:37:43.155863",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "fund",
+  "rule_type",
+  "target_asset_class",
+  "col_break_1",
+  "target_issuer",
+  "target_sector",
+  "max_allocation_pct",
+  "min_allocation_pct",
+  "enforce_strict_block"
+ ],
+ "fields": [
+  {
+   "default": "LIM-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "LIM-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rule_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Rule Type",
+   "options": "Asset Class Limit\nSingle Issuer Limit\nSector Limit\nCash Reserve Floor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_asset_class",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Target Asset Class",
+   "options": "Treasury Bond\nCorporate Bond\nTreasury Bill\nFixed Deposit\nCall Deposit\nCommercial Paper\nQuoted Equity"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_issuer",
+   "fieldtype": "Data",
+   "label": "Target Issuer"
+  },
+  {
+   "fieldname": "target_sector",
+   "fieldtype": "Select",
+   "label": "Target Sector",
+   "options": "Sovereign\nFinancial Services\nTelecommunications\nManufacturing\nEnergy\nConsumer Goods"
+  },
+  {
+   "fieldname": "max_allocation_pct",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Max Allocation %",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "min_allocation_pct",
+   "fieldtype": "Percent",
+   "label": "Min Allocation %"
+  },
+  {
+   "default": "1",
+   "fieldname": "enforce_strict_block",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enforce Strict System Block"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:54.199457",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investment Limit Setup",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

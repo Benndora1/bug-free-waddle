@@ -1,0 +1,368 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:37:54.306379",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "order_date",
+  "settlement_date",
+  "order_type",
+  "fund",
+  "col_break_hdr",
+  "security",
+  "security_name",
+  "asset_class",
+  "counterparty",
+  "broker",
+  "brokerage_commission",
+  "sec_pricing",
+  "face_value",
+  "clean_price_pct",
+  "yield_to_maturity",
+  "coupon_rate",
+  "col_break_price",
+  "days_accrued",
+  "accrued_interest",
+  "dirty_price",
+  "consideration_amount",
+  "settlement_amount",
+  "sec_deposit",
+  "deposit_tenor_days",
+  "maturity_date",
+  "col_break_dep",
+  "interest_rate",
+  "expected_interest",
+  "sec_compliance",
+  "compliance_checked",
+  "compliance_status",
+  "compliance_notes",
+  "col_break_cash",
+  "cash_available_before_trade",
+  "cash_after_trade",
+  "override_approved",
+  "override_justification",
+  "override_approved_by",
+  "sec_auth",
+  "dealer",
+  "approver",
+  "approval_status",
+  "col_break_cust",
+  "custody_instruction_ref",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Trade Details"
+  },
+  {
+   "default": "ORD-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "ORD-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Trade Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "settlement_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Settlement Date",
+   "reqd": 1
+  },
+  {
+   "default": "BUY",
+   "fieldname": "order_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Order Type",
+   "options": "BUY\nSELL\nPLACEMENT\nROLLOVER\nEARLY_RECALL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "security",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Security",
+   "options": "Asset Investment Security",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_name",
+   "fieldtype": "Data",
+   "label": "Security Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "asset_class",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Asset Class",
+   "read_only": 1
+  },
+  {
+   "fieldname": "counterparty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dealing Counterparty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "broker",
+   "fieldtype": "Data",
+   "label": "Executing Broker"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "brokerage_commission",
+   "fieldtype": "Currency",
+   "label": "Brokerage Commission"
+  },
+  {
+   "fieldname": "sec_pricing",
+   "fieldtype": "Section Break",
+   "label": "Financial Terms & Considerations"
+  },
+  {
+   "fieldname": "face_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Face Value / Nominal / Shares",
+   "reqd": 1
+  },
+  {
+   "default": "100.0",
+   "fieldname": "clean_price_pct",
+   "fieldtype": "Float",
+   "label": "Clean Price % / Share Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "yield_to_maturity",
+   "fieldtype": "Percent",
+   "label": "Yield to Maturity (YTM) %"
+  },
+  {
+   "fieldname": "coupon_rate",
+   "fieldtype": "Percent",
+   "label": "Coupon Rate %"
+  },
+  {
+   "fieldname": "col_break_price",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "days_accrued",
+   "fieldtype": "Int",
+   "label": "Accrued Days"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "accrued_interest",
+   "fieldtype": "Currency",
+   "label": "Accrued Interest"
+  },
+  {
+   "fieldname": "dirty_price",
+   "fieldtype": "Float",
+   "label": "Dirty Price %",
+   "read_only": 1
+  },
+  {
+   "fieldname": "consideration_amount",
+   "fieldtype": "Currency",
+   "label": "Capital Consideration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "settlement_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Settlement Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sec_deposit",
+   "fieldtype": "Section Break",
+   "label": "Money Market / Deposit Terms"
+  },
+  {
+   "fieldname": "deposit_tenor_days",
+   "fieldtype": "Int",
+   "label": "Tenor (Days)"
+  },
+  {
+   "fieldname": "maturity_date",
+   "fieldtype": "Date",
+   "label": "Maturity Date"
+  },
+  {
+   "fieldname": "col_break_dep",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "interest_rate",
+   "fieldtype": "Percent",
+   "label": "Agreed Interest Rate %"
+  },
+  {
+   "fieldname": "expected_interest",
+   "fieldtype": "Currency",
+   "label": "Expected Maturity Interest"
+  },
+  {
+   "fieldname": "sec_compliance",
+   "fieldtype": "Section Break",
+   "label": "Pre-Trade Compliance & Cash Guard (Rule 2)"
+  },
+  {
+   "default": "0",
+   "fieldname": "compliance_checked",
+   "fieldtype": "Check",
+   "label": "Compliance Evaluated",
+   "read_only": 1
+  },
+  {
+   "default": "Not Checked",
+   "fieldname": "compliance_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Compliance Status",
+   "options": "Not Checked\nPassed\nBreached"
+  },
+  {
+   "fieldname": "compliance_notes",
+   "fieldtype": "Small Text",
+   "label": "Compliance Findings",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_cash",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cash_available_before_trade",
+   "fieldtype": "Currency",
+   "label": "Fund Cash Available",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cash_after_trade",
+   "fieldtype": "Currency",
+   "label": "Projected Cash Balance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "override_approved",
+   "fieldtype": "Check",
+   "label": "Compliance Override Approved"
+  },
+  {
+   "fieldname": "override_justification",
+   "fieldtype": "Small Text",
+   "label": "Override Justification"
+  },
+  {
+   "fieldname": "override_approved_by",
+   "fieldtype": "Link",
+   "label": "Override Sign-off",
+   "options": "User"
+  },
+  {
+   "fieldname": "sec_auth",
+   "fieldtype": "Section Break",
+   "label": "Maker-Checker Governance & Custody Link"
+  },
+  {
+   "fieldname": "dealer",
+   "fieldtype": "Link",
+   "label": "Dealer (Maker)",
+   "options": "User"
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "label": "Investment Manager (Checker)",
+   "options": "User"
+  },
+  {
+   "default": "Open",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Approval Status",
+   "options": "Open\nPending Approval\nApproved\nRejected"
+  },
+  {
+   "fieldname": "col_break_cust",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "custody_instruction_ref",
+   "fieldtype": "Data",
+   "label": "Custody Confirmation Ref",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Order Status",
+   "options": "Draft\nApproved\nSettled\nCancelled"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Trade Order Header",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:54.306379",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Trade Order Header",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

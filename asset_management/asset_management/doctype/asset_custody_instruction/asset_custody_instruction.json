@@ -1,0 +1,247 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:37:54.456464",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "instruction_date",
+  "custodian_bank",
+  "custodian_department",
+  "custodian_address",
+  "col_break_ref",
+  "trade_order",
+  "fund",
+  "transaction_type",
+  "status",
+  "sec_deal",
+  "counterparty",
+  "security_description",
+  "isin",
+  "settlement_date",
+  "col_break_deal",
+  "face_value",
+  "clean_price",
+  "coupon_rate",
+  "yield_to_maturity",
+  "accrued_interest",
+  "settlement_amount",
+  "sec_signatures",
+  "maker_signatory",
+  "maker_signed",
+  "col_break_sign",
+  "checker_signatory",
+  "checker_signed",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Custody Recipient & Reference"
+  },
+  {
+   "default": "CUST-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CUST-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "instruction_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "default": "Stanbic Bank Uganda Limited",
+   "fieldname": "custodian_bank",
+   "fieldtype": "Data",
+   "label": "Custodian Bank",
+   "reqd": 1
+  },
+  {
+   "default": "Corporate & Investment Banking, Investor Services (TPS)",
+   "fieldname": "custodian_department",
+   "fieldtype": "Data",
+   "label": "Attention"
+  },
+  {
+   "default": "17 Hannington Road, Crested Towers, Kampala",
+   "fieldname": "custodian_address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "col_break_ref",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "trade_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Trade Order Ref",
+   "options": "Asset Trade Order Header",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund Account",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Instruction Subject",
+   "options": "T-BOND PURCHASE\nT-BOND SALE\nT-BILL PURCHASE\nFIXED DEPOSIT PLACEMENT\nEQUITY PURCHASE\nEQUITY SALE",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nAuthorized & Dispatched\nSettlement Confirmed\nCancelled"
+  },
+  {
+   "fieldname": "sec_deal",
+   "fieldtype": "Section Break",
+   "label": "Deal Specifications"
+  },
+  {
+   "fieldname": "counterparty",
+   "fieldtype": "Data",
+   "label": "Counterparty",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_description",
+   "fieldtype": "Data",
+   "label": "Security Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "isin",
+   "fieldtype": "Data",
+   "label": "ISIN Code"
+  },
+  {
+   "fieldname": "settlement_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Settlement Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_deal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "face_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Face Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "clean_price",
+   "fieldtype": "Float",
+   "label": "Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "coupon_rate",
+   "fieldtype": "Percent",
+   "label": "Coupon %"
+  },
+  {
+   "fieldname": "yield_to_maturity",
+   "fieldtype": "Percent",
+   "label": "Yield %"
+  },
+  {
+   "fieldname": "accrued_interest",
+   "fieldtype": "Currency",
+   "label": "Accrued Interest"
+  },
+  {
+   "fieldname": "settlement_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Settlement Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sec_signatures",
+   "fieldtype": "Section Break",
+   "label": "Dual Maker-Checker Signatories"
+  },
+  {
+   "fieldname": "maker_signatory",
+   "fieldtype": "Link",
+   "label": "Primary Signatory (Operations)",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "maker_signed",
+   "fieldtype": "Check",
+   "label": "Signed by Operations"
+  },
+  {
+   "fieldname": "col_break_sign",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "checker_signatory",
+   "fieldtype": "Link",
+   "label": "Secondary Signatory (Investment Manager)",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "checker_signed",
+   "fieldtype": "Check",
+   "label": "Signed by Investment Manager"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Custody Instruction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:54.456464",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Custody Instruction",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

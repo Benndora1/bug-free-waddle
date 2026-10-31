@@ -1,0 +1,32 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Asset Investment Limit Setup",
+  "enforce_strict_block": 1,
+  "fund": "SBG-BAL",
+  "max_allocation_pct": 30.0,
+  "min_allocation_pct": 0.0,
+  "modified": "2026-10-31 13:39:35.602606",
+  "name": "LIM-2026-00001",
+  "naming_series": "LIM-.YYYY.-.#####",
+  "rule_type": "Asset Class Limit",
+  "target_asset_class": "Quoted Equity",
+  "target_issuer": null,
+  "target_sector": "Sovereign"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Asset Investment Limit Setup",
+  "enforce_strict_block": 1,
+  "fund": "SBG-BAL",
+  "max_allocation_pct": 25.0,
+  "min_allocation_pct": 0.0,
+  "modified": "2026-10-31 13:39:35.625323",
+  "name": "LIM-2026-00002",
+  "naming_series": "LIM-.YYYY.-.#####",
+  "rule_type": "Single Issuer Limit",
+  "target_asset_class": "Treasury Bond",
+  "target_issuer": "Stanbic Bank Uganda",
+  "target_sector": "Sovereign"
+ }
+]

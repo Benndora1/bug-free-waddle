@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "format:{fund}-{security}",
+ "creation": "2026-10-31 13:37:54.581368",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_holding",
+  "fund",
+  "security",
+  "asset_class",
+  "col_break_hold",
+  "acquisition_date",
+  "maturity_date",
+  "holding_status",
+  "sec_values",
+  "face_value",
+  "carrying_cost",
+  "accrued_interest",
+  "col_break_val",
+  "dirty_market_value",
+  "amortized_cost",
+  "xirr"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_holding",
+   "fieldtype": "Section Break",
+   "label": "Position Details"
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Security",
+   "options": "Asset Investment Security",
+   "reqd": 1
+  },
+  {
+   "fieldname": "asset_class",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Asset Class"
+  },
+  {
+   "fieldname": "col_break_hold",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acquisition_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Acquisition Date"
+  },
+  {
+   "fieldname": "maturity_date",
+   "fieldtype": "Date",
+   "label": "Maturity Date"
+  },
+  {
+   "default": "Active",
+   "fieldname": "holding_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nMatured\nSold"
+  },
+  {
+   "fieldname": "sec_values",
+   "fieldtype": "Section Break",
+   "label": "Holding Balances & Valuation"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "face_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Face Value / Nominal"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "carrying_cost",
+   "fieldtype": "Currency",
+   "label": "Acquisition Cost"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "accrued_interest",
+   "fieldtype": "Currency",
+   "label": "Accrued Interest"
+  },
+  {
+   "fieldname": "col_break_val",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "dirty_market_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Current Market Value"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "amortized_cost",
+   "fieldtype": "Currency",
+   "label": "Amortized Cost"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "xirr",
+   "fieldtype": "Percent",
+   "label": "Yield / XIRR %"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:54.581368",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Portfolio Holding",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

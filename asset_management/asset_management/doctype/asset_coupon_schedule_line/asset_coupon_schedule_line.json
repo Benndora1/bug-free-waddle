@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-10-31 13:37:42.858863",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "coupon_number",
+  "coupon_date",
+  "coupon_rate",
+  "coupon_amount",
+  "received",
+  "received_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "coupon_number",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Period #"
+  },
+  {
+   "fieldname": "coupon_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Cash Flow Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "coupon_rate",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Rate %"
+  },
+  {
+   "fieldname": "coupon_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Expected Interest / Cash Flow",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "received",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Received"
+  },
+  {
+   "fieldname": "received_date",
+   "fieldtype": "Date",
+   "label": "Settled Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:53.868025",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Coupon Schedule Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

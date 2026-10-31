@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:security_id",
+ "creation": "2026-10-31 13:37:43.039354",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_profile",
+  "security_id",
+  "security_name",
+  "asset_class",
+  "status",
+  "col_break_1",
+  "issuer",
+  "issuer_type",
+  "sector",
+  "currency",
+  "isin",
+  "sec_terms",
+  "issue_date",
+  "maturity_date",
+  "tenor_days",
+  "col_break_pricing",
+  "coupon_rate",
+  "coupon_frequency",
+  "day_count_convention",
+  "current_market_price",
+  "sec_schedule",
+  "coupon_schedule"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_profile",
+   "fieldtype": "Section Break",
+   "label": "Security Master Details"
+  },
+  {
+   "fieldname": "security_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Security ID / Ticker",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "security_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Security Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "asset_class",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Asset Class",
+   "options": "Treasury Bond\nCorporate Bond\nTreasury Bill\nFixed Deposit\nCall Deposit\nCommercial Paper\nQuoted Equity",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nMatured\nDefaulted\nRedeemed"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "issuer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Issuer / Counterparty",
+   "reqd": 1
+  },
+  {
+   "default": "Government",
+   "fieldname": "issuer_type",
+   "fieldtype": "Select",
+   "label": "Issuer Type",
+   "options": "Government\nCommercial Bank\nCorporate"
+  },
+  {
+   "default": "Sovereign",
+   "fieldname": "sector",
+   "fieldtype": "Select",
+   "label": "Sector",
+   "options": "Sovereign\nFinancial Services\nTelecommunications\nManufacturing\nEnergy\nConsumer Goods"
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "isin",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "ISIN Code"
+  },
+  {
+   "fieldname": "sec_terms",
+   "fieldtype": "Section Break",
+   "label": "Instrument Tenor & Pricing Terms"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "Issue Date"
+  },
+  {
+   "fieldname": "maturity_date",
+   "fieldtype": "Date",
+   "label": "Maturity Date"
+  },
+  {
+   "fieldname": "tenor_days",
+   "fieldtype": "Int",
+   "label": "Tenor (Days)"
+  },
+  {
+   "fieldname": "col_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "coupon_rate",
+   "fieldtype": "Percent",
+   "label": "Coupon Rate %"
+  },
+  {
+   "default": "Semi-Annual",
+   "fieldname": "coupon_frequency",
+   "fieldtype": "Select",
+   "label": "Coupon Frequency",
+   "options": "Semi-Annual\nAnnual\nQuarterly\nAt Maturity"
+  },
+  {
+   "default": "Actual/365",
+   "fieldname": "day_count_convention",
+   "fieldtype": "Select",
+   "label": "Day Count Convention",
+   "options": "Actual/365\nActual/Actual\n30/360"
+  },
+  {
+   "default": "100.0",
+   "fieldname": "current_market_price",
+   "fieldtype": "Float",
+   "label": "Current Clean Price (per 100) / Share Price"
+  },
+  {
+   "fieldname": "sec_schedule",
+   "fieldtype": "Section Break",
+   "label": "Coupon Schedule & Cash Flows"
+  },
+  {
+   "fieldname": "coupon_schedule",
+   "fieldtype": "Table",
+   "label": "Coupon Schedule",
+   "options": "Asset Coupon Schedule Line"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:37:54.061681",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investment Security",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
