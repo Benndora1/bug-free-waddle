@@ -1,0 +1,309 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:fund_id",
+ "creation": "2026-10-31 13:18:50.880197",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_fund_details",
+  "fund_id",
+  "fund_name",
+  "fund_type",
+  "status",
+  "col_break_1",
+  "currency",
+  "launch_date",
+  "accounting_basis",
+  "valuation_frequency",
+  "sec_pricing",
+  "initial_nav_per_unit",
+  "current_nav_per_unit",
+  "bid_offer_spread_pct",
+  "col_break_pricing",
+  "current_offer_price",
+  "current_bid_price",
+  "last_valuation_date",
+  "prior_day_valuation_approved",
+  "total_units_in_issue",
+  "total_gav",
+  "total_nav",
+  "sec_limits",
+  "min_subscription_amount",
+  "min_additional_amount",
+  "col_break_limits",
+  "min_redemption_amount",
+  "min_balance_amount",
+  "redemption_settlement_days",
+  "early_redemption_penalty_pct",
+  "early_redemption_period_days",
+  "sec_counterparties",
+  "custodian_name",
+  "custodian_account",
+  "col_break_parties",
+  "trustee_name",
+  "trustee_account",
+  "auditor_name",
+  "sec_fees",
+  "fees"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_fund_details",
+   "fieldtype": "Section Break",
+   "label": "Fund Profile"
+  },
+  {
+   "fieldname": "fund_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fund ID / Symbol",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "fund_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fund Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fund Type",
+   "options": "Money Market Fund\nBalanced Fund\nEquity Fund\nBond Fund\nUmbrella Pension Fund\nDiscretionary Portfolio",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nSuspended\nClosed"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Fund Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "launch_date",
+   "fieldtype": "Date",
+   "label": "Launch Date",
+   "reqd": 1
+  },
+  {
+   "default": "Amortised Cost",
+   "fieldname": "accounting_basis",
+   "fieldtype": "Select",
+   "label": "Accounting Basis",
+   "options": "Amortised Cost\nMark-to-Market\nMixed"
+  },
+  {
+   "default": "Daily",
+   "fieldname": "valuation_frequency",
+   "fieldtype": "Select",
+   "label": "Valuation Frequency",
+   "options": "Daily\nWeekly\nMonthly"
+  },
+  {
+   "fieldname": "sec_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing & NAV (Rule 1 Compliance)"
+  },
+  {
+   "default": "100.0",
+   "fieldname": "initial_nav_per_unit",
+   "fieldtype": "Currency",
+   "label": "Initial NAV Per Unit",
+   "reqd": 1
+  },
+  {
+   "default": "100.0",
+   "fieldname": "current_nav_per_unit",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Current NAV Per Unit",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "bid_offer_spread_pct",
+   "fieldtype": "Percent",
+   "label": "Bid/Offer Spread %"
+  },
+  {
+   "fieldname": "col_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "100.0",
+   "fieldname": "current_offer_price",
+   "fieldtype": "Currency",
+   "label": "Current Offer (Creation) Price"
+  },
+  {
+   "default": "100.0",
+   "fieldname": "current_bid_price",
+   "fieldtype": "Currency",
+   "label": "Current Bid (Redemption) Price"
+  },
+  {
+   "fieldname": "last_valuation_date",
+   "fieldtype": "Date",
+   "label": "Last Valuation Date"
+  },
+  {
+   "default": "1",
+   "fieldname": "prior_day_valuation_approved",
+   "fieldtype": "Check",
+   "label": "Prior-Day Valuation Approved (Rule 1 Guard)"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_units_in_issue",
+   "fieldtype": "Float",
+   "label": "Total Units in Issue",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_gav",
+   "fieldtype": "Currency",
+   "label": "Gross Asset Value (GAV)",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_nav",
+   "fieldtype": "Currency",
+   "label": "Net Asset Value (NAV)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_limits",
+   "fieldtype": "Section Break",
+   "label": "Subscription & Redemption Thresholds"
+  },
+  {
+   "default": "100000.0",
+   "fieldname": "min_subscription_amount",
+   "fieldtype": "Currency",
+   "label": "Min Initial Subscription"
+  },
+  {
+   "default": "50000.0",
+   "fieldname": "min_additional_amount",
+   "fieldtype": "Currency",
+   "label": "Min Additional Subscription"
+  },
+  {
+   "fieldname": "col_break_limits",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "50000.0",
+   "fieldname": "min_redemption_amount",
+   "fieldtype": "Currency",
+   "label": "Min Redemption Amount"
+  },
+  {
+   "default": "100000.0",
+   "fieldname": "min_balance_amount",
+   "fieldtype": "Currency",
+   "label": "Min Retained Balance"
+  },
+  {
+   "default": "1",
+   "fieldname": "redemption_settlement_days",
+   "fieldtype": "Int",
+   "label": "Settlement Cycle (Days, e.g. T+1)"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "early_redemption_penalty_pct",
+   "fieldtype": "Percent",
+   "label": "Early Redemption Penalty %"
+  },
+  {
+   "default": "0",
+   "fieldname": "early_redemption_period_days",
+   "fieldtype": "Int",
+   "label": "Early Redemption Period (Days)"
+  },
+  {
+   "fieldname": "sec_counterparties",
+   "fieldtype": "Section Break",
+   "label": "Trustees, Custodians & Service Providers"
+  },
+  {
+   "default": "Stanbic Bank Uganda Custody",
+   "fieldname": "custodian_name",
+   "fieldtype": "Data",
+   "label": "Custodian Bank"
+  },
+  {
+   "fieldname": "custodian_account",
+   "fieldtype": "Data",
+   "label": "Custody Account No"
+  },
+  {
+   "fieldname": "col_break_parties",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "KCB Bank Uganda Limited",
+   "fieldname": "trustee_name",
+   "fieldtype": "Data",
+   "label": "Fund Trustee"
+  },
+  {
+   "fieldname": "trustee_account",
+   "fieldtype": "Data",
+   "label": "Trustee Account No"
+  },
+  {
+   "default": "PricewaterhouseCoopers (PwC) Uganda",
+   "fieldname": "auditor_name",
+   "fieldtype": "Data",
+   "label": "Independent Auditor"
+  },
+  {
+   "fieldname": "sec_fees",
+   "fieldtype": "Section Break",
+   "label": "Fee Structures"
+  },
+  {
+   "fieldname": "fees",
+   "fieldtype": "Table",
+   "label": "Fund Fees",
+   "options": "Asset Fund Fee Tier"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:52.844201",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Fund",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

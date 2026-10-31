@@ -1,0 +1,323 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:investor_id",
+ "creation": "2026-10-29 20:50:51.285350",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_info",
+  "investor_id",
+  "investor_name",
+  "investor_type",
+  "client_category",
+  "status",
+  "col_break_1",
+  "email",
+  "phone",
+  "tax_id",
+  "country_of_residence",
+  "created_from_application",
+  "sec_bank",
+  "bank_name",
+  "bank_branch",
+  "col_break_bnk",
+  "bank_account_name",
+  "bank_account_no",
+  "settlement_currency",
+  "sec_kyc",
+  "kyc_status",
+  "pep_status",
+  "sanction_status",
+  "col_break_2",
+  "risk_tier",
+  "verified_date",
+  "last_review_date",
+  "next_review_date",
+  "sec_portfolio_summary",
+  "total_portfolio_value",
+  "col_break_pf",
+  "total_units_held"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_info",
+   "fieldtype": "Section Break",
+   "label": "Investor Account Information"
+  },
+  {
+   "fieldname": "investor_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor ID / Account No",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor Name",
+   "reqd": 1
+  },
+  {
+   "default": "Individual",
+   "fieldname": "investor_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Investor Type",
+   "options": "Individual\nJoint\nCorporate\nTrust / Institutional"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "options": "Email"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "tax_id",
+   "fieldtype": "Data",
+   "label": "Tax ID / TIN"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nDormant\nSuspended\nClosed"
+  },
+  {
+   "fieldname": "sec_kyc",
+   "fieldtype": "Section Break",
+   "label": "Investor KYC & Compliance Status"
+  },
+  {
+   "default": "Verified",
+   "fieldname": "kyc_status",
+   "fieldtype": "Select",
+   "label": "KYC Status",
+   "options": "Pending\nVerified\nRejected"
+  },
+  {
+   "default": "No",
+   "fieldname": "pep_status",
+   "fieldtype": "Select",
+   "label": "PEP Status",
+   "options": "No\nYes\nAssociated"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Low",
+   "fieldname": "risk_tier",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Risk Tier",
+   "options": "Low\nMedium\nHigh"
+  },
+  {
+   "fieldname": "verified_date",
+   "fieldtype": "Date",
+   "label": "KYC Verified Date",
+   "read_only": 1
+  },
+  {
+   "default": "Retail",
+   "fieldname": "client_category",
+   "fieldtype": "Select",
+   "label": "Client Category",
+   "options": "Retail\nHigh Net Worth\nInstitutional\nPension Fund"
+  },
+  {
+   "default": "Uganda",
+   "fieldname": "country_of_residence",
+   "fieldtype": "Link",
+   "label": "Country of Residence",
+   "options": "Country"
+  },
+  {
+   "fieldname": "created_from_application",
+   "fieldtype": "Link",
+   "label": "Originated Application",
+   "options": "Asset Investor Application",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_bank",
+   "fieldtype": "Section Break",
+   "label": "Settlement Bank Account"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_branch",
+   "fieldtype": "Data",
+   "label": "Branch Name"
+  },
+  {
+   "fieldname": "col_break_bnk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_account_name",
+   "fieldtype": "Data",
+   "label": "Account Name"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "default": "UGX",
+   "fieldname": "settlement_currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "default": "No",
+   "fieldname": "sanction_status",
+   "fieldtype": "Select",
+   "label": "Sanctions Match",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "last_review_date",
+   "fieldtype": "Date",
+   "label": "Last Review Date"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Periodic Review Date"
+  },
+  {
+   "fieldname": "sec_portfolio_summary",
+   "fieldtype": "Section Break",
+   "label": "Portfolio Holdings Summary"
+  },
+  {
+   "fieldname": "total_portfolio_value",
+   "fieldtype": "Currency",
+   "label": "Total Portfolio Net Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_pf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_units_held",
+   "fieldtype": "Float",
+   "label": "Total Units Held Across Funds",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:09:28.521532",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investor",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Compliance Officer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Fund Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Operations",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Client Service",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

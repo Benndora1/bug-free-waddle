@@ -1,0 +1,118 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:agent_code",
+ "creation": "2026-10-31 13:18:51.261929",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "agent_code",
+  "agent_name",
+  "agent_type",
+  "license_no",
+  "commission_rate_pct",
+  "col_break_contact",
+  "email",
+  "phone",
+  "status",
+  "sec_bank",
+  "bank_name",
+  "bank_account_no",
+  "bank_account_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "agent_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Agent Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "agent_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Agent Name",
+   "reqd": 1
+  },
+  {
+   "default": "Individual",
+   "fieldname": "agent_type",
+   "fieldtype": "Select",
+   "label": "Agent Type",
+   "options": "Individual\nCorporate / Broker"
+  },
+  {
+   "fieldname": "license_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "CMA License No"
+  },
+  {
+   "default": "0.50",
+   "fieldname": "commission_rate_pct",
+   "fieldtype": "Percent",
+   "label": "Default Commission %",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nSuspended\nInactive"
+  },
+  {
+   "fieldname": "sec_bank",
+   "fieldtype": "Section Break",
+   "label": "Commission Payout Bank Details"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "bank_account_name",
+   "fieldtype": "Data",
+   "label": "Account Name"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.287812",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Agent",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

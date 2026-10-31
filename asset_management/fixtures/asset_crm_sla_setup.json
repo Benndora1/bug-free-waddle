@@ -1,0 +1,80 @@
+[
+ {
+  "active": 1,
+  "category": "Account Statement Request",
+  "code": "SLA_STATEMENT",
+  "description": "Dispatch of client statement and portfolio holding summary.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 4,
+  "functional_group": "Client Service",
+  "internal_sla_hours": 2,
+  "modified": "2026-10-31 13:09:29.046014",
+  "name": "SLA_STATEMENT"
+ },
+ {
+  "active": 1,
+  "category": "General Inquiry",
+  "code": "SLA_INQUIRY",
+  "description": "Standard client product and performance inquiry.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 24,
+  "functional_group": "Client Service",
+  "internal_sla_hours": 4,
+  "modified": "2026-10-31 13:09:29.051177",
+  "name": "SLA_INQUIRY"
+ },
+ {
+  "active": 1,
+  "category": "Subscription Follow-up",
+  "code": "SLA_SUB_ISSUE",
+  "description": "Tracing unallocated deposits and unit allotment.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 24,
+  "functional_group": "Operations",
+  "internal_sla_hours": 4,
+  "modified": "2026-10-31 13:09:29.052253",
+  "name": "SLA_SUB_ISSUE"
+ },
+ {
+  "active": 1,
+  "category": "Redemption Follow-up",
+  "code": "SLA_RED_ISSUE",
+  "description": "Payment status follow-up for unit redemption.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 48,
+  "functional_group": "Operations",
+  "internal_sla_hours": 4,
+  "modified": "2026-10-31 13:09:29.053391",
+  "name": "SLA_RED_ISSUE"
+ },
+ {
+  "active": 1,
+  "category": "Fund Switch Request",
+  "code": "SLA_SWITCH",
+  "description": "Processing switch from Money Market to Bond / Equity Fund.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 24,
+  "functional_group": "Operations",
+  "internal_sla_hours": 4,
+  "modified": "2026-10-31 13:09:29.054639",
+  "name": "SLA_SWITCH"
+ },
+ {
+  "active": 1,
+  "category": "Client Complaint",
+  "code": "SLA_COMPLAINT",
+  "description": "Formal complaint regarding service or delays requiring escalation.",
+  "docstatus": 0,
+  "doctype": "Asset CRM SLA Setup",
+  "external_sla_hours": 24,
+  "functional_group": "Client Service",
+  "internal_sla_hours": 2,
+  "modified": "2026-10-31 13:09:29.055806",
+  "name": "SLA_COMPLAINT"
+ }
+]

@@ -1,0 +1,119 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:19:53.556271",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "agent",
+  "subscription",
+  "posting_date",
+  "investor",
+  "fund",
+  "col_break_comm",
+  "gross_subscription_amount",
+  "commission_rate_pct",
+  "commission_amount",
+  "payment_status",
+  "payment_reference"
+ ],
+ "fields": [
+  {
+   "default": "COMM-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "COMM-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Agent",
+   "options": "Asset Agent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "subscription",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Subscription Ref",
+   "options": "Asset Subscription",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "label": "Investor",
+   "options": "Asset Investor"
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "label": "Fund",
+   "options": "Asset Fund"
+  },
+  {
+   "fieldname": "col_break_comm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gross_subscription_amount",
+   "fieldtype": "Currency",
+   "label": "Gross Subscription Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commission_rate_pct",
+   "fieldtype": "Percent",
+   "label": "Commission Rate %",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Commission Amount",
+   "reqd": 1
+  },
+  {
+   "default": "Accrued",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "options": "Accrued\nApproved\nPaid"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.556271",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Agent Commission",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

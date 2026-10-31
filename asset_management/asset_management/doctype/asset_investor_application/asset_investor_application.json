@@ -1,0 +1,436 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:09:28.162622",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "application_date",
+  "onboarding_channel",
+  "agent",
+  "status",
+  "sec_investor_details",
+  "investor_type",
+  "client_category",
+  "investor_name",
+  "col_break_id",
+  "identification_type",
+  "identification_no",
+  "tax_id",
+  "country_of_residence",
+  "sec_contact",
+  "email",
+  "phone",
+  "col_break_addr",
+  "physical_address",
+  "postal_address",
+  "city",
+  "sec_bank",
+  "bank_name",
+  "bank_branch",
+  "col_break_bnk",
+  "bank_account_name",
+  "bank_account_no",
+  "settlement_currency",
+  "sec_signatories",
+  "signatories",
+  "sec_beneficiaries",
+  "beneficiaries",
+  "sec_compliance",
+  "pep_status",
+  "sanction_status",
+  "edd_required",
+  "col_break_risk",
+  "risk_score",
+  "risk_tier",
+  "edd_notes",
+  "sec_approval",
+  "reviewed_by",
+  "approved_by_ce",
+  "approval_date",
+  "created_investor_account",
+  "col_break_appr",
+  "rejection_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "APP-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "APP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Application Date",
+   "reqd": 1
+  },
+  {
+   "default": "Face to Face",
+   "fieldname": "onboarding_channel",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Onboarding Channel",
+   "options": "Face to Face\nAgent\nOnline Portal\nWholesale / Direct"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Data",
+   "label": "Agent Code / Name"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPending Approval\nApproved\nRejected",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_investor_details",
+   "fieldtype": "Section Break",
+   "label": "Investor Identity & Categorization"
+  },
+  {
+   "default": "Individual",
+   "fieldname": "investor_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Investor Type",
+   "options": "Individual\nJoint\nCorporate\nTrust / Institutional",
+   "reqd": 1
+  },
+  {
+   "default": "Retail",
+   "fieldname": "client_category",
+   "fieldtype": "Select",
+   "label": "Client Category",
+   "options": "Retail\nHigh Net Worth\nInstitutional\nPension Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor / Entity Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_id",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "National ID",
+   "fieldname": "identification_type",
+   "fieldtype": "Select",
+   "label": "ID Type",
+   "options": "National ID\nPassport\nAlien ID\nCertificate of Incorporation\nTrust Deed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "identification_no",
+   "fieldtype": "Data",
+   "label": "ID / Registration Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tax_id",
+   "fieldtype": "Data",
+   "label": "Tax ID / TIN",
+   "reqd": 1
+  },
+  {
+   "default": "Uganda",
+   "fieldname": "country_of_residence",
+   "fieldtype": "Link",
+   "label": "Country of Residence",
+   "options": "Country"
+  },
+  {
+   "fieldname": "sec_contact",
+   "fieldtype": "Section Break",
+   "label": "Contact & Address"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_addr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "physical_address",
+   "fieldtype": "Small Text",
+   "label": "Physical Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "postal_address",
+   "fieldtype": "Data",
+   "label": "Postal Address"
+  },
+  {
+   "default": "Kampala",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "sec_bank",
+   "fieldtype": "Section Break",
+   "label": "Settlement Bank Account (For Redemptions)"
+  },
+  {
+   "default": "Stanbic Bank Uganda",
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name",
+   "reqd": 1
+  },
+  {
+   "default": "Crested Towers",
+   "fieldname": "bank_branch",
+   "fieldtype": "Data",
+   "label": "Branch Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_bnk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_account_name",
+   "fieldtype": "Data",
+   "label": "Account Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Account Number",
+   "reqd": 1
+  },
+  {
+   "default": "UGX",
+   "fieldname": "settlement_currency",
+   "fieldtype": "Link",
+   "label": "Settlement Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "sec_signatories",
+   "fieldtype": "Section Break",
+   "label": "Joint Holders & Mandated Signatories"
+  },
+  {
+   "fieldname": "signatories",
+   "fieldtype": "Table",
+   "label": "Signatories",
+   "options": "Asset Investor Signatory"
+  },
+  {
+   "fieldname": "sec_beneficiaries",
+   "fieldtype": "Section Break",
+   "label": "Next of Kin & Beneficiaries"
+  },
+  {
+   "fieldname": "beneficiaries",
+   "fieldtype": "Table",
+   "label": "Beneficiaries",
+   "options": "Asset Investor Beneficiary"
+  },
+  {
+   "fieldname": "sec_compliance",
+   "fieldtype": "Section Break",
+   "label": "PEP, Sanctions & Risk Scoring"
+  },
+  {
+   "default": "No",
+   "fieldname": "pep_status",
+   "fieldtype": "Select",
+   "label": "PEP Status",
+   "options": "No\nYes\nAssociated"
+  },
+  {
+   "default": "No",
+   "fieldname": "sanction_status",
+   "fieldtype": "Select",
+   "label": "Sanctions Match",
+   "options": "No\nYes"
+  },
+  {
+   "default": "0",
+   "fieldname": "edd_required",
+   "fieldtype": "Check",
+   "label": "Enhanced Due Diligence (EDD) Required",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_risk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "risk_score",
+   "fieldtype": "Float",
+   "label": "Risk Score",
+   "read_only": 1
+  },
+  {
+   "default": "Low",
+   "fieldname": "risk_tier",
+   "fieldtype": "Select",
+   "label": "Risk Tier",
+   "options": "Low\nMedium\nHigh",
+   "read_only": 1
+  },
+  {
+   "fieldname": "edd_notes",
+   "fieldtype": "Small Text",
+   "label": "EDD & Compliance Findings"
+  },
+  {
+   "fieldname": "sec_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval & Account Creation"
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed / Verified By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "approved_by_ce",
+   "fieldtype": "Check",
+   "label": "Chief Executive (CE) Approval (Required for PEP/High-Risk)"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "created_investor_account",
+   "fieldtype": "Link",
+   "label": "Created Investor Account",
+   "options": "Asset Investor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_appr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rejection_reason",
+   "fieldtype": "Small Text",
+   "label": "Rejection Reason"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Investor Application",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:09:28.162622",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investor Application",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Compliance Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Operations",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

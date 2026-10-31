@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:18:51.129087",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "posting_date",
+  "value_date",
+  "investor",
+  "portfolio",
+  "fund",
+  "col_break_1",
+  "entry_type",
+  "voucher_type",
+  "voucher_no",
+  "sec_movement",
+  "units",
+  "nav_per_unit",
+  "running_unit_balance",
+  "col_break_amt",
+  "gross_amount",
+  "fees",
+  "net_amount",
+  "running_cash_balance"
+ ],
+ "fields": [
+  {
+   "default": "REG-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "REG-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "value_date",
+   "fieldtype": "Date",
+   "label": "Value Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Investor",
+   "options": "Asset Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "portfolio",
+   "fieldtype": "Link",
+   "label": "Portfolio",
+   "options": "Asset Investor Portfolio",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Entry Type",
+   "options": "Subscription\nRedemption\nSwitch In\nSwitch Out\nDistribution Reinvestment\nDistribution Payout\nAdjustment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Select",
+   "label": "Voucher Type",
+   "options": "Asset Subscription\nAsset Redemption\nAsset Fund Switch\nDividend Declaration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "voucher_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Voucher No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sec_movement",
+   "fieldtype": "Section Break",
+   "label": "Movement & Balances"
+  },
+  {
+   "fieldname": "units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Units (+/-)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nav_per_unit",
+   "fieldtype": "Currency",
+   "label": "NAV / Price Per Unit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "running_unit_balance",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Running Unit Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_amt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "gross_amount",
+   "fieldtype": "Currency",
+   "label": "Gross Amount",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "fees",
+   "fieldtype": "Currency",
+   "label": "Fees / Deductions"
+  },
+  {
+   "fieldname": "net_amount",
+   "fieldtype": "Currency",
+   "label": "Net Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "running_cash_balance",
+   "fieldtype": "Currency",
+   "label": "Running Cash Cost",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.155008",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investor Register Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

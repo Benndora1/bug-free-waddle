@@ -1,0 +1,281 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:19:53.403577",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "investor",
+  "investor_name",
+  "fund",
+  "fund_name",
+  "col_break_hdr",
+  "subscription_date",
+  "value_date",
+  "currency",
+  "status",
+  "sec_payment",
+  "payment_method",
+  "bank_reference",
+  "bol_line_ref",
+  "col_break_agent",
+  "agent",
+  "agent_commission_pct",
+  "agent_commission_amount",
+  "sec_calc",
+  "gross_amount",
+  "entry_fee_pct",
+  "entry_fee_amount",
+  "net_invested_amount",
+  "col_break_units",
+  "applicable_nav_price",
+  "units_allocated",
+  "contract_note_no",
+  "sec_audit",
+  "maker",
+  "checker",
+  "approved_by_operations",
+  "approval_date",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Investor & Fund Selection"
+  },
+  {
+   "default": "SUB-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SUB-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Investor",
+   "options": "Asset Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund / Scheme",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund_name",
+   "fieldtype": "Data",
+   "label": "Fund Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "subscription_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Subscription Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "value_date",
+   "fieldtype": "Date",
+   "label": "Value Date",
+   "reqd": 1
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nApproved\nSubmitted\nCancelled"
+  },
+  {
+   "fieldname": "sec_payment",
+   "fieldtype": "Section Break",
+   "label": "Payment & Intermediary"
+  },
+  {
+   "default": "Bank Transfer / BOL",
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "Bank Transfer / BOL\nEFT\nRTGS\nCheque\nDirect Deposit\nInternal Switch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_reference",
+   "fieldtype": "Data",
+   "label": "Bank / BOL Transaction Ref"
+  },
+  {
+   "fieldname": "bol_line_ref",
+   "fieldtype": "Data",
+   "label": "BOL Line ID"
+  },
+  {
+   "fieldname": "col_break_agent",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Referred By Agent",
+   "options": "Asset Agent"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "agent_commission_pct",
+   "fieldtype": "Percent",
+   "label": "Agent Commission %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "agent_commission_amount",
+   "fieldtype": "Currency",
+   "label": "Agent Commission Amount"
+  },
+  {
+   "fieldname": "sec_calc",
+   "fieldtype": "Section Break",
+   "label": "Unit Allocation Calculation"
+  },
+  {
+   "fieldname": "gross_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Gross Subscription Amount",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "entry_fee_pct",
+   "fieldtype": "Percent",
+   "label": "Entry Fee %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "entry_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Entry Fee Amount"
+  },
+  {
+   "fieldname": "net_invested_amount",
+   "fieldtype": "Currency",
+   "label": "Net Invested Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_units",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "applicable_nav_price",
+   "fieldtype": "Currency",
+   "label": "Applicable Offer Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "units_allocated",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Units Allocated",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_note_no",
+   "fieldtype": "Data",
+   "label": "Contract Note No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_audit",
+   "fieldtype": "Section Break",
+   "label": "Maker-Checker Governance"
+  },
+  {
+   "fieldname": "maker",
+   "fieldtype": "Link",
+   "label": "Maker",
+   "options": "User"
+  },
+  {
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "User"
+  },
+  {
+   "default": "0",
+   "fieldname": "approved_by_operations",
+   "fieldtype": "Check",
+   "label": "Approved By Operations"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Subscription",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.403577",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Subscription",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

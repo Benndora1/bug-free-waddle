@@ -1,0 +1,38 @@
+[
+ {
+  "code": "LOW_RISK",
+  "description": "Standard retail investors with domestic verified income.",
+  "docstatus": 0,
+  "doctype": "Asset Risk Profile",
+  "lower_score": 0.0,
+  "modified": "2026-10-31 13:09:29.014279",
+  "name": "LOW_RISK",
+  "review_frequency_months": 24,
+  "risk_tier": "Low",
+  "upper_score": 30.0
+ },
+ {
+  "code": "MED_RISK",
+  "description": "High net worth or cross-border non-resident retail clients.",
+  "docstatus": 0,
+  "doctype": "Asset Risk Profile",
+  "lower_score": 30.1,
+  "modified": "2026-10-31 13:09:29.021016",
+  "name": "MED_RISK",
+  "review_frequency_months": 12,
+  "risk_tier": "Medium",
+  "upper_score": 60.0
+ },
+ {
+  "code": "HIGH_RISK",
+  "description": "PEP, sanctioned entities, complex corporate structures requiring CE approval.",
+  "docstatus": 0,
+  "doctype": "Asset Risk Profile",
+  "lower_score": 60.1,
+  "modified": "2026-10-31 13:09:29.022388",
+  "name": "HIGH_RISK",
+  "review_frequency_months": 6,
+  "risk_tier": "High",
+  "upper_score": 100.0
+ }
+]

@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-29 20:50:50.857888",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "portfolio",
+  "fee_type",
+  "col_break_1",
+  "fee_percentage",
+  "vat_applicable",
+  "active",
+  "sec_frequency",
+  "frequency",
+  "col_break_2",
+  "effective_start_date",
+  "effective_end_date"
+ ],
+ "fields": [
+  {
+   "default": "FEE-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "options": "FEE-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "portfolio",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Portfolio / Fund",
+   "options": "Investment Portfolio",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fee Type",
+   "options": "Management Fee\nCustodian Fee\nTrustee Fee\nAdvisory Fee\nIncentive / Performance Fee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fee_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Annual Fee %",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "vat_applicable",
+   "fieldtype": "Check",
+   "label": "VAT Applicable"
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  },
+  {
+   "fieldname": "sec_frequency",
+   "fieldtype": "Section Break",
+   "label": "Calculation Schedule"
+  },
+  {
+   "default": "Daily",
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "label": "Accrual Frequency",
+   "options": "Daily\nMonthly\nQuarterly\nAnnually"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "effective_start_date",
+   "fieldtype": "Date",
+   "label": "Effective Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "effective_end_date",
+   "fieldtype": "Date",
+   "label": "Effective End Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-29 20:50:50.857888",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Fund Fee Setup",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

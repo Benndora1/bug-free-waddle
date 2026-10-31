@@ -1,0 +1,206 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "format:{investor}-{fund}",
+ "creation": "2026-10-31 13:18:51.010918",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_summary",
+  "investor",
+  "investor_name",
+  "fund",
+  "fund_name",
+  "col_break_summary",
+  "portfolio_status",
+  "currency",
+  "first_subscription_date",
+  "last_transaction_date",
+  "sec_balances",
+  "total_units",
+  "current_nav_per_unit",
+  "current_market_value",
+  "col_break_perf",
+  "total_invested_amount",
+  "total_withdrawn_amount",
+  "unrealized_gain_loss",
+  "realized_gain_loss",
+  "sec_bank",
+  "bank_name",
+  "bank_branch",
+  "col_break_bank",
+  "bank_account_name",
+  "bank_account_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_summary",
+   "fieldtype": "Section Break",
+   "label": "Portfolio Summary"
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Investor",
+   "options": "Asset Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund / Scheme",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fund Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_summary",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "portfolio_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nDormant\nFrozen\nClosed"
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Data",
+   "label": "Currency"
+  },
+  {
+   "fieldname": "first_subscription_date",
+   "fieldtype": "Date",
+   "label": "First Investment Date"
+  },
+  {
+   "fieldname": "last_transaction_date",
+   "fieldtype": "Date",
+   "label": "Last Transaction Date"
+  },
+  {
+   "fieldname": "sec_balances",
+   "fieldtype": "Section Break",
+   "label": "Units & Market Valuation"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_units",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Units Held",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "current_nav_per_unit",
+   "fieldtype": "Currency",
+   "label": "Current NAV / Unit",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "current_market_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Current Market Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_perf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_invested_amount",
+   "fieldtype": "Currency",
+   "label": "Total Subscriptions",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_withdrawn_amount",
+   "fieldtype": "Currency",
+   "label": "Total Redemptions",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "unrealized_gain_loss",
+   "fieldtype": "Currency",
+   "label": "Unrealized Gain / Loss",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "realized_gain_loss",
+   "fieldtype": "Currency",
+   "label": "Realized Gain / Loss",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_bank",
+   "fieldtype": "Section Break",
+   "label": "Settlement Bank Account"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_branch",
+   "fieldtype": "Data",
+   "label": "Branch"
+  },
+  {
+   "fieldname": "col_break_bank",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_account_name",
+   "fieldtype": "Data",
+   "label": "Account Name"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.019811",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Investor Portfolio",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

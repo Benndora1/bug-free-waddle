@@ -1,0 +1,90 @@
+[
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "NAT_ID",
+  "document_name": "National Identification Card (NIN)",
+  "investor_type": "Individual",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:28.986760",
+  "name": "NAT_ID"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "PASSPORT",
+  "document_name": "Valid Passport (Foreign / Non-resident)",
+  "investor_type": "Individual",
+  "mandatory": 0,
+  "modified": "2026-10-31 13:09:28.995309",
+  "name": "PASSPORT"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "PROOF_ADDR",
+  "document_name": "Proof of Address (Utility Bill / Bank Statement)",
+  "investor_type": "All",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:28.996786",
+  "name": "PROOF_ADDR"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "TIN_CERT",
+  "document_name": "URA Tax Identification Number (TIN) Certificate",
+  "investor_type": "All",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:28.998135",
+  "name": "TIN_CERT"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "CERT_INCORP",
+  "document_name": "Certificate of Incorporation / Registration",
+  "investor_type": "Corporate",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:28.999658",
+  "name": "CERT_INCORP"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "MEM_ARTICLES",
+  "document_name": "Memorandum and Articles of Association",
+  "investor_type": "Corporate",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:29.001139",
+  "name": "MEM_ARTICLES"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "BOARD_RESOL",
+  "document_name": "Board Resolution Mandating Account Opening",
+  "investor_type": "Corporate",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:29.002461",
+  "name": "BOARD_RESOL"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Asset Required Document",
+  "document_code": "TRUST_DEED",
+  "document_name": "Registered Trust Deed / Scheme Rules",
+  "investor_type": "Trust / Institutional",
+  "mandatory": 1,
+  "modified": "2026-10-31 13:09:29.003840",
+  "name": "TRUST_DEED"
+ }
+]

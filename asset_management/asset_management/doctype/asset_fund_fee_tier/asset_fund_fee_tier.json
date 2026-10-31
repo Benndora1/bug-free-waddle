@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-10-31 13:18:50.696128",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fee_type",
+  "calculation_basis",
+  "annual_percentage",
+  "payable_to",
+  "accrual_frequency",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "fee_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fee Type",
+   "options": "Management Fee\nCustody Fee\nTrustee Fee\nAudit Fee\nRegulatory Fee (CMA)\nWHT on Distribution\nEarly Redemption Penalty",
+   "reqd": 1
+  },
+  {
+   "default": "Annual Percentage of NAV",
+   "fieldname": "calculation_basis",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Calculation Basis",
+   "options": "Annual Percentage of NAV\nFlat Monthly\nPercentage of Transaction",
+   "reqd": 1
+  },
+  {
+   "default": "1.50",
+   "fieldname": "annual_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Annual Fee %",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payable_to",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Payable To"
+  },
+  {
+   "default": "Daily",
+   "fieldname": "accrual_frequency",
+   "fieldtype": "Select",
+   "label": "Accrual Frequency",
+   "options": "Daily\nMonthly\nQuarterly\nAnnually"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:52.642026",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Fund Fee Tier",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

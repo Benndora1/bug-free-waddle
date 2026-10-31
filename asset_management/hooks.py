@@ -262,3 +262,78 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+# Scheduler events for daily tasks
+scheduler_events = {
+    "daily": [
+        "asset_management.tasks.calculate_nav",
+        "asset_management.tasks.process_dividends"
+    ]
+}
+
+fixtures = [
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "in", [
+                "Asset Management Operations",
+                "Asset Investment Manager",
+                "Asset Fund Administrator",
+                "Asset Finance Officer",
+                "Asset Compliance Officer",
+                "Asset Client Service",
+                "Asset Agent",
+                "Asset Investor Portal User",
+                "Asset Management Admin"
+            ]]
+        ]
+    },
+    {
+        "dt": "Asset Required Document",
+        "filters": [
+            ["document_code", "in", [
+                "NAT_ID", "PASSPORT", "PROOF_ADDR", "TIN_CERT",
+                "CERT_INCORP", "MEM_ARTICLES", "BOARD_RESOL", "TRUST_DEED"
+            ]]
+        ]
+    },
+    {
+        "dt": "Asset Risk Profile",
+        "filters": [
+            ["code", "in", ["LOW_RISK", "MED_RISK", "HIGH_RISK"]]
+        ]
+    },
+    {
+        "dt": "Asset PEP Sanction Setup",
+        "filters": [
+            ["rule_code", "in", ["PEP_MATCH", "SANCTION_MATCH"]]
+        ]
+    },
+    {
+        "dt": "Asset Suspicious Transaction Rule",
+        "filters": [
+            ["rule_id", "in", ["AML_LARGE_CASH", "AML_RAPID_EXIT"]]
+        ]
+    },
+    {
+        "dt": "Asset CRM SLA Setup",
+        "filters": [
+            ["code", "in", [
+                "SLA_STATEMENT", "SLA_INQUIRY", "SLA_SUB_ISSUE",
+                "SLA_RED_ISSUE", "SLA_SWITCH", "SLA_COMPLAINT"
+            ]]
+        ]
+    },
+    {
+        "dt": "Asset Fund",
+        "filters": [
+            ["fund_id", "in", ["SBG-MMF", "SBG-BAL", "SBG-EQT", "SBG-BND", "SBG-UMB"]]
+        ]
+    },
+    {
+        "dt": "Asset Agent",
+        "filters": [
+            ["agent_code", "in", ["AGT-001", "AGT-002"]]
+        ]
+    }
+]

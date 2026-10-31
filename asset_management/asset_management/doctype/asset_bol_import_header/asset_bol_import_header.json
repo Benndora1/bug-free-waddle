@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:19:54.017204",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "import_date",
+  "file_name",
+  "bank_name",
+  "bank_account_no",
+  "col_break_status",
+  "status",
+  "total_lines",
+  "total_amount",
+  "matched_lines",
+  "exception_lines",
+  "sec_lines",
+  "lines"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "BOL Statement File Details"
+  },
+  {
+   "default": "BOL-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "BOL-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "import_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Import Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Import File Name"
+  },
+  {
+   "default": "Stanbic Bank Uganda",
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Data",
+   "label": "Custody Collection Account"
+  },
+  {
+   "fieldname": "col_break_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nImported\nProcessed\nCompleted"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_lines",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Lines",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "matched_lines",
+   "fieldtype": "Int",
+   "label": "Matched Lines",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "exception_lines",
+   "fieldtype": "Int",
+   "label": "Exception Lines (48hr SLA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_lines",
+   "fieldtype": "Section Break",
+   "label": "Imported Transactions"
+  },
+  {
+   "fieldname": "lines",
+   "fieldtype": "Table",
+   "label": "Statement Lines",
+   "options": "Asset BOL Import Line"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:54.017204",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset BOL Import Header",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

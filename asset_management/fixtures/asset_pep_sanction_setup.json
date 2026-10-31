@@ -1,0 +1,26 @@
+[
+ {
+  "description": "Client identified as Politically Exposed Person.",
+  "docstatus": 0,
+  "doctype": "Asset PEP Sanction Setup",
+  "is_match": 1,
+  "modified": "2026-10-31 13:09:29.031070",
+  "name": "PEP_MATCH",
+  "requires_ce_approval": 1,
+  "risk_score_impact": 40.0,
+  "risk_type": "PEP",
+  "rule_code": "PEP_MATCH"
+ },
+ {
+  "description": "Client matches OFAC / UN / National Sanction list.",
+  "docstatus": 0,
+  "doctype": "Asset PEP Sanction Setup",
+  "is_match": 1,
+  "modified": "2026-10-31 13:09:29.037197",
+  "name": "SANCTION_MATCH",
+  "requires_ce_approval": 1,
+  "risk_score_impact": 50.0,
+  "risk_type": "SANCTION",
+  "rule_code": "SANCTION_MATCH"
+ }
+]

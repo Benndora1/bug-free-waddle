@@ -1,0 +1,328 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:19:53.676587",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "investor",
+  "investor_name",
+  "fund",
+  "fund_name",
+  "portfolio",
+  "col_break_hdr",
+  "redemption_date",
+  "value_date",
+  "currency",
+  "status",
+  "sec_req",
+  "redemption_by",
+  "requested_amount",
+  "requested_units",
+  "available_portfolio_units",
+  "col_break_rule1",
+  "prior_day_valuation_approved",
+  "applicable_bid_price",
+  "units_to_redeem",
+  "remaining_units",
+  "sec_payout",
+  "gross_redemption_amount",
+  "exit_fee_pct",
+  "exit_fee_amount",
+  "col_break_tax",
+  "withholding_tax_pct",
+  "withholding_tax_amount",
+  "net_payout_amount",
+  "sec_settle",
+  "settlement_bank_name",
+  "settlement_bank_account_no",
+  "settlement_bank_account_name",
+  "payment_status",
+  "col_break_checker",
+  "maker",
+  "checker",
+  "checker_approved",
+  "checker_approval_date",
+  "rejection_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Investor & Fund Selection"
+  },
+  {
+   "default": "RED-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RED-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Investor",
+   "options": "Asset Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund / Scheme",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund_name",
+   "fieldtype": "Data",
+   "label": "Fund Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "portfolio",
+   "fieldtype": "Link",
+   "label": "Investor Portfolio",
+   "options": "Asset Investor Portfolio",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "redemption_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Redemption Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "value_date",
+   "fieldtype": "Date",
+   "label": "Value Date",
+   "reqd": 1
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPending Checker Approval\nApproved\nSubmitted\nRejected\nCancelled"
+  },
+  {
+   "fieldname": "sec_req",
+   "fieldtype": "Section Break",
+   "label": "Redemption Terms & Rule 1 Guard"
+  },
+  {
+   "default": "Amount",
+   "fieldname": "redemption_by",
+   "fieldtype": "Select",
+   "label": "Redemption Basis",
+   "options": "Amount\nUnits\nFull Liquidation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_amount",
+   "fieldtype": "Currency",
+   "label": "Requested Gross Amount"
+  },
+  {
+   "fieldname": "requested_units",
+   "fieldtype": "Float",
+   "label": "Requested Units"
+  },
+  {
+   "fieldname": "available_portfolio_units",
+   "fieldtype": "Float",
+   "label": "Available Units",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_rule1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "prior_day_valuation_approved",
+   "fieldtype": "Check",
+   "label": "Rule 1: T-1 Valuation Approved",
+   "reqd": 1
+  },
+  {
+   "fieldname": "applicable_bid_price",
+   "fieldtype": "Currency",
+   "label": "Applicable Bid Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "units_to_redeem",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Units to Redeem",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remaining_units",
+   "fieldtype": "Float",
+   "label": "Remaining Units",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_payout",
+   "fieldtype": "Section Break",
+   "label": "Settlement & Tax Deductions"
+  },
+  {
+   "fieldname": "gross_redemption_amount",
+   "fieldtype": "Currency",
+   "label": "Gross Redemption Amount",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "exit_fee_pct",
+   "fieldtype": "Percent",
+   "label": "Exit Fee / Early Penalty %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "exit_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Exit Fee Amount"
+  },
+  {
+   "fieldname": "col_break_tax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "15.0",
+   "fieldname": "withholding_tax_pct",
+   "fieldtype": "Percent",
+   "label": "Withholding Tax (WHT) %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "withholding_tax_amount",
+   "fieldtype": "Currency",
+   "label": "Withholding Tax Amount"
+  },
+  {
+   "fieldname": "net_payout_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Payout to Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sec_settle",
+   "fieldtype": "Section Break",
+   "label": "Disbursement Details & Maker-Checker"
+  },
+  {
+   "fieldname": "settlement_bank_name",
+   "fieldtype": "Data",
+   "label": "Settlement Bank"
+  },
+  {
+   "fieldname": "settlement_bank_account_no",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "settlement_bank_account_name",
+   "fieldtype": "Data",
+   "label": "Account Name"
+  },
+  {
+   "default": "Pending Payment",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "options": "Pending Payment\nIncluded in BOL Batch\nPaid"
+  },
+  {
+   "fieldname": "col_break_checker",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "maker",
+   "fieldtype": "Link",
+   "label": "Maker",
+   "options": "User"
+  },
+  {
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "User"
+  },
+  {
+   "default": "0",
+   "fieldname": "checker_approved",
+   "fieldtype": "Check",
+   "label": "Checker Approved"
+  },
+  {
+   "fieldname": "checker_approval_date",
+   "fieldtype": "Date",
+   "label": "Checker Approval Date"
+  },
+  {
+   "fieldname": "rejection_reason",
+   "fieldtype": "Small Text",
+   "label": "Rejection Reason"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Redemption",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.676587",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Redemption",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

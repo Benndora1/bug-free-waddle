@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:19:53.830981",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "investor",
+  "investor_name",
+  "switch_date",
+  "from_fund",
+  "to_fund",
+  "col_break_hdr",
+  "status",
+  "switch_by",
+  "switch_units",
+  "switch_amount",
+  "sec_pricing",
+  "from_fund_bid_price",
+  "gross_switch_amount",
+  "switch_fee_pct",
+  "switch_fee_amount",
+  "net_switch_amount",
+  "col_break_to",
+  "to_fund_offer_price",
+  "units_allocated_to_fund",
+  "sec_audit",
+  "maker",
+  "checker",
+  "approved_by_checker",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Investor & Fund Routing"
+  },
+  {
+   "default": "SWI-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SWI-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Investor",
+   "options": "Asset Investor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "investor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Investor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "switch_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Switch Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Fund (Out)",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target Fund (In)",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nApproved\nSubmitted\nCancelled"
+  },
+  {
+   "default": "Units",
+   "fieldname": "switch_by",
+   "fieldtype": "Select",
+   "label": "Switch By",
+   "options": "Units\nAmount\nFull Balance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "switch_units",
+   "fieldtype": "Float",
+   "label": "Switch Units",
+   "reqd": 1
+  },
+  {
+   "fieldname": "switch_amount",
+   "fieldtype": "Currency",
+   "label": "Switch Amount"
+  },
+  {
+   "fieldname": "sec_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing & Unit Allocation"
+  },
+  {
+   "fieldname": "from_fund_bid_price",
+   "fieldtype": "Currency",
+   "label": "Source Bid Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gross_switch_amount",
+   "fieldtype": "Currency",
+   "label": "Gross Outflow",
+   "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "switch_fee_pct",
+   "fieldtype": "Percent",
+   "label": "Switch Fee %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "switch_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Switch Fee Amount"
+  },
+  {
+   "fieldname": "net_switch_amount",
+   "fieldtype": "Currency",
+   "label": "Net Inflow",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_to",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "to_fund_offer_price",
+   "fieldtype": "Currency",
+   "label": "Target Offer Price",
+   "reqd": 1
+  },
+  {
+   "fieldname": "units_allocated_to_fund",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Target Units Created",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "sec_audit",
+   "fieldtype": "Section Break",
+   "label": "Maker-Checker Governance"
+  },
+  {
+   "fieldname": "maker",
+   "fieldtype": "Link",
+   "label": "Maker",
+   "options": "User"
+  },
+  {
+   "fieldname": "checker",
+   "fieldtype": "Link",
+   "label": "Checker",
+   "options": "User"
+  },
+  {
+   "default": "0",
+   "fieldname": "approved_by_checker",
+   "fieldtype": "Check",
+   "label": "Approved By Checker"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Fund Switch",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:19:53.830981",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Fund Switch",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

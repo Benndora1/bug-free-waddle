@@ -1,0 +1,28 @@
+[
+ {
+  "active": 1,
+  "description": "Deposits >= 20,000,000 UGX within 24 hours.",
+  "docstatus": 0,
+  "doctype": "Asset Suspicious Transaction Rule",
+  "modified": "2026-10-31 13:09:29.039031",
+  "name": "AML_LARGE_CASH",
+  "rule_id": "AML_LARGE_CASH",
+  "rule_name": "Large Cash Transaction Threshold",
+  "rule_type": "Large Cash Transaction",
+  "threshold_amount": 20000000.0,
+  "threshold_days": 1
+ },
+ {
+  "active": 1,
+  "description": "Subscribes and requests full exit within 7 days.",
+  "docstatus": 0,
+  "doctype": "Asset Suspicious Transaction Rule",
+  "modified": "2026-10-31 13:09:29.044436",
+  "name": "AML_RAPID_EXIT",
+  "rule_id": "AML_RAPID_EXIT",
+  "rule_name": "Rapid Full Redemption Within 7 Days",
+  "rule_type": "Rapid Full Redemption",
+  "threshold_amount": 10000000.0,
+  "threshold_days": 7
+ }
+]

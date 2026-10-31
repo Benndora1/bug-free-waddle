@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:code",
+ "creation": "2026-10-31 13:09:28.065080",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "code",
+  "category",
+  "functional_group",
+  "col_break_1",
+  "internal_sla_hours",
+  "external_sla_hours",
+  "active",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "label": "SLA Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Interaction Category",
+   "options": "General Inquiry\nAccount Statement Request\nSubscription Follow-up\nRedemption Follow-up\nFund Switch Request\nBank Account Update\nClient Complaint\nTax Certificate Request",
+   "reqd": 1
+  },
+  {
+   "default": "Client Service",
+   "fieldname": "functional_group",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Functional Group",
+   "options": "Operations\nFund Accounting\nInvestment Desk\nCompliance\nClient Service\nFinance"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "4",
+   "fieldname": "internal_sla_hours",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Internal SLA (Hours)",
+   "reqd": 1
+  },
+  {
+   "default": "24",
+   "fieldname": "external_sla_hours",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "External SLA (Hours)",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description & Resolution Standard"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-31 13:09:28.065080",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset CRM SLA Setup",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Client Service",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
