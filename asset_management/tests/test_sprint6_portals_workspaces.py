@@ -209,6 +209,7 @@ class TestSprint6PortalsWorkspaces(unittest.TestCase):
                 redemption_by="Units",
                 requested_units=100
             )
+        frappe.db.rollback()
 
         # Approve prior-day valuation
         fund_doc.reload()
@@ -230,6 +231,7 @@ class TestSprint6PortalsWorkspaces(unittest.TestCase):
         red = frappe.get_doc("Asset Redemption", red_name)
         self.assertEqual(red.investor, self.investor_name)
         self.assertEqual(red.docstatus, 0) # Draft
+        frappe.db.commit()
 
     def test_09_agent_portal_dashboard(self):
         """Verify get_agent_dashboard calculates commissions and client summaries"""

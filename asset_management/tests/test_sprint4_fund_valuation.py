@@ -8,8 +8,9 @@ class TestSprint4FundValuation(unittest.TestCase):
         frappe.init(site="erp.site.com")
         frappe.connect()
 
-        # Clean prior valuations on test fund
+        # Clean prior valuations and holdings on test fund
         frappe.db.delete("Asset Fund Valuation", {"fund": "SBG-BND"})
+        frappe.db.delete("Asset Portfolio Holding", {"fund": "SBG-BND"})
 
         # Ensure Fund SBG-BND has units and holdings
         bnd = frappe.get_doc("Asset Fund", "SBG-BND")
@@ -31,6 +32,17 @@ class TestSprint4FundValuation(unittest.TestCase):
             h.dirty_market_value = 4746610273.97
             h.holding_status = "Active"
             h.insert(ignore_permissions=True)
+
+        # Ensure test investor exists
+        if not frappe.db.exists("Asset Investor", "__TEST_INV_S2_01"):
+            inv = frappe.new_doc("Asset Investor")
+            inv.investor_id = "__TEST_INV_S2_01"
+            inv.investor_name = "Victoria Capital Management Ltd"
+            inv.investor_type = "Corporate"
+            inv.risk_rating = "Low"
+            inv.status = "Active"
+            inv.currency = "UGX"
+            inv.insert(ignore_permissions=True)
 
         # Ensure a client portfolio exists on SBG-BND
         port_id = "__TEST_INV_S2_01-SBG-BND"
@@ -208,4 +220,3 @@ class TestSprint4FundValuation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-EOF

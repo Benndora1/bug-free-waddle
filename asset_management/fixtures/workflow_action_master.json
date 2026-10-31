@@ -1,0 +1,184 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-07-30 00:20:39.877924",
+  "name": "Approve",
+  "workflow_action_name": "Approve"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-07-30 00:20:39.885573",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.481290",
+  "name": "Submit for Review",
+  "workflow_action_name": "Submit for Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.495071",
+  "name": "Resubmit",
+  "workflow_action_name": "Resubmit"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.497322",
+  "name": "Post & Issue Units",
+  "workflow_action_name": "Post & Issue Units"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.499825",
+  "name": "Post & Liquidate Units",
+  "workflow_action_name": "Post & Liquidate Units"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.502527",
+  "name": "Post & Execute Switch",
+  "workflow_action_name": "Post & Execute Switch"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.505010",
+  "name": "Submit for Verification",
+  "workflow_action_name": "Submit for Verification"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.507239",
+  "name": "Approve NAV",
+  "workflow_action_name": "Approve NAV"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.509289",
+  "name": "Reject NAV",
+  "workflow_action_name": "Reject NAV"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.511457",
+  "name": "Publish & Post NAV",
+  "workflow_action_name": "Publish & Post NAV"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.513558",
+  "name": "Submit for Authorization",
+  "workflow_action_name": "Submit for Authorization"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.515696",
+  "name": "Approve Trade",
+  "workflow_action_name": "Approve Trade"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.517951",
+  "name": "Reject Trade",
+  "workflow_action_name": "Reject Trade"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.520649",
+  "name": "Execute & Dispatch Custody",
+  "workflow_action_name": "Execute & Dispatch Custody"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.523056",
+  "name": "Authorize & Sign",
+  "workflow_action_name": "Authorize & Sign"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.525181",
+  "name": "Reject Instruction",
+  "workflow_action_name": "Reject Instruction"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.527271",
+  "name": "Dispatch to Custodian",
+  "workflow_action_name": "Dispatch to Custodian"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.529332",
+  "name": "Submit for Compliance Review",
+  "workflow_action_name": "Submit for Compliance Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.531360",
+  "name": "Approve KYC",
+  "workflow_action_name": "Approve KYC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.533501",
+  "name": "Reject KYC",
+  "workflow_action_name": "Reject KYC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.536098",
+  "name": "Generate Investor Master",
+  "workflow_action_name": "Generate Investor Master"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.538549",
+  "name": "Submit Reconciliation",
+  "workflow_action_name": "Submit Reconciliation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.540706",
+  "name": "Sign Off Reconciliation",
+  "workflow_action_name": "Sign Off Reconciliation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.542719",
+  "name": "Reject Reconciliation",
+  "workflow_action_name": "Reject Reconciliation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-10-31 18:06:25.544969",
+  "name": "Post Reconciled Batches",
+  "workflow_action_name": "Post Reconciled Batches"
+ }
+]

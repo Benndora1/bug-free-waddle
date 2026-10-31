@@ -8,13 +8,12 @@ class TestSprint2FundsSubRed(unittest.TestCase):
         frappe.init(site="erp.site.com")
         frappe.connect()
 
-        # Ensure clean state for test investors across multiple runs
-        frappe.db.delete("Asset Investor Portfolio", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
-        frappe.db.delete("Asset Investor Register Line", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
-        frappe.db.delete("Asset Subscription", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
-        frappe.db.delete("Asset Redemption", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
-        frappe.db.delete("Asset Fund Switch", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
-        frappe.db.delete("Asset Agent Commission", {"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]})
+        # Ensure clean state for test investors across multiple runs using primary key deletion
+        for dt in ["Asset Investor Portfolio", "Asset Investor Register Line", "Asset Subscription", "Asset Redemption", "Asset Fund Switch", "Asset Agent Commission"]:
+            names = frappe.get_all(dt, filters={"investor": ["in", ["__TEST_INV_S2_01", "__TEST_INV_S2_02"]]}, pluck="name")
+            if names:
+                frappe.db.delete(dt, {"name": ["in", names]})
+        frappe.db.commit()
 
         # Create or ensure test checker user exists
         if not frappe.db.exists("User", "test_checker@example.com"):
@@ -125,15 +124,24 @@ class TestSprint2FundsSubRed(unittest.TestCase):
         self.assertEqual(sub.net_invested_amount, 5000000.0)
 
         # Maker == Checker should fail validation
-        sub.checker = "Administrator"
+        sub_mc = frappe.new_doc("Asset Subscription")
+        sub_mc.investor = "__TEST_INV_S2_01"
+        sub_mc.fund = "SBG-MMF"
+        sub_mc.gross_amount = 5000000.0
+        sub_mc.maker = "Administrator"
+        sub_mc.checker = "Administrator"
+        sub_mc.insert(ignore_permissions=True)
+        sub_mc.workflow_state = "Approved"
         with self.assertRaises(frappe.ValidationError):
-            sub.submit()
+            sub_mc.submit()
         frappe.db.rollback()
 
-        # Fix checker and submit
+        # Reload sub from DB, approve, and submit
         sub = frappe.get_doc("Asset Subscription", sub.name)
+        sub.maker = "Administrator"
         sub.checker = "test_checker@example.com"
         sub.approved_by_operations = 1
+        sub.workflow_state = "Approved"
         sub.submit()
         frappe.db.commit()
 
@@ -174,6 +182,8 @@ class TestSprint2FundsSubRed(unittest.TestCase):
         sub.maker = "Administrator"
         sub.checker = "test_checker@example.com"
         sub.insert(ignore_permissions=True)
+        sub.approved_by_operations = 1
+        sub.workflow_state = "Approved"
         sub.submit()
 
         port = frappe.get_doc("Asset Investor Portfolio", "__TEST_INV_S2_01-SBG-MMF")
@@ -190,6 +200,8 @@ class TestSprint2FundsSubRed(unittest.TestCase):
         sub.maker = "Administrator"
         sub.checker = "test_checker@example.com"
         sub.insert(ignore_permissions=True)
+        sub.approved_by_operations = 1
+        sub.workflow_state = "Approved"
 
         self.assertEqual(sub.agent_commission_pct, 0.50)
         self.assertEqual(sub.agent_commission_amount, 50000.0)
@@ -262,6 +274,7 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 
         # Checker sign-off & submit
         red.checker_approved = 1
+        red.workflow_state = "Approved"
         red.submit()
 
         self.assertEqual(red.status, "Submitted")
@@ -303,6 +316,7 @@ class TestSprint2FundsSubRed(unittest.TestCase):
         self.assertEqual(swi.units_allocated_to_fund, expected_target_units)
 
         swi.approved_by_checker = 1
+        swi.workflow_state = "Approved"
         swi.submit()
 
         self.assertEqual(swi.status, "Submitted")
@@ -405,4 +419,3 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-EOF

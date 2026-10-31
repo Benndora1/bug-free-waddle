@@ -87,6 +87,9 @@ app_license = "mit"
 
 # before_install = "asset_management.install.before_install"
 # after_install = "asset_management.install.after_install"
+after_migrate = [
+    "asset_management.setup_asset_management_workflows.create_workflows"
+]
 
 # Uninstallation
 # ------------
@@ -392,6 +395,43 @@ fixtures = [
         "dt": "Desktop Icon",
         "filters": [
             ["name", "in", ["Asset Management"]]
+        ]
+    },
+    {
+        "dt": "Workflow State",
+        "filters": [
+            ["name", "in", [
+                "Draft", "Pending Approval", "Approved", "Rejected", "Submitted", "Cancelled"
+            ]]
+        ]
+    },
+    {
+        "dt": "Workflow Action Master",
+        "filters": [
+            ["name", "in", [
+                "Submit for Review", "Approve", "Reject", "Resubmit", "Post & Issue Units",
+                "Post & Liquidate Units", "Post & Execute Switch", "Submit for Verification",
+                "Approve NAV", "Reject NAV", "Publish & Post NAV", "Submit for Authorization",
+                "Approve Trade", "Reject Trade", "Execute & Dispatch Custody", "Authorize & Sign",
+                "Reject Instruction", "Dispatch to Custodian", "Submit for Compliance Review",
+                "Approve KYC", "Reject KYC", "Generate Investor Master", "Submit Reconciliation",
+                "Sign Off Reconciliation", "Reject Reconciliation", "Post Reconciled Batches"
+            ]]
+        ]
+    },
+    {
+        "dt": "Workflow",
+        "filters": [
+            ["name", "in", [
+                "Asset Subscription Approval Workflow",
+                "Asset Redemption Approval Workflow",
+                "Asset Fund Switch Approval Workflow",
+                "Asset Fund Valuation Workflow",
+                "Asset Trade Order Workflow",
+                "Asset Custody Instruction Workflow",
+                "Asset Investor Application Workflow",
+                "Asset BOL Import Workflow"
+            ]]
         ]
     }
 ]

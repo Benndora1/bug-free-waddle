@@ -10,6 +10,9 @@ class AssetSubscription(Document):
         if not self.value_date:
             self.value_date = self.subscription_date
 
+        if not self.maker:
+            self.maker = getattr(self, "owner", None) or frappe.session.user
+
         if not self.gross_amount or self.gross_amount <= 0:
             frappe.throw(_("Gross Subscription Amount must be greater than zero."))
 
@@ -73,9 +76,23 @@ class AssetSubscription(Document):
             self.agent_commission_amount = 0.0
 
     def before_submit(self):
-        """Enforces Maker-Checker controls on subscriptions."""
-        if self.maker and self.checker and self.maker == self.checker:
+        """Enforces Maker-Checker controls on subscriptions matching Business Central SubscriptionsApprovals."""
+        # 1. Approval Guard: Subscription must be approved by Checker prior to unit allocation and posting
+        if self.workflow_state and self.workflow_state not in ["Approved", "Submitted"]:
+            frappe.throw(_("Subscription {0} must be in 'Approved' state before unit allocation and GL posting.").format(self.name))
+
+        if not self.approved_by_operations and not self.checker and not (self.workflow_state and self.workflow_state in ["Approved", "Submitted"]):
+            frappe.throw(_("Subscription {0} requires authorized checker approval before posting.").format(self.name))
+
+        # 2. Dual-Control Rule: Maker cannot be Checker
+        maker = self.maker or getattr(self, "owner", None) or frappe.session.user
+        if self.checker and maker == self.checker:
             frappe.throw(_("Maker and Checker cannot be the same user for Subscription {0}.").format(self.name))
+
+        if not self.approved_by_operations:
+            self.approved_by_operations = 1
+        if not self.approval_date:
+            self.approval_date = nowdate()
 
     def on_submit(self):
         """Processes unit creation, updates portfolio balances and posts register entry (SubRedPosting.Codeunit.al)."""
