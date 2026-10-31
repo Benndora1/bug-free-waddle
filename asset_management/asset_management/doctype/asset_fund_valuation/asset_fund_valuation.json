@@ -1,0 +1,350 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-31 13:43:08.755741",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_header",
+  "naming_series",
+  "fund",
+  "fund_name",
+  "valuation_date",
+  "col_break_hdr",
+  "currency",
+  "status",
+  "sec_gav",
+  "bonds_market_value",
+  "tbills_market_value",
+  "deposits_market_value",
+  "col_break_gav",
+  "equities_market_value",
+  "cash_bank_balance",
+  "accrued_income_receivable",
+  "total_gav",
+  "sec_expenses",
+  "management_fee_accrual",
+  "custody_fee_accrual",
+  "trustee_fee_accrual",
+  "col_break_exp",
+  "cma_regulatory_fee_accrual",
+  "audit_fee_accrual",
+  "other_liabilities",
+  "total_accrued_expenses",
+  "sec_pricing",
+  "total_nav",
+  "total_units_in_issue",
+  "nav_per_unit",
+  "col_break_nav",
+  "bid_offer_spread_pct",
+  "offer_price",
+  "bid_price",
+  "previous_nav_per_unit",
+  "daily_change_pct",
+  "sec_audit",
+  "prepared_by",
+  "approved_by",
+  "approval_date",
+  "sec_lines",
+  "lines",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_header",
+   "fieldtype": "Section Break",
+   "label": "Fund & Valuation Date"
+  },
+  {
+   "default": "NAV-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "NAV-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fund / Scheme",
+   "options": "Asset Fund",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fund_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fund Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "valuation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Valuation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_hdr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "UGX",
+   "fieldname": "currency",
+   "fieldtype": "Data",
+   "label": "Currency",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPending Approval\nApproved\nRejected"
+  },
+  {
+   "fieldname": "sec_gav",
+   "fieldtype": "Section Break",
+   "label": "Asset Aggregation & Gross Asset Value (GAV)"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "bonds_market_value",
+   "fieldtype": "Currency",
+   "label": "Treasury & Corp Bonds",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "tbills_market_value",
+   "fieldtype": "Currency",
+   "label": "Treasury Bills",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "deposits_market_value",
+   "fieldtype": "Currency",
+   "label": "Bank Placements / Deposits",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_gav",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "equities_market_value",
+   "fieldtype": "Currency",
+   "label": "Quoted Equities",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "cash_bank_balance",
+   "fieldtype": "Currency",
+   "label": "Liquid Cash & Call Accounts"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "accrued_income_receivable",
+   "fieldtype": "Currency",
+   "label": "Accrued Receivables"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_gav",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Gross Asset Value (GAV)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_expenses",
+   "fieldtype": "Section Break",
+   "label": "Daily Accrued Fees & Expenses"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "management_fee_accrual",
+   "fieldtype": "Currency",
+   "label": "Management Fee Accrual",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "custody_fee_accrual",
+   "fieldtype": "Currency",
+   "label": "Custody Fee Accrual",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "trustee_fee_accrual",
+   "fieldtype": "Currency",
+   "label": "Trustee Fee Accrual",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_exp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "cma_regulatory_fee_accrual",
+   "fieldtype": "Currency",
+   "label": "CMA Regulatory Fee",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "audit_fee_accrual",
+   "fieldtype": "Currency",
+   "label": "Audit Fee Accrual",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "other_liabilities",
+   "fieldtype": "Currency",
+   "label": "Other Accrued Liabilities"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_accrued_expenses",
+   "fieldtype": "Currency",
+   "label": "Total Accrued Expenses",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_pricing",
+   "fieldtype": "Section Break",
+   "label": "NAV & Pricing Output (Rule 1 Unlock)"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_nav",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Asset Value (NAV)",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "total_units_in_issue",
+   "fieldtype": "Float",
+   "label": "Total Units in Issue",
+   "read_only": 1
+  },
+  {
+   "default": "100.0",
+   "fieldname": "nav_per_unit",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "NAV Per Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_nav",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "bid_offer_spread_pct",
+   "fieldtype": "Percent",
+   "label": "Bid/Offer Spread %",
+   "read_only": 1
+  },
+  {
+   "default": "100.0",
+   "fieldname": "offer_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Offer Price (Creation)",
+   "read_only": 1
+  },
+  {
+   "default": "100.0",
+   "fieldname": "bid_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Bid Price (Redemption)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_nav_per_unit",
+   "fieldtype": "Currency",
+   "label": "Previous NAV Per Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "daily_change_pct",
+   "fieldtype": "Percent",
+   "label": "Daily Performance %",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sec_audit",
+   "fieldtype": "Section Break",
+   "label": "Maker-Checker Sign-off"
+  },
+  {
+   "fieldname": "prepared_by",
+   "fieldtype": "Link",
+   "label": "Prepared By (Administrator)",
+   "options": "User"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By (Investment Manager)",
+   "options": "User"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "sec_lines",
+   "fieldtype": "Section Break",
+   "label": "Holdings Portfolio Breakdown"
+  },
+  {
+   "fieldname": "lines",
+   "fieldtype": "Table",
+   "label": "Valuation Lines",
+   "options": "Asset Fund Valuation Line"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Fund Valuation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-31 13:43:08.755741",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Fund Valuation",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
