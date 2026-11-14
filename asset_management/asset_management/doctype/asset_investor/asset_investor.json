@@ -38,6 +38,7 @@
   "bank_name",
   "bank_branch",
   "settlement_currency",
+  "supplier",
   "col_break_bnk",
   "bank_account_name",
   "bank_account_no",
@@ -197,6 +198,12 @@
    "fieldtype": "Link",
    "label": "Settlement Currency",
    "options": "Currency"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier (Unit Holder)",
+   "options": "Supplier"
   },
   {
    "default": "No",

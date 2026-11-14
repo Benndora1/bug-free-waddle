@@ -87,9 +87,7 @@ app_license = "mit"
 
 # before_install = "asset_management.install.before_install"
 # after_install = "asset_management.install.after_install"
-after_migrate = [
-    "asset_management.setup_asset_management_workflows.create_workflows"
-]
+# after_migrate = []
 
 # Uninstallation
 # ------------
@@ -210,7 +208,12 @@ after_migrate = [
 # Ignore links to specified DocTypes when deleting documents
 # -----------------------------------------------------------
 
-# ignore_links_on_delete = ["Communication", "ToDo"]
+ignore_links_on_delete = [
+	"GL Entry",
+	"Payment Ledger Entry",
+	"Asset Unit Ledger Entry",
+	"Asset Investor Register Line",
+]
 
 # Request Events
 # ----------------
@@ -267,171 +270,195 @@ after_migrate = [
 
 
 # Scheduler events for daily tasks
-scheduler_events = {
-    "daily": [
-        "asset_management.tasks.calculate_nav",
-        "asset_management.tasks.process_dividends"
-    ]
-}
+# scheduler_events = {
+#     "daily": [
+#         "asset_management.tasks.daily"
+#     ]
+# }
 
 fixtures = [
-    {
-        "dt": "Role",
-        "filters": [
-            ["name", "in", [
-                "Asset Management Operations",
-                "Asset Investment Manager",
-                "Asset Fund Administrator",
-                "Asset Finance Officer",
-                "Asset Compliance Officer",
-                "Asset Client Service",
-                "Asset Agent",
-                "Asset Investor Portal User",
-                "Asset Management Admin"
-            ]]
-        ]
-    },
-    {
-        "dt": "Asset Required Document",
-        "filters": [
-            ["document_code", "in", [
-                "NAT_ID", "PASSPORT", "PROOF_ADDR", "TIN_CERT",
-                "CERT_INCORP", "MEM_ARTICLES", "BOARD_RESOL", "TRUST_DEED"
-            ]]
-        ]
-    },
-    {
-        "dt": "Asset Risk Profile",
-        "filters": [
-            ["code", "in", ["LOW_RISK", "MED_RISK", "HIGH_RISK"]]
-        ]
-    },
-    {
-        "dt": "Asset PEP Sanction Setup",
-        "filters": [
-            ["rule_code", "in", ["PEP_MATCH", "SANCTION_MATCH"]]
-        ]
-    },
-    {
-        "dt": "Asset Suspicious Transaction Rule",
-        "filters": [
-            ["rule_id", "in", ["AML_LARGE_CASH", "AML_RAPID_EXIT"]]
-        ]
-    },
-    {
-        "dt": "Asset CRM SLA Setup",
-        "filters": [
-            ["code", "in", [
-                "SLA_STATEMENT", "SLA_INQUIRY", "SLA_SUB_ISSUE",
-                "SLA_RED_ISSUE", "SLA_SWITCH", "SLA_COMPLAINT"
-            ]]
-        ]
-    },
-    {
-        "dt": "Asset Fund",
-        "filters": [
-            ["fund_id", "in", ["SBG-MMF", "SBG-BAL", "SBG-EQT", "SBG-BND", "SBG-UMB"]]
-        ]
-    },
-    {
-        "dt": "Asset Agent",
-        "filters": [
-            ["agent_code", "in", ["AGT-001", "AGT-002"]]
-        ]
-    },
-    {
-        "dt": "Asset Investment Security",
-        "filters": [
-            ["security_id", "in", ["UG12K2306394", "UG12K0811352", "TBILL-364D-2027", "FD-STANBIC-180D", "EQ-MTNU"]]
-        ]
-    },
-    {
-        "dt": "Asset Investment Limit Setup",
-        "filters": [
-            ["fund", "in", ["SBG-BAL", "SBG-MMF"]]
-        ]
-    },
-    {
-        "dt": "Print Format",
-        "filters": [
-            ["name", "in", [
-                "Unit Trust Contract Note",
-                "Statement of Investment",
-                "Stanbic Custody Instruction"
-            ]]
-        ]
-    },
-    {
-        "dt": "Report",
-        "filters": [
-            ["name", "in", [
-                "Unit Holders Register",
-                "Daily Fund Valuation Summary",
-                "Portfolio Performance and Asset Allocation",
-                "Maturity Profile and Cash Flow Projection"
-            ]]
-        ]
-    },
-    {
-        "dt": "Workspace",
-        "filters": [
-            ["name", "in", [
-                "Asset Management",
-                "Asset Operations",
-                "Asset Portfolio & Trading",
-                "Asset Fund Administration",
-                "Asset Compliance & Risk",
-                "Asset Client Service"
-            ]]
-        ]
-    },
-    {
-        "dt": "Workspace Sidebar",
-        "filters": [
-            ["name", "in", ["Asset Management"]]
-        ]
-    },
-    {
-        "dt": "Desktop Icon",
-        "filters": [
-            ["name", "in", ["Asset Management"]]
-        ]
-    },
-    {
-        "dt": "Workflow State",
-        "filters": [
-            ["name", "in", [
-                "Draft", "Pending Approval", "Approved", "Rejected", "Submitted", "Cancelled"
-            ]]
-        ]
-    },
-    {
-        "dt": "Workflow Action Master",
-        "filters": [
-            ["name", "in", [
-                "Submit for Review", "Approve", "Reject", "Resubmit", "Post & Issue Units",
-                "Post & Liquidate Units", "Post & Execute Switch", "Submit for Verification",
-                "Approve NAV", "Reject NAV", "Publish & Post NAV", "Submit for Authorization",
-                "Approve Trade", "Reject Trade", "Execute & Dispatch Custody", "Authorize & Sign",
-                "Reject Instruction", "Dispatch to Custodian", "Submit for Compliance Review",
-                "Approve KYC", "Reject KYC", "Generate Investor Master", "Submit Reconciliation",
-                "Sign Off Reconciliation", "Reject Reconciliation", "Post Reconciled Batches"
-            ]]
-        ]
-    },
-    {
-        "dt": "Workflow",
-        "filters": [
-            ["name", "in", [
-                "Asset Subscription Approval Workflow",
-                "Asset Redemption Approval Workflow",
-                "Asset Fund Switch Approval Workflow",
-                "Asset Fund Valuation Workflow",
-                "Asset Trade Order Workflow",
-                "Asset Custody Instruction Workflow",
-                "Asset Investor Application Workflow",
-                "Asset BOL Import Workflow"
-            ]]
-        ]
-    }
+	{
+		"dt": "Role",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"Asset Management Operations",
+					"Asset Investment Manager",
+					"Asset Fund Administrator",
+					"Asset Finance Officer",
+					"Asset Compliance Officer",
+					"Asset Client Service",
+					"Asset Agent",
+					"Asset Investor Portal User",
+					"Asset Management Admin",
+				],
+			]
+		],
+	},
+	{
+		"dt": "Asset Required Document",
+		"filters": [
+			[
+				"document_code",
+				"in",
+				[
+					"NAT_ID",
+					"PASSPORT",
+					"PROOF_ADDR",
+					"TIN_CERT",
+					"CERT_INCORP",
+					"MEM_ARTICLES",
+					"BOARD_RESOL",
+					"TRUST_DEED",
+				],
+			]
+		],
+	},
+	{"dt": "Asset Risk Profile", "filters": [["code", "in", ["LOW_RISK", "MED_RISK", "HIGH_RISK"]]]},
+	{"dt": "Asset PEP Sanction Setup", "filters": [["rule_code", "in", ["PEP_MATCH", "SANCTION_MATCH"]]]},
+	{
+		"dt": "Asset Suspicious Transaction Rule",
+		"filters": [["rule_id", "in", ["AML_LARGE_CASH", "AML_RAPID_EXIT"]]],
+	},
+	{
+		"dt": "Asset CRM SLA Setup",
+		"filters": [
+			[
+				"code",
+				"in",
+				[
+					"SLA_STATEMENT",
+					"SLA_INQUIRY",
+					"SLA_SUB_ISSUE",
+					"SLA_RED_ISSUE",
+					"SLA_SWITCH",
+					"SLA_COMPLAINT",
+				],
+			]
+		],
+	},
+	{
+		"dt": "Asset Fund",
+		"filters": [["fund_id", "in", ["SBG-MMF", "SBG-BAL", "SBG-EQT", "SBG-BND", "SBG-UMB"]]],
+	},
+	{"dt": "Asset Agent", "filters": [["agent_code", "in", ["AGT-001", "AGT-002"]]]},
+	{
+		"dt": "Asset Investment Security",
+		"filters": [
+			[
+				"security_id",
+				"in",
+				["UG12K2306394", "UG12K0811352", "TBILL-364D-2027", "FD-STANBIC-180D", "EQ-MTNU"],
+			]
+		],
+	},
+	{"dt": "Asset Investment Limit Setup", "filters": [["fund", "in", ["SBG-BAL", "SBG-MMF"]]]},
+	{
+		"dt": "Print Format",
+		"filters": [
+			[
+				"name",
+				"in",
+				["Unit Trust Contract Note", "Statement of Investment", "Stanbic Custody Instruction"],
+			]
+		],
+	},
+	{
+		"dt": "Report",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"Unit Holders Register",
+					"Daily Fund Valuation Summary",
+					"Portfolio Performance and Asset Allocation",
+					"Maturity Profile and Cash Flow Projection",
+				],
+			]
+		],
+	},
+	{
+		"dt": "Workspace",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"Asset Management",
+					"Asset Operations",
+					"Asset Portfolio & Trading",
+					"Asset Fund Administration",
+					"Asset Compliance & Risk",
+					"Asset Client Service",
+				],
+			]
+		],
+	},
+	{"dt": "Workspace Sidebar", "filters": [["name", "in", ["Asset Management"]]]},
+	{"dt": "Desktop Icon", "filters": [["name", "in", ["Asset Management"]]]},
+	{
+		"dt": "Workflow State",
+		"filters": [
+			["name", "in", ["Draft", "Pending Approval", "Approved", "Rejected", "Submitted", "Cancelled"]]
+		],
+	},
+	{
+		"dt": "Workflow Action Master",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"Submit for Review",
+					"Approve",
+					"Reject",
+					"Resubmit",
+					"Post & Issue Units",
+					"Post & Liquidate Units",
+					"Post & Execute Switch",
+					"Submit for Verification",
+					"Approve NAV",
+					"Reject NAV",
+					"Publish & Post NAV",
+					"Submit for Authorization",
+					"Approve Trade",
+					"Reject Trade",
+					"Execute & Dispatch Custody",
+					"Authorize & Sign",
+					"Reject Instruction",
+					"Dispatch to Custodian",
+					"Submit for Compliance Review",
+					"Approve KYC",
+					"Reject KYC",
+					"Generate Investor Master",
+					"Submit Reconciliation",
+					"Sign Off Reconciliation",
+					"Reject Reconciliation",
+					"Post Reconciled Batches",
+				],
+			]
+		],
+	},
+	{
+		"dt": "Workflow",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"Asset Subscription Approval Workflow",
+					"Asset Redemption Approval Workflow",
+					"Asset Fund Switch Approval Workflow",
+					"Asset Fund Valuation Workflow",
+					"Asset Trade Order Workflow",
+					"Asset Custody Instruction Workflow",
+					"Asset Investor Application Workflow",
+					"Asset BOL Import Workflow",
+				],
+			]
+		],
+	},
 ]

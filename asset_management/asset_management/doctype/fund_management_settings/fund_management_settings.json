@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-11-14 14:15:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_companies",
+  "fund_manager_company",
+  "default_fund_company",
+  "sec_fund_accounts",
+  "client_cash_payable_account",
+  "unitholders_capital_account",
+  "entry_fee_payable_account",
+  "col_break_accounts",
+  "rounding_account",
+  "max_rounding_tolerance",
+  "sec_fm_accounts",
+  "commission_expense_account",
+  "commission_payable_account"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_companies",
+   "fieldtype": "Section Break",
+   "label": "Companies"
+  },
+  {
+   "fieldname": "fund_manager_company",
+   "fieldtype": "Link",
+   "label": "Fund Manager Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "default_fund_company",
+   "fieldtype": "Link",
+   "label": "Default Fund Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "sec_fund_accounts",
+   "fieldtype": "Section Break",
+   "label": "Fund Accounts (Default)"
+  },
+  {
+   "fieldname": "client_cash_payable_account",
+   "fieldtype": "Link",
+   "label": "Client Cash Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "unitholders_capital_account",
+   "fieldtype": "Link",
+   "label": "Unitholders Capital Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "entry_fee_payable_account",
+   "fieldtype": "Link",
+   "label": "Entry Fee Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "col_break_accounts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rounding_account",
+   "fieldtype": "Link",
+   "label": "Rounding Account",
+   "options": "Account"
+  },
+  {
+   "default": "0.05",
+   "fieldname": "max_rounding_tolerance",
+   "fieldtype": "Float",
+   "label": "Max Rounding Tolerance (Company Currency)"
+  },
+  {
+   "fieldname": "sec_fm_accounts",
+   "fieldtype": "Section Break",
+   "label": "Fund Manager Liability Accounts"
+  },
+  {
+   "fieldname": "commission_expense_account",
+   "fieldtype": "Link",
+   "label": "Agent Commission Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "commission_payable_account",
+   "fieldtype": "Link",
+   "label": "Agent Commission Payable Account",
+   "options": "Account"
+  }
+ ],
+ "issingle": 1,
+ "module": "Asset Management",
+ "name": "Fund Management Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Operations Officer"
+  },
+  {
+   "read": 1,
+   "role": "Finance Officer"
+  },
+  {
+   "read": 1,
+   "role": "Compliance Officer"
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

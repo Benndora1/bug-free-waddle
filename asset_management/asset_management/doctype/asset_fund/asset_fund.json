@@ -19,6 +19,8 @@
   "launch_date",
   "accounting_basis",
   "valuation_frequency",
+  "company",
+  "dealing_cut_off_time",
   "tab_pricing",
   "sec_pricing",
   "initial_nav_per_unit",
@@ -123,6 +125,18 @@
    "fieldtype": "Select",
    "label": "Valuation Frequency",
    "options": "Daily\nWeekly\nMonthly"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Fund Company",
+   "options": "Company"
+  },
+  {
+   "default": "15:00:00",
+   "fieldname": "dealing_cut_off_time",
+   "fieldtype": "Time",
+   "label": "Dealing Cut-Off Time"
   },
   {
    "fieldname": "sec_pricing",
