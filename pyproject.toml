@@ -1,10 +1,11 @@
 [project]
 name = "asset_management"
 authors = [
-    { name = "Frappe Developer", email = "developer@example.com"}
+    { name = "benndora1", email = "benndora2@gmail.com"}
 ]
-description = "Asset Management App"
-requires-python = ">=3.14"
+description = "Investment management and unit registry for asset managers"
+license = "GPL-3.0-only"
+requires-python = ">=3.14,<3.15"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [

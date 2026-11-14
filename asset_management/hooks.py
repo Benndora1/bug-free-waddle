@@ -1,14 +1,14 @@
 app_name = "asset_management"
 app_title = "Asset Management"
-app_publisher = "Frappe Developer"
-app_description = "Asset Management App"
-app_email = "developer@example.com"
-app_license = "mit"
+app_publisher = "benndora1"
+app_description = "Investment management and unit registry for asset managers"
+app_email = "benndora2@gmail.com"
+app_license = "gpl-3.0"
 
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
