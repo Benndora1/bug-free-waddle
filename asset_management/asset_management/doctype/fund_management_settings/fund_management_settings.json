@@ -15,9 +15,14 @@
   "col_break_accounts",
   "rounding_account",
   "max_rounding_tolerance",
+  "reconciliation_tolerance",
+  "allow_stale_security_prices",
+  "max_stale_price_days",
   "sec_fm_accounts",
   "commission_expense_account",
-  "commission_payable_account"
+  "commission_payable_account",
+  "sec_templates",
+  "account_templates"
  ],
  "fields": [
   {
@@ -77,6 +82,25 @@
    "label": "Max Rounding Tolerance (Company Currency)"
   },
   {
+   "default": "0.05",
+   "fieldname": "reconciliation_tolerance",
+   "fieldtype": "Currency",
+   "label": "NAV vs GL Reconciliation Tolerance"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_stale_security_prices",
+   "fieldtype": "Check",
+   "label": "Use Last Security Price Within N Days"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.allow_stale_security_prices",
+   "fieldname": "max_stale_price_days",
+   "fieldtype": "Int",
+   "label": "Max Stale Security Price Age (Days)"
+  },
+  {
    "fieldname": "sec_fm_accounts",
    "fieldtype": "Section Break",
    "label": "Fund Manager Liability Accounts"
@@ -92,6 +116,17 @@
    "fieldtype": "Link",
    "label": "Agent Commission Payable Account",
    "options": "Account"
+  },
+  {
+   "fieldname": "sec_templates",
+   "fieldtype": "Section Break",
+   "label": "Fund Account Templates"
+  },
+  {
+   "fieldname": "account_templates",
+   "fieldtype": "Table",
+   "label": "Account Templates",
+   "options": "Fund Account Template"
   }
  ],
  "issingle": 1,

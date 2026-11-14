@@ -1,0 +1,49 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-11-14 20:45:00.000000",
+ "disable_prepared_report_automation": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "doctype_to_sync": [],
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-11-14 20:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Fund NAV Reconciliation",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Asset Fund Valuation",
+ "report_name": "Fund NAV Reconciliation",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Asset Management Admin"
+  },
+  {
+   "role": "Asset Compliance Officer"
+  },
+  {
+   "role": "Asset Finance Officer"
+  },
+  {
+   "role": "Asset Operations Officer"
+  },
+  {
+   "role": "Asset Operations Checker"
+  },
+  {
+   "role": "Asset Investment Manager"
+  }
+ ],
+ "snapshot_report": 0,
+ "timeout": 0
+}

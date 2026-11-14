@@ -78,6 +78,7 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 		mmf.bid_offer_spread_pct = 0.0
 		mmf.current_offer_price = 100.0
 		mmf.current_bid_price = 100.0
+		mmf.last_valuation_date = nowdate()
 		mmf.save(ignore_permissions=True)
 
 		# Ensure Fund SBG-BAL is active and valuation approved
@@ -86,6 +87,7 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 		bal.prior_day_valuation_approved = 1
 		bal.current_nav_per_unit = 120.0
 		bal.bid_offer_spread_pct = 1.0
+		bal.last_valuation_date = nowdate()
 		bal.save(ignore_permissions=True)
 
 		frappe.db.commit()
@@ -266,50 +268,67 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 		port = frappe.get_doc("Asset Investor Portfolio", "__TEST_INV_S2_01-SBG-MMF")
 		self.assertEqual(port.total_units, 60000.0)
 
-		# Redeem 10,000 units at NAV 100.0 -> Gross = 1,000,000 UGX
-		# WHT (15%) = 150,000 UGX -> Net Payout = 850,000 UGX
-		red = frappe.new_doc("Asset Redemption")
-		red.investor = "__TEST_INV_S2_01"
-		red.fund = "SBG-MMF"
-		red.prior_day_valuation_approved = 1
-		red.redemption_by = "Units"
-		red.requested_units = 10000.0
-		red.maker = "Administrator"
-		red.checker = "test_checker@example.com"
-		red.insert(ignore_permissions=True)
+		frappe.db.set_value(
+			"Asset Fund",
+			"SBG-MMF",
+			{"wht_basis": "Gross Proceeds", "wht_rate": 15.0},
+		)
+		try:
+			# Redeem 10,000 units at NAV 100.0 -> Gross = 1,000,000 UGX
+			# WHT (15%) = 150,000 UGX -> Net Payout = 850,000 UGX
+			red = frappe.new_doc("Asset Redemption")
+			red.investor = "__TEST_INV_S2_01"
+			red.fund = "SBG-MMF"
+			red.prior_day_valuation_approved = 1
+			red.redemption_by = "Units"
+			red.requested_units = 10000.0
+			red.maker = "Administrator"
+			red.checker = "test_checker@example.com"
+			red.insert(ignore_permissions=True)
 
-		self.assertEqual(red.gross_redemption_amount, 1000000.0)
-		self.assertEqual(red.withholding_tax_amount, 150000.0)
-		self.assertEqual(red.net_payout_amount, 850000.0)
-		self.assertEqual(red.remaining_units, 50000.0)
+			self.assertEqual(red.gross_redemption_amount, 1000000.0)
+			self.assertEqual(red.withholding_tax_amount, 150000.0)
+			self.assertEqual(red.net_payout_amount, 850000.0)
+			self.assertEqual(red.remaining_units, 50000.0)
 
-		# Checker sign-off & submit
-		red.checker_approved = 1
-		red.workflow_state = "Approved"
-		red.submit()
+			# Checker sign-off & submit
+			red.checker_approved = 1
+			red.workflow_state = "Approved"
+			red.submit()
 
-		self.assertEqual(red.status, "Submitted")
-		self.assertEqual(red.payment_status, "Pending Payment")
+			self.assertEqual(red.status, "Submitted")
+			self.assertEqual(red.payment_status, "Pending Payment")
 
-		# Verify portfolio reduction
-		port.reload()
-		self.assertEqual(port.total_units, 50000.0)
-		self.assertEqual(port.total_withdrawn_amount, 850000.0)
+			# Verify portfolio reduction
+			port.reload()
+			self.assertEqual(port.total_units, 50000.0)
+			self.assertEqual(port.total_withdrawn_amount, 850000.0)
 
-		# Verify Register Line
-		reg_lines = frappe.get_all("Asset Investor Register Line", filters={"voucher_no": red.name})
-		self.assertEqual(len(reg_lines), 1)
-		reg = frappe.get_doc("Asset Investor Register Line", reg_lines[0].name)
-		self.assertEqual(reg.entry_type, "Redemption")
-		self.assertEqual(reg.units, -10000.0)
-		self.assertEqual(reg.gross_amount, -1000000.0)
-		self.assertEqual(reg.net_amount, -850000.0)
+			# Verify Unit Ledger Entry (No Register Line)
+			reg_lines = frappe.get_all("Asset Investor Register Line", filters={"voucher_no": red.name})
+			self.assertEqual(len(reg_lines), 0)
+			ule_rows = frappe.get_all(
+				"Asset Unit Ledger Entry",
+				filters={"voucher_no": red.name, "is_cancelled": 0},
+				fields=["entry_type", "units", "amount"],
+			)
+			self.assertEqual(len(ule_rows), 1)
+			self.assertEqual(ule_rows[0].entry_type, "Redemption")
+			self.assertEqual(ule_rows[0].units, -10000.0)
+		finally:
+			frappe.db.set_value(
+				"Asset Fund",
+				"SBG-MMF",
+				{"wht_basis": "None", "wht_rate": 0.0},
+			)
 
 	def test_08_inter_fund_switch_bid_offer_settlement(self):
 		"""Verify inter-fund switch: source units redeemed at Bid Price, target units allocated at Offer Price."""
+		from decimal import ROUND_DOWN, Decimal
+
 		# Grace switches 10,000 units from SBG-MMF (Bid 100.0) to SBG-BAL (Offer 121.20)
 		# Gross out = 10,000 * 100 = 1,000,000 UGX
-		# Target units = 1,000,000 / 121.20 = 8250.8251 units
+		# Target units = 1,000,000 / 121.20 = 8250.825082 units (6 dp ROUND_DOWN)
 		swi = frappe.new_doc("Asset Fund Switch")
 		swi.investor = "__TEST_INV_S2_01"
 		swi.from_fund = "SBG-MMF"
@@ -323,8 +342,12 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 		self.assertEqual(swi.gross_switch_amount, 1000000.0)
 		self.assertEqual(swi.net_switch_amount, 1000000.0)
 		bal_fund = frappe.get_doc("Asset Fund", "SBG-BAL")
-		expected_target_units = round(1000000.0 / bal_fund.current_offer_price, 4)
-		self.assertEqual(swi.units_allocated_to_fund, expected_target_units)
+		expected_target_units = float(
+			(Decimal("1000000.00") / Decimal(str(bal_fund.current_offer_price))).quantize(
+				Decimal("0.000001"), rounding=ROUND_DOWN
+			)
+		)
+		self.assertAlmostEqual(swi.units_allocated_to_fund, expected_target_units, places=6)
 
 		swi.approved_by_checker = 1
 		swi.workflow_state = "Approved"
@@ -338,17 +361,18 @@ class TestSprint2FundsSubRed(unittest.TestCase):
 
 		# Target portfolio should exist with allocated units
 		bal_port = frappe.get_doc("Asset Investor Portfolio", "__TEST_INV_S2_01-SBG-BAL")
-		self.assertEqual(bal_port.total_units, expected_target_units)
+		self.assertAlmostEqual(bal_port.total_units, expected_target_units, places=6)
 
-		# Two register lines (Switch Out and Switch In)
+		# No Register Line; Two Unit Ledger Entries (Switch Out and Switch In)
 		regs = frappe.get_all("Asset Investor Register Line", filters={"voucher_no": swi.name})
-		self.assertEqual(len(regs), 2)
-		types = [
-			r.entry_type
-			for r in frappe.get_all(
-				"Asset Investor Register Line", filters={"voucher_no": swi.name}, fields=["entry_type"]
-			)
-		]
+		self.assertEqual(len(regs), 0)
+		ule_rows = frappe.get_all(
+			"Asset Unit Ledger Entry",
+			filters={"voucher_no": swi.name, "is_cancelled": 0},
+			fields=["entry_type", "units"],
+		)
+		self.assertEqual(len(ule_rows), 2)
+		types = [r.entry_type for r in ule_rows]
 		self.assertIn("Switch Out", types)
 		self.assertIn("Switch In", types)
 

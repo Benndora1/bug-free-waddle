@@ -14,6 +14,7 @@
   "investor",
   "investor_name",
   "switch_date",
+  "received_at",
   "from_fund",
   "to_fund",
   "col_break_hdr",
@@ -30,6 +31,8 @@
   "net_switch_amount",
   "col_break_to",
   "to_fund_offer_price",
+  "entry_fee_pct",
+  "entry_fee_amount",
   "units_allocated_to_fund",
   "tab_audit",
   "sec_audit",
@@ -101,7 +104,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Draft\nApproved\nSubmitted\nCancelled"
+   "options": "Draft\nPending Price\nApproved\nSubmitted\nCancelled"
   },
   {
    "default": "Units",
@@ -115,7 +118,8 @@
    "fieldname": "switch_units",
    "fieldtype": "Float",
    "label": "Switch Units",
-   "reqd": 1
+   "reqd": 1,
+   "precision": "6"
   },
   {
    "fieldname": "switch_amount",
@@ -131,13 +135,14 @@
    "fieldname": "from_fund_bid_price",
    "fieldtype": "Currency",
    "label": "Source Fund Bid Price",
-   "reqd": 1
+   "reqd": 0,
+   "precision": "6"
   },
   {
    "fieldname": "gross_switch_amount",
    "fieldtype": "Currency",
    "label": "Gross Outflow Consideration",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "default": "0.0",
@@ -155,7 +160,7 @@
    "fieldname": "net_switch_amount",
    "fieldtype": "Currency",
    "label": "Net Inflow Consideration",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "col_break_to",
@@ -165,7 +170,8 @@
    "fieldname": "to_fund_offer_price",
    "fieldtype": "Currency",
    "label": "Target Fund Offer Price",
-   "reqd": 1
+   "reqd": 0,
+   "precision": "6"
   },
   {
    "fieldname": "units_allocated_to_fund",
@@ -173,7 +179,8 @@
    "in_list_view": 1,
    "label": "Target Units Created",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 0,
+   "precision": "6"
   },
   {
    "fieldname": "sec_audit",
@@ -227,6 +234,24 @@
   {
    "fieldname": "col_break_chk",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "received_at",
+   "fieldtype": "Time",
+   "label": "Received At"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "entry_fee_pct",
+   "fieldtype": "Percent",
+   "label": "Target Fund Entry Fee %"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "entry_fee_amount",
+   "fieldtype": "Currency",
+   "label": "Target Fund Entry Fee Amount",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,

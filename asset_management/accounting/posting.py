@@ -95,8 +95,10 @@ def post_gl(doc: Document, gl_map: list[dict[str, Any]]) -> None:
 
 		if diff != Decimal("0.00"):
 			if abs(diff) <= max_tolerance:
-				rounding_acc = getattr(settings, "rounding_account", None) or frappe.db.get_value(
-					"Company", company, "round_off_account"
+				rounding_acc = (
+					frappe.db.get_value("Asset Fund", {"company": company}, "rounding_account")
+					or getattr(settings, "rounding_account", None)
+					or frappe.db.get_value("Company", company, "round_off_account")
 				)
 				if not rounding_acc:
 					frappe.throw(
@@ -144,7 +146,13 @@ def post_gl(doc: Document, gl_map: list[dict[str, Any]]) -> None:
 
 	from erpnext.accounts.general_ledger import make_gl_entries
 
-	make_gl_entries(adjusted_gl_map, cancel=False)
+	prev_flag = getattr(frappe.flags, "party_not_required", False)
+	try:
+		frappe.flags.party_not_required = True
+		for _comp, comp_entries in entries_by_company.items():
+			make_gl_entries([frappe._dict(e) for e in comp_entries], cancel=False)
+	finally:
+		frappe.flags.party_not_required = prev_flag
 
 
 def reverse_gl(doc: Document) -> None:
@@ -167,5 +175,14 @@ def reverse_gl(doc: Document) -> None:
 	if not existing_entries:
 		return
 
-	entries = [frappe._dict(e) for e in existing_entries]
-	make_gl_entries(entries, cancel=True)
+	entries_by_company = defaultdict(list)
+	for e in existing_entries:
+		entries_by_company[e.get("company")].append(frappe._dict(e))
+
+	prev_flag = getattr(frappe.flags, "party_not_required", False)
+	try:
+		frappe.flags.party_not_required = True
+		for _comp, comp_entries in entries_by_company.items():
+			make_gl_entries(comp_entries, cancel=True)
+	finally:
+		frappe.flags.party_not_required = prev_flag

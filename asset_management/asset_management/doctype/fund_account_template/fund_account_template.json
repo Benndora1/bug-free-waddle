@@ -1,0 +1,69 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-11-14 17:50:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "key",
+  "account_name",
+  "root_type",
+  "account_type",
+  "parent_account_name",
+  "is_group"
+ ],
+ "fields": [
+  {
+   "fieldname": "key",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Asset Fund Account Key",
+   "options": "client_cash_payable_account\nunallocated_receipts_account\nunitholders_capital_account\nentry_fee_payable_account\nexit_fee_payable_account\nwht_payable_account\nfees_payable_account\ndue_to_other_funds_account\ndue_from_other_funds_account\ninterest_receivable_account\ninvestments_at_cost_account\ninvestment_revaluation_account\ninterest_income_account\nunrealised_gain_loss_account\nrealised_gain_loss_account\nfund_expenses_account\nrounding_account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "account_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Account Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "root_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Root Type",
+   "options": "Asset\nLiability\nEquity\nIncome\nExpense",
+   "reqd": 1
+  },
+  {
+   "fieldname": "account_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Account Type",
+   "options": "\nPayable\nReceivable\nRound Off\nBank\nCash\nEquity\nExpense Account\nIncome Account"
+  },
+  {
+   "fieldname": "parent_account_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Parent Account Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Group"
+  }
+ ],
+ "istable": 1,
+ "module": "Asset Management",
+ "name": "Fund Account Template",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

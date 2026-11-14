@@ -1,0 +1,150 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:{fund}-{price_date}",
+ "creation": "2026-11-14 20:40:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fund",
+  "price_date",
+  "valuation",
+  "col_break_1",
+  "nav_per_unit",
+  "bid_price",
+  "offer_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "fund",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Fund",
+   "options": "Asset Fund",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "price_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Price Date",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "valuation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Valuation Reference",
+   "options": "Asset Fund Valuation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nav_per_unit",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "NAV Per Unit",
+   "precision": "6",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bid_price",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Bid Price",
+   "precision": "6",
+   "reqd": 1
+  },
+  {
+   "fieldname": "offer_price",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Offer Price",
+   "precision": "6",
+   "reqd": 1
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-14 20:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Asset Management",
+ "name": "Asset Fund Price",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Management Admin"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Operations Officer"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Operations Checker"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Finance Officer"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Compliance Officer"
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Asset Investment Manager"
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "price_date",
+ "sort_order": "DESC",
+ "states": []
+}

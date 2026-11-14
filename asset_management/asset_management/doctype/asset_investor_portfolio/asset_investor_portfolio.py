@@ -30,7 +30,7 @@ class AssetInvestorPortfolio(Document):
 		if nav_price is not None:
 			self.current_nav_per_unit = float(nav_price)
 
-		self.total_units = round(self.total_units or 0.0, 4)
+		self.total_units = round(self.total_units or 0.0, 6)
 		self.total_invested_amount = round(self.total_invested_amount or 0.0, 2)
 		self.total_withdrawn_amount = round(self.total_withdrawn_amount or 0.0, 2)
 		self.current_market_value = round(self.total_units * (self.current_nav_per_unit or 0.0), 2)

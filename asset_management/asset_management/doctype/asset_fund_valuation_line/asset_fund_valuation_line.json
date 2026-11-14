@@ -11,9 +11,14 @@
   "security",
   "security_name",
   "face_value",
+  "carrying_cost",
   "price",
+  "price_date_used",
+  "is_stale_price",
+  "market_value_clean",
   "accrued_interest",
   "dirty_market_value",
+  "unrealised_gain_loss",
   "weight_pct"
  ],
  "fields": [
@@ -45,9 +50,36 @@
    "label": "Nominal / Shares"
   },
   {
+   "default": "0.0",
+   "fieldname": "carrying_cost",
+   "fieldtype": "Currency",
+   "label": "Carrying Cost"
+  },
+  {
    "fieldname": "price",
    "fieldtype": "Float",
-   "label": "Market Price"
+   "label": "Market Price",
+   "precision": "6"
+  },
+  {
+   "fieldname": "price_date_used",
+   "fieldtype": "Date",
+   "label": "Price Date Used",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_stale_price",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Stale Price Flag",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "market_value_clean",
+   "fieldtype": "Currency",
+   "label": "Clean Market Value"
   },
   {
    "fieldname": "accrued_interest",
@@ -60,6 +92,12 @@
    "in_list_view": 1,
    "label": "Market Value",
    "reqd": 1
+  },
+  {
+   "default": "0.0",
+   "fieldname": "unrealised_gain_loss",
+   "fieldtype": "Currency",
+   "label": "Unrealised Gain / Loss"
   },
   {
    "fieldname": "weight_pct",

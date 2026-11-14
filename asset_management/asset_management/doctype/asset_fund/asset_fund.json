@@ -46,6 +46,8 @@
   "redemption_settlement_days",
   "early_redemption_penalty_pct",
   "early_redemption_period_days",
+  "wht_basis",
+  "wht_rate",
   "tab_parties",
   "sec_counterparties",
   "custodian_name",
@@ -55,7 +57,26 @@
   "trustee_account",
   "auditor_name",
   "sec_fees",
-  "fees"
+  "fees",
+  "tab_accounts",
+  "sec_fund_accounts",
+  "client_cash_payable_account",
+  "unallocated_receipts_account",
+  "unitholders_capital_account",
+  "entry_fee_payable_account",
+  "exit_fee_payable_account",
+  "wht_payable_account",
+  "fees_payable_account",
+  "due_to_other_funds_account",
+  "due_from_other_funds_account",
+  "interest_receivable_account",
+  "investments_at_cost_account",
+  "investment_revaluation_account",
+  "interest_income_account",
+  "unrealised_gain_loss_account",
+  "realised_gain_loss_account",
+  "fund_expenses_account",
+  "rounding_account"
  ],
  "fields": [
   {
@@ -339,6 +360,131 @@
    "fieldname": "tab_parties",
    "fieldtype": "Tab Break",
    "label": "Providers & Fees"
+  },
+  {
+   "fieldname": "tab_accounts",
+   "fieldtype": "Tab Break",
+   "label": "Fund Accounts"
+  },
+  {
+   "fieldname": "sec_fund_accounts",
+   "fieldtype": "Section Break",
+   "label": "Company Chart of Accounts"
+  },
+  {
+   "fieldname": "client_cash_payable_account",
+   "fieldtype": "Link",
+   "label": "Client Cash Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "unallocated_receipts_account",
+   "fieldtype": "Link",
+   "label": "Unallocated Receipts Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "unitholders_capital_account",
+   "fieldtype": "Link",
+   "label": "Unitholders Capital Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "entry_fee_payable_account",
+   "fieldtype": "Link",
+   "label": "Entry Fee Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "exit_fee_payable_account",
+   "fieldtype": "Link",
+   "label": "Exit Fee Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "wht_payable_account",
+   "fieldtype": "Link",
+   "label": "WHT Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "fees_payable_account",
+   "fieldtype": "Link",
+   "label": "Fees Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "due_to_other_funds_account",
+   "fieldtype": "Link",
+   "label": "Due to Other Funds Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "due_from_other_funds_account",
+   "fieldtype": "Link",
+   "label": "Due from Other Funds Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "interest_receivable_account",
+   "fieldtype": "Link",
+   "label": "Interest Receivable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "investments_at_cost_account",
+   "fieldtype": "Link",
+   "label": "Investments at Cost Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "investment_revaluation_account",
+   "fieldtype": "Link",
+   "label": "Investment Revaluation Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "interest_income_account",
+   "fieldtype": "Link",
+   "label": "Interest Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "unrealised_gain_loss_account",
+   "fieldtype": "Link",
+   "label": "Unrealised Gain Loss Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "realised_gain_loss_account",
+   "fieldtype": "Link",
+   "label": "Realised Gain Loss Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "fund_expenses_account",
+   "fieldtype": "Link",
+   "label": "Fund Expenses Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "rounding_account",
+   "fieldtype": "Link",
+   "label": "Rounding Adjustment Account",
+   "options": "Account"
+  },
+  {
+   "default": "None",
+   "fieldname": "wht_basis",
+   "fieldtype": "Select",
+   "label": "Withholding Tax Basis",
+   "options": "None\nGross Proceeds\nGain over Cost"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "wht_rate",
+   "fieldtype": "Percent",
+   "label": "Withholding Tax Rate %"
   }
  ],
  "grid_page_length": 50,

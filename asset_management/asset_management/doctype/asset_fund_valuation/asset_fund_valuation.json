@@ -25,6 +25,8 @@
   "equities_market_value",
   "cash_bank_balance",
   "accrued_income_receivable",
+  "daily_interest_accrual",
+  "mtm_revaluation_change",
   "total_gav",
   "sec_pricing",
   "total_nav",
@@ -34,6 +36,9 @@
   "bid_offer_spread_pct",
   "offer_price",
   "bid_price",
+  "previous_valuation",
+  "previous_valuation_date",
+  "accrual_days",
   "previous_nav_per_unit",
   "daily_change_pct",
   "tab_holdings",
@@ -163,6 +168,19 @@
   },
   {
    "default": "0.0",
+   "fieldname": "daily_interest_accrual",
+   "fieldtype": "Currency",
+   "label": "Daily Interest Income Accrual"
+  },
+  {
+   "default": "0.0",
+   "fieldname": "mtm_revaluation_change",
+   "fieldtype": "Currency",
+   "label": "Mark-to-Market Change vs Prior Valuation",
+   "read_only": 1
+  },
+  {
+   "default": "0.0",
    "fieldname": "total_gav",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -244,14 +262,16 @@
    "fieldname": "total_units_in_issue",
    "fieldtype": "Float",
    "label": "Total Units in Issue",
+   "precision": "6",
    "read_only": 1
   },
   {
-   "default": "100.0",
+   "default": "0.0",
    "fieldname": "nav_per_unit",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "NAV Per Unit",
+   "precision": "6",
    "read_only": 1
   },
   {
@@ -266,25 +286,48 @@
    "read_only": 1
   },
   {
-   "default": "100.0",
+   "default": "0.0",
    "fieldname": "offer_price",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Offer Price (Creation)",
+   "precision": "6",
    "read_only": 1
   },
   {
-   "default": "100.0",
+   "default": "0.0",
    "fieldname": "bid_price",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Bid Price (Redemption)",
+   "precision": "6",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_valuation",
+   "fieldtype": "Link",
+   "label": "Previous Valuation",
+   "options": "Asset Fund Valuation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_valuation_date",
+   "fieldtype": "Date",
+   "label": "Previous Valuation Date",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "accrual_days",
+   "fieldtype": "Int",
+   "label": "Accrual Days",
    "read_only": 1
   },
   {
    "fieldname": "previous_nav_per_unit",
    "fieldtype": "Currency",
    "label": "Previous Day NAV Per Unit",
+   "precision": "6",
    "read_only": 1
   },
   {

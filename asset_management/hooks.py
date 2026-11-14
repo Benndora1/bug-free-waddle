@@ -85,9 +85,8 @@ required_apps = ["erpnext"]
 # Installation
 # ------------
 
-# before_install = "asset_management.install.before_install"
-# after_install = "asset_management.install.after_install"
-# after_migrate = []
+after_install = "asset_management.services.fund_setup.seed_default_account_templates"
+after_migrate = ["asset_management.services.fund_setup.seed_default_account_templates"]
 
 # Uninstallation
 # ------------

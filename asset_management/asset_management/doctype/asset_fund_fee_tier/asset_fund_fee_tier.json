@@ -9,7 +9,9 @@
  "field_order": [
   "fee_type",
   "calculation_basis",
+  "day_count_convention",
   "annual_percentage",
+  "expense_account",
   "payable_to",
   "accrual_frequency",
   "description"
@@ -24,13 +26,21 @@
    "reqd": 1
   },
   {
-   "default": "Annual Percentage of NAV",
+   "default": "GAV",
    "fieldname": "calculation_basis",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Calculation Basis",
-   "options": "Annual Percentage of NAV\nFlat Monthly\nPercentage of Transaction",
+   "options": "GAV\nPrior NAV\nAnnual Percentage of NAV\nFlat Monthly\nPercentage of Transaction",
    "reqd": 1
+  },
+  {
+   "default": "ACT/365F",
+   "fieldname": "day_count_convention",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Day-Count Convention",
+   "options": "ACT/365F\nACT/360\nACT/ACT\n30/360"
   },
   {
    "default": "1.50",
@@ -39,6 +49,12 @@
    "in_list_view": 1,
    "label": "Annual Fee %",
    "reqd": 1
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Fee Expense Account",
+   "options": "Account"
   },
   {
    "fieldname": "payable_to",

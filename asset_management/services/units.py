@@ -18,7 +18,7 @@ from frappe.utils import flt, nowdate, nowtime
 def get_unit_balance(investor: str, fund: str, as_of_date: str | Any = None) -> Decimal:
 	"""Returns the net unit balance for an investor in a fund as of a specific date.
 
-	Sums unit ledger entries up to as_of_date (cancelled entries are negated by their reversal entries).
+	Sums unit ledger entries up to as_of_date (excluding Lien / Lien Release entries).
 	"""
 	if not investor or not fund:
 		return Decimal("0.000000")
@@ -26,6 +26,7 @@ def get_unit_balance(investor: str, fund: str, as_of_date: str | Any = None) -> 
 	filters: dict[str, Any] = {
 		"investor": investor,
 		"fund": fund,
+		"entry_type": ["not in", ["Lien", "Lien Release"]],
 	}
 	if as_of_date:
 		filters["posting_date"] = ["<=", as_of_date]
@@ -43,16 +44,55 @@ def get_unit_balance(investor: str, fund: str, as_of_date: str | Any = None) -> 
 	return total.quantize(Decimal("0.000001"))
 
 
+def get_active_lien_units(investor: str, fund: str, as_of_date: str | Any = None) -> Decimal:
+	"""Returns the total active encumbered (lien) units for an investor in a fund as of a specific date."""
+	if not investor or not fund:
+		return Decimal("0.000000")
+
+	filters: dict[str, Any] = {
+		"investor": investor,
+		"fund": fund,
+		"entry_type": ["in", ["Lien", "Lien Release"]],
+	}
+	if as_of_date:
+		filters["posting_date"] = ["<=", as_of_date]
+
+	entries = frappe.get_all(
+		"Asset Unit Ledger Entry",
+		filters=filters,
+		fields=["entry_type", "units", "is_cancelled", "remarks"],
+	)
+
+	total_lien = Decimal("0.0")
+	for e in entries:
+		if e.is_cancelled:
+			continue
+		remarks = str(e.remarks or "")
+		if remarks.startswith("Reversal of"):
+			continue
+		u_abs = abs(Decimal(str(round(flt(e.units), 6))))
+		if e.entry_type == "Lien":
+			total_lien += u_abs
+		elif e.entry_type == "Lien Release":
+			total_lien -= u_abs
+
+	if total_lien < Decimal("0.000000"):
+		total_lien = Decimal("0.000000")
+
+	return total_lien.quantize(Decimal("0.000001"))
+
+
 def get_fund_units_in_issue(fund: str, as_of_date: str | Any = None) -> Decimal:
 	"""Returns the total units in issue for a fund as of a specific date.
 
-	Sums unit ledger entries across all unitholders.
+	Sums unit ledger entries across all unitholders (excluding Lien / Lien Release entries).
 	"""
 	if not fund:
 		return Decimal("0.000000")
 
 	filters: dict[str, Any] = {
 		"fund": fund,
+		"entry_type": ["not in", ["Lien", "Lien Release"]],
 	}
 	if as_of_date:
 		filters["posting_date"] = ["<=", as_of_date]
@@ -199,6 +239,8 @@ def rebuild_portfolio(investor: str, fund: str) -> None:
 	first_sub_date = None
 
 	for e in entries:
+		if e.entry_type in ("Lien", "Lien Release"):
+			continue
 		u = Decimal(str(round(flt(e.units), 6)))
 		amt = Decimal(str(round(flt(e.amount or 0.0), 2)))
 		total_units += u
@@ -224,7 +266,7 @@ def rebuild_portfolio(investor: str, fund: str) -> None:
 		port = frappe.get_doc("Asset Investor Portfolio", portfolio_id)
 		fund_doc = frappe.get_doc("Asset Fund", fund)
 
-	port.total_units = float(total_units.quantize(Decimal("0.0001")))
+	port.total_units = float(total_units.quantize(Decimal("0.000001")))
 	port.total_invested_amount = float(total_invested.quantize(Decimal("0.01")))
 	port.total_withdrawn_amount = float(total_withdrawn.quantize(Decimal("0.01")))
 	if last_tx_date:

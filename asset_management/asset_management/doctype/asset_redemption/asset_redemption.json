@@ -18,6 +18,7 @@
   "portfolio",
   "col_break_hdr",
   "redemption_date",
+  "received_at",
   "value_date",
   "currency",
   "status",
@@ -102,7 +103,7 @@
    "fieldtype": "Link",
    "label": "Investor Portfolio",
    "options": "Asset Investor Portfolio",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "col_break_hdr",
@@ -135,7 +136,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Draft\nPending Checker Approval\nApproved\nSubmitted\nRejected\nCancelled"
+   "options": "Draft\nPending Price\nPending Checker Approval\nApproved\nSubmitted\nRejected\nCancelled"
   },
   {
    "fieldname": "sec_req",
@@ -160,13 +161,15 @@
    "description": "Specified number of units to liquidate",
    "fieldname": "requested_units",
    "fieldtype": "Float",
-   "label": "Requested Units"
+   "label": "Requested Units",
+   "precision": "6"
   },
   {
    "fieldname": "available_portfolio_units",
    "fieldtype": "Float",
    "label": "Available Portfolio Units",
-   "read_only": 1
+   "read_only": 1,
+   "precision": "6"
   },
   {
    "fieldname": "col_break_rule1",
@@ -178,27 +181,30 @@
    "fieldname": "prior_day_valuation_approved",
    "fieldtype": "Check",
    "label": "Rule 1: T-1 Valuation Approved",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "description": "Prevailing liquidation price per unit",
    "fieldname": "applicable_bid_price",
    "fieldtype": "Currency",
    "label": "Applicable Bid Price",
-   "reqd": 1
+   "reqd": 0,
+   "precision": "6"
   },
   {
    "fieldname": "units_to_redeem",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Units to Redeem",
-   "reqd": 1
+   "reqd": 0,
+   "precision": "6"
   },
   {
    "fieldname": "remaining_units",
    "fieldtype": "Float",
    "label": "Remaining Balance Units",
-   "read_only": 1
+   "read_only": 1,
+   "precision": "6"
   },
   {
    "fieldname": "sec_payout",
@@ -209,7 +215,7 @@
    "fieldname": "gross_redemption_amount",
    "fieldtype": "Currency",
    "label": "Gross Redemption Amount",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "default": "0.0",
@@ -229,7 +235,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "15.0",
+   "default": "0.0",
    "fieldname": "withholding_tax_pct",
    "fieldtype": "Percent",
    "label": "Withholding Tax (WHT) %"
@@ -247,7 +253,7 @@
    "in_list_view": 1,
    "label": "Net Payout to Investor",
    "read_only": 1,
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "sec_settle",
@@ -335,6 +341,11 @@
    "fieldname": "tab_disburse",
    "fieldtype": "Tab Break",
    "label": "Disbursement & Governance"
+  },
+  {
+   "fieldname": "received_at",
+   "fieldtype": "Time",
+   "label": "Received At"
   }
  ],
  "grid_page_length": 50,
