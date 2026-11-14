@@ -25,8 +25,12 @@ class AssetInvestorApplication(Document):
 		if self.investor_type in ("Corporate", "Trust / Institutional"):
 			score += 15.0
 
-		# 2. Country of Residence
-		if self.country_of_residence and self.country_of_residence != "Uganda":
+		# 2. Country of Residence (compare against home country from Fund Manager Company or System Settings)
+		fm_company = frappe.db.get_single_value("Fund Management Settings", "fund_manager_company")
+		home_country = (
+			frappe.db.get_value("Company", fm_company, "country") if fm_company else None
+		) or frappe.db.get_single_value("System Settings", "country")
+		if self.country_of_residence and home_country and self.country_of_residence != home_country:
 			score += 15.0
 
 		# 3. PEP Screening
@@ -169,7 +173,9 @@ class AssetInvestorApplication(Document):
 		investor.bank_branch = self.bank_branch
 		investor.bank_account_name = self.bank_account_name
 		investor.bank_account_no = self.bank_account_no
-		investor.settlement_currency = self.settlement_currency or "UGX"
+		investor.settlement_currency = self.settlement_currency or frappe.db.get_single_value(
+			"System Settings", "currency"
+		)
 
 		investor.save(ignore_permissions=True)
 

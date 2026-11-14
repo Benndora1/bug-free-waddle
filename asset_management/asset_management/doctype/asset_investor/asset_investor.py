@@ -5,12 +5,23 @@ from frappe.utils import getdate, nowdate
 
 
 class AssetInvestor(Document):
+	def after_insert(self) -> None:
+		"""Ensures a linked Unit Holders Supplier is created on investor creation (ADR-0002)."""
+		get_or_create_investor_supplier(self.name)
+
+	def on_update(self) -> None:
+		"""Syncs investor_name changes to the linked Supplier."""
+		if self.supplier and frappe.db.exists("Supplier", self.supplier) and self.investor_name:
+			current_sup_name = frappe.db.get_value("Supplier", self.supplier, "supplier_name")
+			if current_sup_name != self.investor_name:
+				frappe.db.set_value("Supplier", self.supplier, "supplier_name", self.investor_name)
+
 	def get_kyc_status_summary(self):
 		"""Checks for expiring or expired KYC documents (Chapter 3.4)."""
 		docs = frappe.get_all(
 			"Asset Investor KYC Document",
 			filters={"investor": self.name},
-			fields=["document_code", "document_name", "verification_status", "expiry_date"],
+			fields=["name", "document_code", "document_name", "verification_status", "expiry_date"],
 		)
 		has_expired = False
 		today = getdate(nowdate())
@@ -65,7 +76,9 @@ def get_or_create_investor_supplier(investor_name: str) -> str:
 	supplier_doc.supplier_type = (
 		"Individual" if getattr(inv, "investor_type", None) == "Individual" else "Company"
 	)
-	supplier_doc.country = getattr(inv, "country_of_residence", None) or "Uganda"
+	supplier_doc.country = getattr(inv, "country_of_residence", None) or frappe.db.get_single_value(
+		"System Settings", "country"
+	)
 	supplier_doc.insert(ignore_permissions=True)
 
 	inv.supplier = supplier_doc.name

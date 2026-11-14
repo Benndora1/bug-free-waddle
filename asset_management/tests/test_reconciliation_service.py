@@ -1,13 +1,15 @@
-import unittest
+"""Unit tests for pure reconciliation metrics (services/reconciliation.py)."""
+
 from decimal import Decimal
+
+from frappe.tests import UnitTestCase
 
 from asset_management.services.reconciliation import calculate_reconciliation_metrics
 
 
-class TestReconciliationService(unittest.TestCase):
+class TestReconciliationService(UnitTestCase):
 	def test_01_pure_reconciliation_metrics_exact_and_within_tolerance(self) -> None:
 		"""Verify register_value = units x nav (2 dp), gl_net_assets = assets - liabilities, difference, within_tolerance."""
-		# 1. Exact match: 100,000.000000 units @ 100.054795 = 10,005,479.50
 		res = calculate_reconciliation_metrics(
 			units_in_issue=Decimal("100000.000000"),
 			nav_per_unit=Decimal("100.054795"),
@@ -22,7 +24,6 @@ class TestReconciliationService(unittest.TestCase):
 		self.assertEqual(res["difference"], Decimal("0.00"))
 		self.assertTrue(res["within_tolerance"])
 
-		# 2. Small rounding difference within 0.05 tolerance
 		res_tol = calculate_reconciliation_metrics(
 			units_in_issue=Decimal("100000.000000"),
 			nav_per_unit=Decimal("100.054795"),
@@ -33,7 +34,6 @@ class TestReconciliationService(unittest.TestCase):
 		self.assertEqual(res_tol["difference"], Decimal("0.03"))
 		self.assertTrue(res_tol["within_tolerance"])
 
-		# 3. Out of balance difference > tolerance
 		res_fail = calculate_reconciliation_metrics(
 			units_in_issue=Decimal("100000.000000"),
 			nav_per_unit=Decimal("100.054795"),

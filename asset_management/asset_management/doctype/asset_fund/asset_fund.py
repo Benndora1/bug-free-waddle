@@ -12,6 +12,19 @@ class AssetFund(Document):
 		if not getattr(self, "fund_name", None):
 			frappe.throw(_("Fund Name is mandatory."))
 
+		if not getattr(self, "currency", None) and getattr(self, "fund_currency", None):
+			self.currency = self.fund_currency
+		if not getattr(self, "currency", None) and getattr(self, "company", None):
+			self.currency = frappe.db.get_value("Company", self.company, "default_currency")
+		if not getattr(self, "currency", None):
+			self.currency = frappe.db.get_single_value("System Settings", "currency") or "USD"
+
+		nav = float(getattr(self, "current_nav_per_unit", 0.0) or 0.0)
+		spread = float(getattr(self, "bid_offer_spread_pct", 0.0) or 0.0)
+		if nav > 0 and spread > 0:
+			self.current_offer_price = round(nav * (1.0 + spread / 100.0), 6)
+			self.current_bid_price = round(nav * (1.0 - spread / 100.0), 6)
+
 		m_rate = getattr(self, "management_fee_rate", None)
 		if m_rate is not None and m_rate < 0:
 			frappe.throw(_("Management Fee Rate cannot be negative."))

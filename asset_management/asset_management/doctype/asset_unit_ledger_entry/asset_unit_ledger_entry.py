@@ -16,3 +16,11 @@ class AssetUnitLedgerEntry(Document):
 							field, self.name
 						)
 					)
+
+	def on_trash(self):
+		"""Enforces immutability: unit ledger entries can only be reversed via is_cancelled, never deleted."""
+		frappe.throw(
+			_(
+				"Cannot delete immutable Asset Unit Ledger Entry {0}. Cancel the source voucher instead."
+			).format(self.name)
+		)

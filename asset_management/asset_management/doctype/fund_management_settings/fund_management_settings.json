@@ -18,6 +18,7 @@
   "reconciliation_tolerance",
   "allow_stale_security_prices",
   "max_stale_price_days",
+  "regulatory_fee_label",
   "sec_fm_accounts",
   "commission_expense_account",
   "commission_payable_account",
@@ -99,6 +100,12 @@
    "fieldname": "max_stale_price_days",
    "fieldtype": "Int",
    "label": "Max Stale Security Price Age (Days)"
+  },
+  {
+   "default": "Regulatory Fee",
+   "fieldname": "regulatory_fee_label",
+   "fieldtype": "Data",
+   "label": "Regulatory Fee Label"
   },
   {
    "fieldname": "sec_fm_accounts",

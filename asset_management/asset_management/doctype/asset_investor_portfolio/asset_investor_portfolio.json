@@ -76,7 +76,6 @@
    "options": "Active\nSuspended\nClosed"
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",

@@ -123,7 +123,6 @@
    "reqd": 1
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
@@ -152,7 +151,7 @@
    "reqd": 1
   },
   {
-   "description": "Specified gross liquidation amount in UGX",
+   "description": "Specified gross liquidation amount in fund currency",
    "fieldname": "requested_amount",
    "fieldtype": "Currency",
    "label": "Requested Gross Amount"

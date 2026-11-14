@@ -1,6 +1,9 @@
-import unittest
+"""Unit tests for day-count conventions and fee accruals (services/daycount.py, services/accrual.py)."""
+
 from datetime import date
 from decimal import Decimal
+
+from frappe.tests import UnitTestCase
 
 from asset_management.services.accrual import (
 	FeeRule,
@@ -10,28 +13,24 @@ from asset_management.services.accrual import (
 from asset_management.services.daycount import previous_business_day, year_fraction
 
 
-class TestDaycountAndAccrualService(unittest.TestCase):
+class TestDaycountAndAccrualService(UnitTestCase):
 	def test_01_daycount_conventions(self) -> None:
 		"""Verify ACT/365F, ACT/360, ACT/ACT, and 30/360 year fractions."""
-		# 1. ACT/365F: 1 day and 3 days (Friday to Monday)
 		yf_1d = year_fraction(date(2026, 11, 5), date(2026, 11, 6), "ACT/365F")
 		self.assertEqual(yf_1d, Decimal("1") / Decimal("365"))
 
 		yf_3d = year_fraction(date(2026, 11, 6), date(2026, 11, 9), "ACT/365F")
 		self.assertEqual(yf_3d, Decimal("3") / Decimal("365"))
 
-		# 2. ACT/360: 30 days
 		yf_360 = year_fraction(date(2026, 11, 1), date(2026, 12, 1), "ACT/360")
 		self.assertEqual(yf_360, Decimal("30") / Decimal("360"))
 
-		# 3. ACT/ACT: non-leap year (2026) vs leap year (2024)
 		yf_act_2026 = year_fraction(date(2026, 3, 1), date(2026, 3, 11), "ACT/ACT")
 		self.assertEqual(yf_act_2026, Decimal("10") / Decimal("365"))
 
 		yf_act_2024 = year_fraction(date(2024, 2, 20), date(2024, 3, 1), "ACT/ACT")
 		self.assertEqual(yf_act_2024, Decimal("10") / Decimal("366"))
 
-		# 4. 30/360: full month = 30/360
 		yf_30_360 = year_fraction(date(2026, 1, 15), date(2026, 2, 15), "30/360")
 		self.assertEqual(yf_30_360, Decimal("30") / Decimal("360"))
 
@@ -44,7 +43,6 @@ class TestDaycountAndAccrualService(unittest.TestCase):
 		gav = Decimal("100000000.00")
 		rate = Decimal("2.0")
 
-		# 1 day (Thu 2026-11-05 -> Fri 2026-11-06)
 		fee_1d = calculate_fee_accrual(
 			basis_amount=gav,
 			annual_rate_pct=rate,
@@ -54,7 +52,6 @@ class TestDaycountAndAccrualService(unittest.TestCase):
 		)
 		self.assertEqual(fee_1d, Decimal("5479.45"))
 
-		# 3 days (Fri 2026-11-06 -> Mon 2026-11-09, weekends included)
 		fee_3d = calculate_fee_accrual(
 			basis_amount=gav,
 			annual_rate_pct=rate,
@@ -88,11 +85,8 @@ class TestDaycountAndAccrualService(unittest.TestCase):
 			end_date=date(2026, 11, 6),
 		)
 		self.assertEqual(res["Management Fee"], Decimal("5479.45"))
-		# 90,000,000 * 0.36% * 1/360 = 900.00
 		self.assertEqual(res["Custody Fee"], Decimal("900.00"))
 		self.assertEqual(res["total"], Decimal("6379.45"))
 
-		# Monday 2026-11-09 -> previous business day is Friday 2026-11-06
 		self.assertEqual(previous_business_day(date(2026, 11, 9)), date(2026, 11, 6))
-		# Tuesday 2026-11-10 -> previous business day is Monday 2026-11-09
 		self.assertEqual(previous_business_day(date(2026, 11, 10)), date(2026, 11, 9))

@@ -170,23 +170,16 @@ class AssetSubscription(Document):
 			getattr(fund_doc, "company", None)
 			or getattr(settings, "default_fund_company", None)
 			or getattr(settings, "fund_manager_company", None)
-			or "SBG Securities Uganda"
 		)
 
-		client_cash_account = (
-			getattr(fund_doc, "client_cash_payable_account", None)
-			or getattr(settings, "client_cash_payable_account", None)
-			or "Client Cash Payable - SBGS"
+		client_cash_account = getattr(fund_doc, "client_cash_payable_account", None) or getattr(
+			settings, "client_cash_payable_account", None
 		)
-		unitholders_capital_account = (
-			getattr(fund_doc, "unitholders_capital_account", None)
-			or getattr(settings, "unitholders_capital_account", None)
-			or "Unitholders Capital - SBGS"
+		unitholders_capital_account = getattr(fund_doc, "unitholders_capital_account", None) or getattr(
+			settings, "unitholders_capital_account", None
 		)
-		entry_fee_account = (
-			getattr(fund_doc, "entry_fee_payable_account", None)
-			or getattr(settings, "entry_fee_payable_account", None)
-			or "Entry Fee Payable - SBGS"
+		entry_fee_account = getattr(fund_doc, "entry_fee_payable_account", None) or getattr(
+			settings, "entry_fee_payable_account", None
 		)
 
 		investor_supplier = get_or_create_investor_supplier(self.investor)
@@ -237,13 +230,9 @@ class AssetSubscription(Document):
 
 		# Rows 4 & 5: Agent Commission in Fund Manager Company
 		if self.agent and flt(self.agent_commission_amount) > 0:
-			fm_company = getattr(settings, "fund_manager_company", None) or "SBG Securities Uganda"
-			comm_exp_account = (
-				getattr(settings, "commission_expense_account", None) or "Agent Commission Expense - SBGS"
-			)
-			comm_pay_account = (
-				getattr(settings, "commission_payable_account", None) or "Agent Commission Payable - SBGS"
-			)
+			fm_company = getattr(settings, "fund_manager_company", None) or fund_company
+			comm_exp_account = getattr(settings, "commission_expense_account", None)
+			comm_pay_account = getattr(settings, "commission_payable_account", None)
 
 			gl_entries.append(
 				{
@@ -351,8 +340,14 @@ class AssetSubscription(Document):
 		# 1. Reverse GL entries
 		reverse_gl(self)
 
-		# 2. Reverse unit ledger
+		# 2. Reverse unit ledger and register line
 		reverse_unit_ledger_entries("Asset Subscription", self.name)
+		for rname in frappe.get_all(
+			"Asset Investor Register Line",
+			filters={"voucher_type": "Asset Subscription", "voucher_no": self.name},
+			pluck="name",
+		):
+			frappe.delete_doc("Asset Investor Register Line", rname, force=True, ignore_permissions=True)
 		rebuild_portfolio(self.investor, self.fund)
 
 		# 3. Cancel Agent Commission row

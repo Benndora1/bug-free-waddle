@@ -6,6 +6,8 @@ from frappe.utils import add_days, add_months, date_diff, flt, getdate
 
 class AssetInvestmentSecurity(Document):
 	def validate(self):
+		if not self.currency:
+			self.currency = frappe.db.get_single_value("System Settings", "currency") or "USD"
 		if self.issue_date and self.maturity_date:
 			self.tenor_days = date_diff(self.maturity_date, self.issue_date)
 

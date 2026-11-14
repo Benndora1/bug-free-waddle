@@ -1,20 +1,20 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Agent DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+from asset_management.tests.factories import make_agent
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetAgent(IntegrationTestCase):
-	"""
-	Integration tests for AssetAgent.
-	Use this class for testing interactions between multiple components.
-	"""
-
-	pass
+	def test_agent_creation_and_commission_rates(self) -> None:
+		ag = make_agent(
+			agent_code="AGT-DT-001",
+			agent_name="Advisory Partners Ltd",
+			commission_rate_pct=1.25,
+		)
+		self.assertTrue(frappe.db.exists("Asset Agent", ag.name))
+		self.assertEqual(ag.commission_rate_pct, 1.25)
+		self.assertEqual(ag.status, "Active")

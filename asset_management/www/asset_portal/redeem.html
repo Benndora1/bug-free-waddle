@@ -39,7 +39,7 @@
                                 data-units="{{ p.total_units }}"
                                 data-nav="{{ p.current_nav_per_unit }}"
                                 data-market-val="{{ p.current_market_value }}">
-                                {{ p.fund_name or p.fund }} - Available: {{ "{:,.4f}".format(p.total_units) }} units (UGX {{ "{:,.2f}".format(p.current_market_value) }})
+                                {{ p.fund_name or p.fund }} - Available: {{ "{:,.4f}".format(p.total_units) }} units ({{ p.currency or "" }} {{ "{:,.2f}".format(p.current_market_value) }})
                             </option>
                             {% endfor %}
                         </select>
@@ -49,12 +49,12 @@
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Redemption Basis <span class="text-danger">*</span></label>
                             <select id="redemptionBasis" class="form-select">
-                                <option value="Amount" selected>Specific Amount (UGX)</option>
+                                <option value="Amount" selected>Specific Amount</option>
                                 <option value="Units">Specific Number of Units</option>
                             </select>
                         </div>
                         <div class="col-md-6" id="amountContainer">
-                            <label class="form-label fw-semibold">Requested Gross Amount (UGX) <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold">Requested Gross Amount <span class="text-danger">*</span></label>
                             <input type="number" step="0.01" min="1000" id="requestedAmount" class="form-control" placeholder="e.g. 200000">
                         </div>
                         <div class="col-md-6 d-none" id="unitsContainer">

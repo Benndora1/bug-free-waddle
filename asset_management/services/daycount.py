@@ -46,9 +46,7 @@ def year_fraction(
 		d1 = min(start_date.day, 30)
 		d2 = min(end_date.day, 30) if d1 == 30 else end_date.day
 		days_360 = (
-			360 * (end_date.year - start_date.year)
-			+ 30 * (end_date.month - start_date.month)
-			+ (d2 - d1)
+			360 * (end_date.year - start_date.year) + 30 * (end_date.month - start_date.month) + (d2 - d1)
 		)
 		return Decimal(max(days_360, 0)) / Decimal("360")
 

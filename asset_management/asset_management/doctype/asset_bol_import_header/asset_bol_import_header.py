@@ -65,7 +65,7 @@ class AssetBOLImportHeader(Document):
 			val_date_str = row[0].strip() if len(row) > 0 else ""
 			desc = row[1].strip() if len(row) > 1 else ""
 			amt_str = row[2].strip().replace(",", "") if len(row) > 2 else "0"
-			fund_code = row[3].strip() if len(row) > 3 else "SBG-MMF"
+			fund_code = row[3].strip() if len(row) > 3 else ""
 
 			try:
 				amt = float(amt_str)
@@ -107,10 +107,10 @@ class AssetBOLImportHeader(Document):
 
 			# Resolve Fund Link
 			fund_link = None
-			if frappe.db.exists("Asset Fund", fund_code):
+			if fund_code and frappe.db.exists("Asset Fund", fund_code):
 				fund_link = fund_code
-			elif frappe.db.exists("Asset Fund", "SBG-MMF"):
-				fund_link = "SBG-MMF"
+			elif frappe.db.exists("Asset Fund", "DEMO-MMF"):
+				fund_link = "DEMO-MMF"
 
 			status = "Matched" if (matched_inv and amt > 0) else "Exception"
 			exc_reason = ""
@@ -169,7 +169,7 @@ class AssetBOLImportHeader(Document):
 						log.transaction_reference = f"{self.name}-{l.line_no}"
 						log.amount = l.amount
 						log.action_taken = "None"
-						log.investigation_notes = f"Deposit of {l.amount:,.2f} UGX remained unallocated for {hrs:.1f} hours (> {threshold_hours}h SLA). Description: {l.transaction_description}"
+						log.investigation_notes = f"Deposit of {l.amount:,.2f} remained unallocated for {hrs:.1f} hours (> {threshold_hours}h SLA). Description: {l.transaction_description}"
 						log.status = "Investigating"
 						log.insert(ignore_permissions=True)
 
@@ -185,7 +185,7 @@ class AssetBOLImportHeader(Document):
 			if l.status == "Matched" and not l.subscription_ref:
 				sub = frappe.new_doc("Asset Subscription")
 				sub.investor = l.matched_investor
-				sub.fund = l.fund or "SBG-MMF"
+				sub.fund = l.fund or l.fund_code
 				sub.subscription_date = self.import_date
 				sub.value_date = l.value_date
 				sub.gross_amount = l.amount

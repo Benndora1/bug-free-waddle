@@ -49,7 +49,7 @@
    "fieldname": "threshold_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Threshold Amount (UGX)"
+   "label": "Threshold Amount"
   },
   {
    "default": "1",

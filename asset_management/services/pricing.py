@@ -336,9 +336,7 @@ def get_security_price_for_valuation(
 		)
 		if stale_rows and stale_rows[0].clean_price and stale_rows[0].clean_price > 0:
 			return (
-				Decimal(str(stale_rows[0].clean_price)).quantize(
-					Decimal("0.000001"), rounding=ROUND_HALF_UP
-				),
+				Decimal(str(stale_rows[0].clean_price)).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP),
 				str(stale_rows[0].price_date),
 				True,
 			)

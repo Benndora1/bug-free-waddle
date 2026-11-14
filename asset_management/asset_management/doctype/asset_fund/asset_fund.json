@@ -51,6 +51,7 @@
   "tab_parties",
   "sec_counterparties",
   "custodian_name",
+  "custodian_address",
   "custodian_account",
   "col_break_parties",
   "trustee_name",
@@ -120,7 +121,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Fund Currency",
@@ -290,10 +290,14 @@
    "label": "Trustees, Custodians & Auditors"
   },
   {
-   "default": "Stanbic Bank Uganda Custody",
    "fieldname": "custodian_name",
    "fieldtype": "Data",
    "label": "Custodian Bank"
+  },
+  {
+   "fieldname": "custodian_address",
+   "fieldtype": "Small Text",
+   "label": "Custodian Address"
   },
   {
    "fieldname": "custodian_account",
@@ -305,7 +309,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "KCB Bank Uganda Limited",
    "fieldname": "trustee_name",
    "fieldtype": "Data",
    "label": "Fund Trustee"
@@ -316,7 +319,6 @@
    "label": "Trustee Account No"
   },
   {
-   "default": "PricewaterhouseCoopers (PwC) Uganda",
    "fieldname": "auditor_name",
    "fieldtype": "Data",
    "label": "Independent Auditor"

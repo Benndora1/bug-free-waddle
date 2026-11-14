@@ -1,20 +1,25 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Investor DocType (ADR-0002 Supplier link)."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+from asset_management.tests.factories import make_investor
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetInvestor(IntegrationTestCase):
-	"""
-	Integration tests for AssetInvestor.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_investor_auto_creates_and_syncs_unit_holder_supplier(self) -> None:
+		inv = make_investor(investor_name="Supplier Sync Client")
+		self.assertTrue(bool(inv.supplier))
+		self.assertTrue(frappe.db.exists("Supplier", inv.supplier))
 
-	pass
+		sup = frappe.get_doc("Supplier", inv.supplier)
+		self.assertEqual(sup.supplier_group, "Unit Holders")
+		self.assertEqual(sup.supplier_name, "Supplier Sync Client")
+
+		inv.investor_name = "Renamed Supplier Client"
+		# Test setup: ignore_permissions required
+		inv.save(ignore_permissions=True)
+		sup.reload()
+		self.assertEqual(sup.supplier_name, "Renamed Supplier Client")

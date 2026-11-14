@@ -339,28 +339,12 @@ fixtures = [
 		],
 	},
 	{
-		"dt": "Asset Fund",
-		"filters": [["fund_id", "in", ["SBG-MMF", "SBG-BAL", "SBG-EQT", "SBG-BND", "SBG-UMB"]]],
-	},
-	{"dt": "Asset Agent", "filters": [["agent_code", "in", ["AGT-001", "AGT-002"]]]},
-	{
-		"dt": "Asset Investment Security",
-		"filters": [
-			[
-				"security_id",
-				"in",
-				["UG12K2306394", "UG12K0811352", "TBILL-364D-2027", "FD-STANBIC-180D", "EQ-MTNU"],
-			]
-		],
-	},
-	{"dt": "Asset Investment Limit Setup", "filters": [["fund", "in", ["SBG-BAL", "SBG-MMF"]]]},
-	{
 		"dt": "Print Format",
 		"filters": [
 			[
 				"name",
 				"in",
-				["Unit Trust Contract Note", "Statement of Investment", "Stanbic Custody Instruction"],
+				["Unit Trust Contract Note", "Statement of Investment", "Custody Instruction"],
 			]
 		],
 	},

@@ -23,7 +23,7 @@
     <div class="col-md-3">
         <div class="card-stat">
             <div class="stat-label">Total Portfolio Value (AUM)</div>
-            <div class="stat-value text-primary">UGX {{ "{:,.2f}".format(total_value) }}</div>
+            <div class="stat-value text-primary">{{ "{:,.2f}".format(total_value) }}</div>
             <small class="text-muted"><i class="fa-solid fa-clock me-1"></i> Marked to Market</small>
         </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="col-md-3">
         <div class="card-stat">
             <div class="stat-label">Total Capital Invested</div>
-            <div class="stat-value text-secondary">UGX {{ "{:,.2f}".format(total_invested) }}</div>
+            <div class="stat-value text-secondary">{{ "{:,.2f}".format(total_invested) }}</div>
             <small class="text-muted">Net Inflow</small>
         </div>
     </div>
@@ -45,7 +45,7 @@
         <div class="card-stat">
             <div class="stat-label">Total Unrealized Return</div>
             <div class="stat-value {% if total_unrealized >= 0 %}text-success{% else %}text-danger{% endif %}">
-                {% if total_unrealized >= 0 %}+{% endif %}UGX {{ "{:,.2f}".format(total_unrealized) }}
+                {% if total_unrealized >= 0 %}+{% endif %}{{ "{:,.2f}".format(total_unrealized) }}
             </div>
             <small class="{% if total_unrealized >= 0 %}text-success{% else %}text-danger{% endif %}">
                 <i class="fa-solid {% if total_unrealized >= 0 %}fa-arrow-trend-up{% else %}fa-arrow-trend-down{% endif %} me-1"></i>
@@ -67,8 +67,8 @@
                 <tr>
                     <th>Fund / Scheme</th>
                     <th class="text-end">Units Held</th>
-                    <th class="text-end">Current NAV (UGX)</th>
-                    <th class="text-end">Market Value (UGX)</th>
+                    <th class="text-end">Current NAV</th>
+                    <th class="text-end">Market Value</th>
                     <th class="text-end">Unrealized Gain / Loss</th>
                     <th class="text-center">Status</th>
                     <th class="text-end">Action</th>
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="text-end">
-                                <div class="fw-bold text-success">+UGX {{ "{:,.2f}".format(sub.gross_amount) }}</div>
+                                <div class="fw-bold text-success">+{{ "{:,.2f}".format(sub.gross_amount) }}</div>
                                 <span class="badge bg-light text-dark border">{{ sub.status }}</span>
                             </div>
                         </li>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="text-end">
-                                <div class="fw-bold text-danger">-UGX {{ "{:,.2f}".format(red.net_payout_amount) }}</div>
+                                <div class="fw-bold text-danger">-{{ "{:,.2f}".format(red.net_payout_amount) }}</div>
                                 <span class="badge bg-light text-dark border">{{ red.status }}</span>
                             </div>
                         </li>

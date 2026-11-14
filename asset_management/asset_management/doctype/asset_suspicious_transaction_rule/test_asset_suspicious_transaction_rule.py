@@ -1,20 +1,14 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Suspicious Transaction Rule DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetSuspiciousTransactionRule(IntegrationTestCase):
-	"""
-	Integration tests for AssetSuspiciousTransactionRule.
-	Use this class for testing interactions between multiple components.
-	"""
-
-	pass
+	def test_suspicious_transaction_rule_creation_and_threshold(self) -> None:
+		self.assertTrue(frappe.db.exists("Asset Suspicious Transaction Rule", "AML_LARGE_CASH"))
+		rule = frappe.get_doc("Asset Suspicious Transaction Rule", "AML_LARGE_CASH")
+		self.assertEqual(rule.active, 1)
+		self.assertGreater(rule.threshold_amount, 0.0)

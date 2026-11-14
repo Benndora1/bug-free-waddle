@@ -5,7 +5,7 @@ from frappe.model.document import Document
 
 class AssetCustodyInstruction(Document):
 	def before_submit(self):
-		"""Enforces dual maker-checker signatures before dispatch to Stanbic Custody."""
+		"""Enforces dual maker-checker signatures before dispatch to fund custodian."""
 		if not self.maker_signed:
 			frappe.throw(
 				_(

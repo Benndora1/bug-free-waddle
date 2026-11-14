@@ -1,34 +1,30 @@
-"""Integration tests for Asset Unit Ledger Entry."""
-
-import unittest
-from decimal import Decimal
+"""Integration tests for Asset Unit Ledger Entry DocType."""
 
 import frappe
-from frappe.tests import UnitTestCase
+from frappe.tests import IntegrationTestCase
 
-from asset_management.services.units import get_unit_balance
+from asset_management.tests.factories import (
+	make_checker_user,
+	make_fund,
+	make_investor,
+	make_subscription,
+)
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
-class TestAssetUnitLedgerEntry(UnitTestCase):
-	def test_immutability_guard(self):
-		"""Verify that editing critical fields on an existing ledger entry is blocked."""
-		entry = frappe.new_doc("Asset Unit Ledger Entry")
-		entry.posting_date = "2026-11-14"
-		entry.investor = "__TEST_IMMUTABLE_INV"
-		entry.fund = "SBG-MMF"
-		entry.voucher_type = "Asset Subscription"
-		entry.voucher_no = "TEST-SUB-001"
-		entry.entry_type = "Subscription"
-		entry.units = 100.0
-		entry.price_per_unit = 100.0
-		entry.amount = 10000.0
-		entry.flags.ignore_links = True
-		entry.insert(ignore_permissions=True)
+class IntegrationTestAssetUnitLedgerEntry(IntegrationTestCase):
+	def test_unit_ledger_entry_immutability_blocks_deletion(self) -> None:
+		checker = make_checker_user()
+		fund = make_fund(fund_id="TEST-ULE-DT", nav=100.0)
+		inv = make_investor()
 
-		# Attempt to edit units
-		entry.units = 200.0
+		sub = make_subscription(inv.name, fund.name, amount=200000.0, checker_user=checker)
+		ule_name = frappe.db.get_value(
+			"Asset Unit Ledger Entry", {"voucher_no": sub.name, "is_cancelled": 0}, "name"
+		)
+		self.assertTrue(bool(ule_name))
+
+		ule_doc = frappe.get_doc("Asset Unit Ledger Entry", ule_name)
 		with self.assertRaises(frappe.ValidationError):
-			entry.save()
-
-		# Clean up
-		frappe.db.delete("Asset Unit Ledger Entry", {"name": entry.name})
+			ule_doc.delete()

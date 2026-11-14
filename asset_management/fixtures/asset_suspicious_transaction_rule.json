@@ -1,7 +1,7 @@
 [
  {
   "active": 1,
-  "description": "Deposits >= 20,000,000 UGX within 24 hours.",
+  "description": "Deposits >= 20,000,000 within 24 hours.",
   "docstatus": 0,
   "doctype": "Asset Suspicious Transaction Rule",
   "modified": "2026-10-31 13:09:29.039031",

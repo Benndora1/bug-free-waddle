@@ -1,20 +1,30 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset BOL Import Header DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+from asset_management.tests.factories import make_fund, make_investor
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetBOLImportHeader(IntegrationTestCase):
-	"""
-	Integration tests for AssetBOLImportHeader.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_bol_parse_and_subscription_creation(self) -> None:
+		fund = make_fund(fund_id="TEST-BOL-MMF", nav=100.0)
+		inv = make_investor(investor_id="INV-BOL-01", bank_account_no="901000778899")
 
-	pass
+		csv_data = f"""Value Date,Transaction Description,Amount,Fund Code
+2026-10-31,Deposit from 901000778899 client,{fund.min_subscription_amount * 2},{fund.name}
+"""
+		bol = frappe.new_doc("Asset BOL Import Header")
+		bol.file_name = "BOL_TEST.csv"
+		# Test setup: ignore_permissions required
+		bol.insert(ignore_permissions=True)
+
+		bol.parse_bol_statement(csv_data)
+		self.assertEqual(bol.total_lines, 1)
+		self.assertEqual(bol.matched_lines, 1)
+		self.assertEqual(bol.lines[0].matched_investor, inv.name)
+
+		res = bol.create_subscriptions()
+		self.assertEqual(res["created_subscriptions"], 1)

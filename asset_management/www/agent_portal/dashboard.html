@@ -27,21 +27,21 @@
     <div class="col-md-3">
         <div class="card-stat">
             <div class="stat-label">Total Commission Accrued</div>
-            <div class="stat-value text-dark">UGX {{ "{:,.2f}".format(total_commission_earned) }}</div>
+            <div class="stat-value text-dark">{{ "{:,.2f}".format(total_commission_earned) }}</div>
             <small class="text-muted">Lifetime Earnings</small>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card-stat">
             <div class="stat-label">Commissions Paid Out</div>
-            <div class="stat-value text-success">UGX {{ "{:,.2f}".format(total_commission_paid) }}</div>
+            <div class="stat-value text-success">{{ "{:,.2f}".format(total_commission_paid) }}</div>
             <small class="text-muted">Disbursed to Bank</small>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card-stat">
             <div class="stat-label">Outstanding Payable Due</div>
-            <div class="stat-value text-warning">UGX {{ "{:,.2f}".format(commission_due) }}</div>
+            <div class="stat-value text-warning">{{ "{:,.2f}".format(commission_due) }}</div>
             <small class="text-muted">Pending Next Settlement</small>
         </div>
     </div>
@@ -63,7 +63,7 @@
                             <th>Investor</th>
                             <th class="text-end">Gross Sub</th>
                             <th class="text-end">Rate</th>
-                            <th class="text-end">Commission (UGX)</th>
+                            <th class="text-end">Commission</th>
                             <th class="text-center">Status</th>
                         </tr>
                     </thead>

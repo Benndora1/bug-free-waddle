@@ -9,9 +9,7 @@ class AssetFundPrice(Document):
 		if not getattr(frappe.flags, "in_valuation_submit", False):
 			if not self.valuation or not frappe.db.exists("Asset Fund Valuation", self.valuation):
 				frappe.throw(
-					_(
-						"Asset Fund Price can only be created by submitting an Asset Fund Valuation."
-					),
+					_("Asset Fund Price can only be created by submitting an Asset Fund Valuation."),
 					title=_("Direct Creation Not Permitted"),
 				)
 

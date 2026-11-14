@@ -130,7 +130,6 @@ def ensure_root_department_exists() -> None:
 			"UPDATE `tabDepartment` SET `name`='All Departments', `company`=NULL WHERE `name`=%s",
 			(existing_root,),
 		)
-		frappe.db.commit()
 		return
 
 	dept = frappe.new_doc("Department")
@@ -274,12 +273,28 @@ def setup_fund_accounts(fund: str) -> None:
 		else None
 	)
 	fm_comp = getattr(settings, "fund_manager_company", None)
+	default_comp = (
+		frappe.db.get_single_value("Global Defaults", "default_company")
+		if frappe.db.exists("DocType", "Global Defaults")
+		else None
+	)
+	user_default_comp = frappe.defaults.get_user_default("Company")
 
 	company_name = fund_doc.company
+	shared_with_other_fund = bool(
+		company_name
+		and frappe.db.exists("Asset Fund", {"company": company_name, "name": ["!=", fund_doc.name]})
+	)
+	is_auto_default = bool(
+		company_name
+		and company_name != fund_doc.fund_name
+		and company_name in {c for c in (fm_comp, default_comp, user_default_comp) if c}
+	)
 	if (
 		not company_name
 		or not frappe.db.exists("Company", company_name)
-		or (fm_comp and company_name == fm_comp)
+		or is_auto_default
+		or shared_with_other_fund
 	):
 		# Look for existing company with this fund_name
 		existing_company = frappe.db.get_value("Company", {"company_name": fund_doc.fund_name}, "name")

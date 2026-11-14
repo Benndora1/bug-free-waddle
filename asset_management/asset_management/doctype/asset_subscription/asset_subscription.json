@@ -109,7 +109,6 @@
    "reqd": 1
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",

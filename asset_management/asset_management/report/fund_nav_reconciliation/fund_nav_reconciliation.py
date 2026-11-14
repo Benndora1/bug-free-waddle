@@ -73,9 +73,7 @@ def execute(
 	to_date_str = filters.get("to_date") or filters.get("to")
 
 	funds: list[str] = (
-		[fund]
-		if fund
-		else frappe.get_all("Asset Fund", filters={"status": "Active"}, pluck="name")
+		[fund] if fund else frappe.get_all("Asset Fund", filters={"status": "Active"}, pluck="name")
 	)
 
 	data: list[dict[str, Any]] = []

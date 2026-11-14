@@ -156,7 +156,6 @@
    "reqd": 1
   },
   {
-   "default": "Uganda",
    "fieldname": "country_of_residence",
    "fieldtype": "Link",
    "label": "Country of Residence",
@@ -196,7 +195,6 @@
    "label": "Postal Address"
   },
   {
-   "default": "Kampala",
    "fieldname": "city",
    "fieldtype": "Data",
    "label": "City"
@@ -214,7 +212,6 @@
    "reqd": 1
   },
   {
-   "default": "Crested Towers",
    "fieldname": "bank_branch",
    "fieldtype": "Data",
    "label": "Branch Name",
@@ -237,7 +234,6 @@
    "reqd": 1
   },
   {
-   "default": "UGX",
    "fieldname": "settlement_currency",
    "fieldtype": "Link",
    "label": "Settlement Currency",

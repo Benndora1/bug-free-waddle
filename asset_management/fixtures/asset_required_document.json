@@ -37,7 +37,7 @@
   "docstatus": 0,
   "doctype": "Asset Required Document",
   "document_code": "TIN_CERT",
-  "document_name": "URA Tax Identification Number (TIN) Certificate",
+  "document_name": "Tax Identification Number (TIN) Certificate",
   "investor_type": "All",
   "mandatory": 1,
   "modified": "2026-10-31 13:09:28.998135",

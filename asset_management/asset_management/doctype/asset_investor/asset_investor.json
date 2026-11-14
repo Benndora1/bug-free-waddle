@@ -150,7 +150,6 @@
    "options": "Retail\nHigh Net Worth\nInstitutional\nPension Fund"
   },
   {
-   "default": "Uganda",
    "fieldname": "country_of_residence",
    "fieldtype": "Link",
    "label": "Country of Residence",
@@ -193,7 +192,6 @@
    "label": "Account Number"
   },
   {
-   "default": "UGX",
    "fieldname": "settlement_currency",
    "fieldtype": "Link",
    "label": "Settlement Currency",

@@ -1,20 +1,35 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Risk Profile DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
+from frappe.utils import nowdate
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetRiskProfile(IntegrationTestCase):
-	"""
-	Integration tests for AssetRiskProfile.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_risk_profile_tiers_classify_applicant_score(self) -> None:
+		self.assertTrue(frappe.db.exists("Asset Risk Profile", "LOW_RISK"))
+		self.assertTrue(frappe.db.exists("Asset Risk Profile", "HIGH_RISK"))
 
-	pass
+		app = frappe.new_doc("Asset Investor Application")
+		app.application_date = nowdate()
+		app.investor_type = "Individual"
+		app.client_category = "Retail"
+		app.investor_name = "Low Risk Applicant"
+		app.identification_type = "National ID"
+		app.identification_no = "__TEST_RISK_DT_01"
+		app.tax_id = "TIN-RISK-01"
+		app.email = "risk.dt@example.com"
+		app.phone = "+15557778888"
+		app.physical_address = "200 Elm St"
+		app.bank_name = "First Commercial Bank"
+		app.bank_branch = "Main"
+		app.bank_account_name = "Low Risk Applicant"
+		app.bank_account_no = "90100778899"
+		app.pep_status = "No"
+		# Test setup: ignore_permissions required
+		app.insert(ignore_permissions=True)
+
+		chk = app.run_verification_checks()
+		self.assertEqual(chk["risk_tier"], "Low")

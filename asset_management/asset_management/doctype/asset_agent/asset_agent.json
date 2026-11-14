@@ -53,7 +53,7 @@
    "fieldname": "license_no",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "CMA License No"
+   "label": "Regulatory License No"
   },
   {
    "default": "0.50",

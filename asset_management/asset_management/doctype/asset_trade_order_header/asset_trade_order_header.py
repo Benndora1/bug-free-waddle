@@ -89,8 +89,9 @@ class AssetTradeOrderHeader(Document):
 		breaches = []
 
 		if self.order_type in ("BUY", "PLACEMENT") and self.cash_after_trade < 0:
+			ccy = getattr(self, "currency", None) or getattr(fund_doc, "currency", "")
 			breaches.append(
-				f"Cash Overdraft Breach: Trade requires {self.settlement_amount:,.2f} UGX but available cash is {self.cash_available_before_trade:,.2f} UGX."
+				f"Cash Overdraft Breach: Trade requires {self.settlement_amount:,.2f} {ccy} but available cash is {self.cash_available_before_trade:,.2f} {ccy}."
 			)
 
 		# B. Investment Limits Evaluation
@@ -223,7 +224,7 @@ class AssetTradeOrderHeader(Document):
 
 		holding.save(ignore_permissions=True)
 
-		# Generate Custody Instruction (Stanbic Custody Confirmation)
+		# Generate Custody Instruction
 		tx_type_map = {
 			"Treasury Bond": "T-BOND PURCHASE" if self.order_type == "BUY" else "T-BOND SALE",
 			"Corporate Bond": "T-BOND PURCHASE" if self.order_type == "BUY" else "T-BOND SALE",

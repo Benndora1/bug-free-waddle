@@ -22,7 +22,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Fee Type",
-   "options": "Management Fee\nCustody Fee\nTrustee Fee\nAudit Fee\nRegulatory Fee (CMA)\nWHT on Distribution\nEarly Redemption Penalty",
+   "options": "Management Fee\nCustody Fee\nTrustee Fee\nAudit Fee\nRegulatory Fee\nWHT on Distribution\nEarly Redemption Penalty",
    "reqd": 1
   },
   {

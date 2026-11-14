@@ -1,5 +1,7 @@
 ### Asset Management
 
+[![CI](https://github.com/benndora1/asset_management/actions/workflows/ci.yml/badge.svg)](https://github.com/benndora1/asset_management/actions/workflows/ci.yml)
+
 A generic, multi-fund investment management and unit-registry platform for asset managers (unit trusts / collective investment schemes). It provides client onboarding and KYC, fund definitions, unit registry transactions (subscriptions, redemptions, switches, transfers, liens, distributions), daily NAV valuations, fixed income and equity portfolio accounting, investment compliance limits, and client statement generation integrated with ERPNext.
 
 ### Installation
@@ -12,6 +14,14 @@ bench get-app erpnext --branch version-16
 bench get-app https://github.com/benndora1/asset_management.git --branch main
 bench --site <site-name> install-app erpnext
 bench --site <site-name> install-app asset_management
+```
+
+### Demo Data
+
+To populate neutral demo funds, securities, agents, and compliance limits on a development site:
+
+```bash
+bench --site <site-name> execute asset_management.demo.setup_demo.run
 ```
 
 ### Contributing

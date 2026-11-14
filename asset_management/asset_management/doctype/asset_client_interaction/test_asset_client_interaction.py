@@ -1,20 +1,29 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Client Interaction DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
+from frappe.utils import now_datetime
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+from asset_management.tests.factories import make_investor
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetClientInteraction(IntegrationTestCase):
-	"""
-	Integration tests for AssetClientInteraction.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_interaction_sla_and_resolution(self) -> None:
+		inv = make_investor()
+		ci = frappe.new_doc("Asset Client Interaction")
+		ci.date_opened = now_datetime()
+		ci.investor = inv.name
+		ci.channel = "Email"
+		ci.sla_setup = "SLA_STATEMENT"
+		ci.subject = "Statement Request"
+		ci.description = "Requesting monthly statement"
+		# Test setup: ignore_permissions required
+		ci.insert(ignore_permissions=True)
 
-	pass
+		self.assertEqual(ci.status, "Open")
+		self.assertIsNotNone(ci.target_due_datetime)
+
+		res = ci.resolve_case(resolution_summary="Statement sent via email.")
+		self.assertEqual(res["status"], "Resolved")

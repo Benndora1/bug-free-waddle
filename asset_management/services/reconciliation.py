@@ -17,15 +17,9 @@ def calculate_reconciliation_metrics(
 	tolerance: Decimal | float | int = Decimal("0.05"),
 ) -> dict[str, Decimal | bool]:
 	"""Pure calculation of unit-register value vs GL net assets and tolerance check."""
-	units = Decimal(str(units_in_issue or "0.000000")).quantize(
-		Decimal("0.000001"), rounding=ROUND_HALF_UP
-	)
-	nav = Decimal(str(nav_per_unit or "0.000000")).quantize(
-		Decimal("0.000001"), rounding=ROUND_HALF_UP
-	)
-	assets = Decimal(str(gl_total_assets or "0.00")).quantize(
-		Decimal("0.01"), rounding=ROUND_HALF_UP
-	)
+	units = Decimal(str(units_in_issue or "0.000000")).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
+	nav = Decimal(str(nav_per_unit or "0.000000")).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
+	assets = Decimal(str(gl_total_assets or "0.00")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 	liabilities = Decimal(str(gl_total_liabilities or "0.00")).quantize(
 		Decimal("0.01"), rounding=ROUND_HALF_UP
 	)
@@ -157,9 +151,7 @@ def reconcile_fund(fund: str, date: str) -> dict[str, Any]:
 
 	units_in_issue = get_fund_units_in_issue(fund, target_date)
 	nav_per_unit = get_published_nav_per_unit(fund, target_date)
-	total_assets, total_liabilities = get_company_gl_assets_and_liabilities(
-		fund_doc.company, target_date
-	)
+	total_assets, total_liabilities = get_company_gl_assets_and_liabilities(fund_doc.company, target_date)
 	tolerance = get_reconciliation_tolerance()
 
 	metrics = calculate_reconciliation_metrics(

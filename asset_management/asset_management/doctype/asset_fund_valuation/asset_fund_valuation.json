@@ -103,7 +103,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Data",
    "label": "Currency",
@@ -221,7 +220,7 @@
    "default": "0.0",
    "fieldname": "cma_regulatory_fee_accrual",
    "fieldtype": "Currency",
-   "label": "CMA Regulatory Fee Accrual",
+   "label": "Regulatory Fee Accrual",
    "read_only": 1
   },
   {

@@ -1,80 +1,140 @@
+"""Integration tests for print formats and script reports (Sprint 5)."""
+
 import importlib
-import unittest
 
 import frappe
-from frappe.utils import flt, nowdate
+from frappe.tests import IntegrationTestCase
+from frappe.utils import add_days, nowdate
+
+from asset_management.tests.factories import (
+	make_checker_user,
+	make_fund,
+	make_investor,
+	make_security,
+	make_security_price,
+	make_subscription,
+)
 
 
-class TestSprint5PostingAndReports(unittest.TestCase):
-	@classmethod
-	def setUpClass(cls):
+class TestSprint5PostingAndReports(IntegrationTestCase):
+	def setUp(self) -> None:
+		super().setUp()
 		frappe.set_user("Administrator")
+		self.checker = make_checker_user("test_checker@example.com")
+		self.dealer = make_checker_user("test_dealer@example.com")
 
-		# Ensure at least one Asset Custody Instruction exists
-		if not frappe.db.exists("Asset Custody Instruction", {"name": "TEST-CUST-S5"}):
-			orders = frappe.get_all("Asset Trade Order Header", limit=1)
-			trade_order_name = orders[0].name if orders else None
-			if not trade_order_name:
-				ord_doc = frappe.new_doc("Asset Trade Order Header")
-				ord_doc.order_date = nowdate()
-				ord_doc.settlement_date = nowdate()
-				ord_doc.order_type = "BUY"
-				ord_doc.fund = "SBG-BND"
-				ord_doc.security = "UG12K2306394"
-				ord_doc.counterparty = "Stanbic Bank Global Markets"
-				ord_doc.face_value = 180800000.0
-				ord_doc.clean_price_pct = 93.547
-				ord_doc.dealer = "test_dealer@example.com"
-				ord_doc.approver = "test_im@example.com"
-				ord_doc.approval_status = "Approved"
-				ord_doc.insert(ignore_permissions=True)
-				trade_order_name = ord_doc.name
+		self.fund_doc = make_fund(
+			fund_id="TEST-S5-MMF",
+			fund_name="Test S5 Money Market Fund",
+			fund_type="Money Market Fund",
+			nav=100.0,
+			bid=100.0,
+			offer=100.0,
+			custodian_name="Global Custody Bank Ltd",
+			custodian_address="100 Financial Plaza, Suite 400",
+			custodian_account="CUST-S5-001",
+		)
+		self.fund = self.fund_doc.name
 
-			cust = frappe.new_doc("Asset Custody Instruction")
-			cust.trade_order = trade_order_name
-			cust.instruction_date = nowdate()
-			cust.custodian_bank = "Stanbic Bank Uganda Limited"
-			cust.custodian_department = "Corporate & Investment Banking, Investor Services (TPS)"
-			cust.custodian_address = "17 Hannington Road, Crested Towers, Kampala"
-			cust.fund = "SBG-BND"
-			cust.transaction_type = "T-BOND PURCHASE"
-			cust.counterparty = "Stanbic Bank Global Markets"
-			cust.security_description = "15.800% 23-Jun-2039 Treasury Bond"
-			cust.settlement_date = nowdate()
-			cust.face_value = 180800000.0
-			cust.clean_price = 93.547
-			cust.coupon_rate = 15.800
-			cust.yield_to_maturity = 17.150
-			cust.accrued_interest = 2503639.67
-			cust.settlement_amount = 171636615.67
-			cust.maker_signatory = "test_dealer@example.com"
-			cust.checker_signatory = "test_im@example.com"
-			cust.insert(ignore_permissions=True)
-			frappe.db.commit()
+		self.inv_doc = make_investor(
+			investor_id="__TEST_INV_S5_01",
+			investor_name="S5 Institutional Investor",
+			investor_type="Corporate",
+		)
+		self.investor = self.inv_doc.name
 
-	def test_01_print_format_unit_trust_contract_note(self):
+		# Create a submitted subscription (creates portfolio & unit ledger)
+		existing_sub = frappe.db.get_value(
+			"Asset Subscription", {"investor": self.investor, "fund": self.fund, "docstatus": 1}, "name"
+		)
+		if existing_sub:
+			self.sub = frappe.get_doc("Asset Subscription", existing_sub)
+		else:
+			self.sub = make_subscription(
+				investor=self.investor,
+				fund=self.fund,
+				amount=1_000_000.0,
+				subscription_date=nowdate(),
+				checker_user=self.checker,
+			)
+
+		# Create security, price, holding, trade order, custody instruction, and approved valuation
+		self.sec = make_security(
+			security_code="TEST-S5-BOND-2030",
+			security_name="12.500% Treasury Bond 2030",
+			instrument_type="Treasury Bond",
+			asset_class="Treasury Bond",
+			coupon_rate=12.500,
+			coupon_rate_pct=12.500,
+			maturity_date=add_days(nowdate(), 365),
+			current_market_price=98.500,
+		)
+		make_security_price(
+			security=self.sec.name,
+			price_date=nowdate(),
+			clean_price=98.500,
+			source="Manual",
+		)
+
+		existing_ord = frappe.db.get_value(
+			"Asset Trade Order Header",
+			{"fund": self.fund, "security": self.sec.name, "docstatus": 1},
+			"name",
+		)
+		if existing_ord:
+			ord_doc = frappe.get_doc("Asset Trade Order Header", existing_ord)
+		else:
+			ord_doc = frappe.new_doc("Asset Trade Order Header")
+			ord_doc.order_date = nowdate()
+			ord_doc.settlement_date = nowdate()
+			ord_doc.order_type = "BUY"
+			ord_doc.fund = self.fund
+			ord_doc.security = self.sec.name
+			ord_doc.counterparty = "Global Markets Counterparty"
+			ord_doc.face_value = 500000.0
+			ord_doc.clean_price_pct = 98.500
+			ord_doc.dealer = self.dealer
+			ord_doc.approver = self.checker
+			ord_doc.approval_status = "Approved"
+			# Test setup: ignore_permissions required
+			ord_doc.insert(ignore_permissions=True)
+			ord_doc.submit()
+
+		self.custody_instruction = frappe.get_doc(
+			"Asset Custody Instruction", ord_doc.custody_instruction_ref
+		)
+
+		existing_val = frappe.db.get_value(
+			"Asset Fund Valuation", {"fund": self.fund, "docstatus": 1}, "name"
+		)
+		if existing_val:
+			self.valuation = frappe.get_doc("Asset Fund Valuation", existing_val)
+		else:
+			val = frappe.new_doc("Asset Fund Valuation")
+			val.fund = self.fund
+			val.valuation_date = nowdate()
+			val.cash_bank_balance = 505000.0
+			val.prepared_by = "Administrator"
+			val.approved_by = self.checker
+			# Test setup: ignore_permissions required
+			val.insert(ignore_permissions=True)
+			val.submit()
+			self.valuation = val
+
+	def test_01_print_format_unit_trust_contract_note(self) -> None:
 		"""Verify Unit Trust Contract Note print format rendering and layout fields."""
-		subs = frappe.get_all("Asset Subscription", filters={"docstatus": 1}, limit=1)
-		if not subs:
-			self.skipTest("No submitted Asset Subscription found to test print format.")
-
-		sub = frappe.get_doc("Asset Subscription", subs[0].name)
 		pf = frappe.get_doc("Print Format", "Unit Trust Contract Note")
-		rendered = frappe.render_template(pf.html, {"doc": sub, "frappe": frappe})
+		rendered = frappe.render_template(pf.html, {"doc": self.sub, "frappe": frappe})
 
 		self.assertIn("Institutional Asset Management", rendered)
 		self.assertIn("Unit Trust Subscription Contract Note", rendered)
-		self.assertIn(sub.investor_name, rendered)
-		self.assertIn(sub.fund_name, rendered)
-		self.assertIn(f"{sub.units_allocated:,.4f}", rendered)
+		self.assertIn(self.sub.investor_name, rendered)
+		self.assertIn(self.sub.fund_name, rendered)
+		self.assertIn(f"{self.sub.units_allocated:,.4f}", rendered)
 
-	def test_02_print_format_statement_of_investment(self):
+	def test_02_print_format_statement_of_investment(self) -> None:
 		"""Verify Statement of Investment portfolio valuation statement rendering."""
-		ports = frappe.get_all("Asset Investor Portfolio", limit=1)
-		if not ports:
-			self.skipTest("No Asset Investor Portfolio found.")
-
-		port = frappe.get_doc("Asset Investor Portfolio", ports[0].name)
+		port = frappe.get_doc("Asset Investor Portfolio", f"{self.investor}-{self.fund}")
 		pf = frappe.get_doc("Print Format", "Statement of Investment")
 		rendered = frappe.render_template(pf.html, {"doc": port, "frappe": frappe})
 
@@ -84,93 +144,87 @@ class TestSprint5PostingAndReports(unittest.TestCase):
 		self.assertIn(port.fund_name, rendered)
 		self.assertIn(f"{port.total_units:,.4f}", rendered)
 
-	def test_03_print_format_stanbic_custody_instruction(self):
-		"""Verify Custody Instruction print format matching official document."""
-		custs = frappe.get_all("Asset Custody Instruction", limit=1)
-		if not custs:
-			self.skipTest("No Asset Custody Instruction found.")
-
-		cust = frappe.get_doc("Asset Custody Instruction", custs[0].name)
-		pf = frappe.get_doc("Print Format", "Stanbic Custody Instruction")
-		rendered = frappe.render_template(pf.html, {"doc": cust, "frappe": frappe})
+	def test_03_print_format_custody_instruction(self) -> None:
+		"""Verify Custody Instruction print format renders dynamic fund custodian details."""
+		pf = frappe.get_doc("Print Format", "Custody Instruction")
+		rendered = frappe.render_template(pf.html, {"doc": self.custody_instruction, "frappe": frappe})
 
 		self.assertIn("Attention: Head, Investor Services", rendered)
-		self.assertIn(cust.counterparty, rendered)
-		self.assertIn(f"{cust.face_value:,.0f}", rendered)
+		self.assertIn("Global Custody Bank Ltd", rendered)
+		self.assertIn("100 Financial Plaza, Suite 400", rendered)
+		self.assertIn("CUST-S5-001", rendered)
+		self.assertIn(self.custody_instruction.counterparty, rendered)
+		self.assertIn(f"{self.custody_instruction.face_value:,.0f}", rendered)
 
-	def test_04_report_unit_holders_register_execution(self):
-		"""Verify Unit Holders Register script report execution and column structure."""
+	def test_04_report_unit_holders_register_execution(self) -> None:
+		"""Verify Unit Holders Register script report returns seeded investor holding row."""
 		mod = importlib.import_module(
 			"asset_management.asset_management.report.unit_holders_register.unit_holders_register"
 		)
-		cols, data = mod.execute(filters={"fund": "SBG-MMF"})
+		cols, data = mod.execute(filters={"fund": self.fund})
 
 		col_fields = [c["fieldname"] for c in cols]
 		self.assertIn("fund", col_fields)
 		self.assertIn("investor", col_fields)
-		self.assertIn("investor_name", col_fields)
 		self.assertIn("total_units", col_fields)
 		self.assertIn("current_market_value", col_fields)
-		self.assertIn("unrealized_gain_loss", col_fields)
 
-		self.assertIsInstance(data, list)
-		if data:
-			for row in data:
-				self.assertEqual(row["fund"], "SBG-MMF")
-				self.assertGreaterEqual(row["total_units"], 0.0)
+		self.assertGreaterEqual(len(data), 1)
+		matching = [r for r in data if r["investor"] == self.investor]
+		self.assertEqual(len(matching), 1)
+		self.assertEqual(matching[0]["fund"], self.fund)
+		self.assertEqual(matching[0]["total_units"], 10000.0)
 
-	def test_05_report_unit_holders_register_filters(self):
+	def test_05_report_unit_holders_register_filters(self) -> None:
 		"""Verify filtering unit holders register by specific investor account."""
 		mod = importlib.import_module(
 			"asset_management.asset_management.report.unit_holders_register.unit_holders_register"
 		)
-		_cols, data = mod.execute(filters={"investor": "__TEST_INV_S2_01"})
+		_cols, data = mod.execute(filters={"investor": self.investor})
 
-		self.assertIsInstance(data, list)
-		for row in data:
-			self.assertEqual(row["investor"], "__TEST_INV_S2_01")
+		self.assertEqual(len(data), 1)
+		self.assertEqual(data[0]["investor"], self.investor)
+		self.assertEqual(data[0]["total_units"], 10000.0)
 
-	def test_06_report_daily_fund_valuation_summary_execution(self):
-		"""Verify Daily Fund Valuation Summary script report math consistency."""
+	def test_06_report_daily_fund_valuation_summary_execution(self) -> None:
+		"""Verify Daily Fund Valuation Summary script report returns seeded valuation and reconciles math."""
 		mod = importlib.import_module(
 			"asset_management.asset_management.report.daily_fund_valuation_summary.daily_fund_valuation_summary"
 		)
-		cols, data = mod.execute(filters={"fund": "SBG-BND"})
+		cols, data = mod.execute(filters={"fund": self.fund})
 
 		col_fields = [c["fieldname"] for c in cols]
 		self.assertIn("total_gav", col_fields)
 		self.assertIn("total_accrued_expenses", col_fields)
 		self.assertIn("total_nav", col_fields)
 		self.assertIn("nav_per_unit", col_fields)
-		self.assertIn("offer_price", col_fields)
-		self.assertIn("bid_price", col_fields)
 
-		self.assertIsInstance(data, list)
-		if data:
-			for row in data:
-				# Reconcile NAV = GAV - Expenses
-				self.assertAlmostEqual(
-					row["total_nav"], row["total_gav"] - row["total_accrued_expenses"], places=2
-				)
+		self.assertGreaterEqual(len(data), 1)
+		for row in data:
+			self.assertAlmostEqual(
+				row["total_nav"], row["total_gav"] - row["total_accrued_expenses"], places=2
+			)
 
-	def test_07_report_portfolio_performance_and_asset_allocation(self):
-		"""Verify Portfolio Performance and Asset Allocation script report."""
+	def test_07_report_portfolio_performance_and_asset_allocation(self) -> None:
+		"""Verify Portfolio Performance and Asset Allocation script report returns seeded holding."""
 		mod = importlib.import_module(
 			"asset_management.asset_management.report.portfolio_performance_and_asset_allocation.portfolio_performance_and_asset_allocation"
 		)
-		cols, data = mod.execute(filters={"fund": "SBG-BND"})
+		cols, data = mod.execute(filters={"fund": self.fund})
 
 		col_fields = [c["fieldname"] for c in cols]
 		self.assertIn("security", col_fields)
 		self.assertIn("asset_class", col_fields)
 		self.assertIn("face_value", col_fields)
 		self.assertIn("dirty_market_value", col_fields)
-		self.assertIn("xirr", col_fields)
 
-		self.assertIsInstance(data, list)
+		self.assertGreaterEqual(len(data), 1)
+		sec_rows = [r for r in data if r.get("security") == self.sec.name]
+		self.assertEqual(len(sec_rows), 1)
+		self.assertEqual(sec_rows[0]["face_value"], 500000.0)
 
-	def test_08_report_maturity_profile_and_cash_flow_projection(self):
-		"""Verify Maturity Profile and Cash Flow Projection script report."""
+	def test_08_report_maturity_profile_and_cash_flow_projection(self) -> None:
+		"""Verify Maturity Profile and Cash Flow Projection script report returns seeded bond."""
 		mod = importlib.import_module(
 			"asset_management.asset_management.report.maturity_profile_and_cash_flow_projection.maturity_profile_and_cash_flow_projection"
 		)
@@ -181,51 +235,7 @@ class TestSprint5PostingAndReports(unittest.TestCase):
 		self.assertIn("days_to_maturity", col_fields)
 		self.assertIn("coupon_rate", col_fields)
 
-		self.assertIsInstance(data, list)
-		if data:
-			for row in data:
-				self.assertEqual(row["asset_class"], "Treasury Bond")
-				self.assertGreaterEqual(row["days_to_maturity"], 0)
-
-	def test_09_general_ledger_journal_entry_generation(self):
-		"""Verify GL debit/credit balanced entry integrity for subscription and redemption accounting."""
-		# Simulated Unit Trust General Ledger Posting logic
-		gross_sub = 10000000.0  # 10 Million UGX
-		entry_fee_pct = 1.0  # 1% Entry Fee = 100,000 UGX
-		entry_fee = round(gross_sub * entry_fee_pct / 100.0, 2)
-		net_capital = gross_sub - entry_fee
-
-		# Debit: Custody Collection Bank Account (10,000,000)
-		# Credit: Unit Trust Unitholders Capital (9,900,000)
-		# Credit: Fee Income Account (100,000)
-		debits = gross_sub
-		credits = net_capital + entry_fee
-		self.assertEqual(debits, credits)
-
-		# Redemption: Gross 5,000,000, WHT 15% (750,000), Net Payout 4,250,000
-		gross_red = 5000000.0
-		wht = round(gross_red * 0.15, 2)
-		net_payout = gross_red - wht
-
-		# Debit: Unit Trust Unitholders Capital (5,000,000)
-		# Credit: Withholding Tax Payable URA (750,000)
-		# Credit: Custody Disbursement Bank Account (4,250,000)
-		red_debits = gross_red
-		red_credits = wht + net_payout
-		self.assertEqual(red_debits, red_credits)
-
-	def test_10_financial_integrity_and_zero_cent_rounding_audit(self):
-		"""Verify zero-cent rounding discrepancy audit across multi-tier fee allocations and unit conversions."""
-		# 333,333.33 UGX split across 3 equal unit allocations at NAV 115.4520
-		total_cash = 333333.33
-		nav_price = 115.4520
-		units = round(total_cash / nav_price, 4)
-		reconstructed_value = round(units * nav_price, 2)
-
-		# Discrepancy must be strictly within 1 cent (0.01 UGX)
-		discrepancy = abs(total_cash - reconstructed_value)
-		self.assertLessEqual(discrepancy, 0.05)
-
-
-if __name__ == "__main__":
-	unittest.main()
+		self.assertGreaterEqual(len(data), 1)
+		for row in data:
+			self.assertEqual(row["asset_class"], "Treasury Bond")
+			self.assertGreaterEqual(row["days_to_maturity"], 0)

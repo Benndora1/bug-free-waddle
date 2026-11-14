@@ -97,7 +97,6 @@
    "options": "Sovereign\nFinancial Services\nTelecommunications\nManufacturing\nEnergy\nConsumer Goods"
   },
   {
-   "default": "UGX",
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",

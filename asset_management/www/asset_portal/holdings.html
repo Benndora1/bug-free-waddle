@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <div class="card-stat">
             <div class="stat-label">Total Current Market Value</div>
-            <div class="stat-value text-primary">UGX {{ "{:,.2f}".format(total_value) }}</div>
+            <div class="stat-value text-primary">{{ "{:,.2f}".format(total_value) }}</div>
             <small class="text-muted">Total marked-to-market valuation across all schemes</small>
         </div>
     </div>
@@ -43,9 +43,9 @@
                     <th>Fund / Portfolio Name</th>
                     <th>Inception Date</th>
                     <th class="text-end">Units Held</th>
-                    <th class="text-end">Avg Cost (UGX)</th>
-                    <th class="text-end">Current NAV (UGX)</th>
-                    <th class="text-end">Total Market Value (UGX)</th>
+                    <th class="text-end">Avg Cost</th>
+                    <th class="text-end">Current NAV</th>
+                    <th class="text-end">Total Market Value</th>
                     <th class="text-end">Gain / Loss (%)</th>
                     <th class="text-end">Actions</th>
                 </tr>

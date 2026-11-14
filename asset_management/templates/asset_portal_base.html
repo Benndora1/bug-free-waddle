@@ -219,7 +219,7 @@
 
             <div class="aum-badge">
                 <i class="fa-solid fa-wallet me-1"></i>
-                <span>AUM: UGX {{ "{:,.2f}".format(total_value or 0) }}</span>
+                <span>AUM: {{ currency or "" }} {{ "{:,.2f}".format(total_value or 0) }}</span>
             </div>
         </div>
     </header>

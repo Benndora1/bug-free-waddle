@@ -1,20 +1,26 @@
-# Copyright (c) 2026, Frappe Developer and Contributors
-# See license.txt
+"""Integration tests for Asset Investor Portfolio DocType."""
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
+from asset_management.tests.factories import (
+	make_checker_user,
+	make_fund,
+	make_investor,
+	make_subscription,
+)
+
+IGNORE_TEST_RECORD_DEPENDENCIES = ["User", "Company", "Account", "Supplier"]
 
 
 class IntegrationTestAssetInvestorPortfolio(IntegrationTestCase):
-	"""
-	Integration tests for AssetInvestorPortfolio.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_portfolio_rebuilt_from_unit_ledger(self) -> None:
+		checker = make_checker_user()
+		fund = make_fund(fund_id="TEST-PORT-MMF", nav=100.0)
+		inv = make_investor()
 
-	pass
+		make_subscription(inv.name, fund.name, amount=250000.0, checker_user=checker)
+
+		port = frappe.get_doc("Asset Investor Portfolio", f"{inv.name}-{fund.name}")
+		self.assertEqual(port.total_units, 2500.0)
+		self.assertEqual(port.current_market_value, 250000.0)

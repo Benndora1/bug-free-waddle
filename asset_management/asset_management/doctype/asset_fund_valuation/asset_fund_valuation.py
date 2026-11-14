@@ -56,13 +56,11 @@ class AssetFundValuation(Document):
 		if ledger_units > Decimal("0.000000"):
 			self.total_units_in_issue = float(ledger_units)
 		else:
-			has_any_ule = frappe.db.exists(
-				"Asset Unit Ledger Entry", {"fund": self.fund, "is_cancelled": 0}
-			)
-			if not has_any_ule and (flt(self.total_units_in_issue, 6) > 0 or flt(fund.total_units_in_issue, 6) > 0):
-				self.total_units_in_issue = flt(
-					self.total_units_in_issue or fund.total_units_in_issue, 6
-				)
+			has_any_ule = frappe.db.exists("Asset Unit Ledger Entry", {"fund": self.fund, "is_cancelled": 0})
+			if not has_any_ule and (
+				flt(self.total_units_in_issue, 6) > 0 or flt(fund.total_units_in_issue, 6) > 0
+			):
+				self.total_units_in_issue = flt(self.total_units_in_issue or fund.total_units_in_issue, 6)
 			else:
 				self.total_units_in_issue = 0.0
 
@@ -144,9 +142,7 @@ class AssetFundValuation(Document):
 	def value_holding_lines(self) -> None:
 		"""Values holding lines using Asset Security Price for valuation_date (or within allowed stale window)."""
 		for line in self.lines:
-			face_val = Decimal(str(flt(line.face_value, 2))).quantize(
-				Decimal("0.01"), rounding=ROUND_HALF_UP
-			)
+			face_val = Decimal(str(flt(line.face_value, 2))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 			carrying = Decimal(str(flt(getattr(line, "carrying_cost", 0.0), 2))).quantize(
 				Decimal("0.01"), rounding=ROUND_HALF_UP
 			)
@@ -176,9 +172,7 @@ class AssetFundValuation(Document):
 					line.is_stale_price = 1 if is_stale else 0
 
 					if line.asset_class == "Quoted Equity":
-						clean_mv = (face_val * clean_price).quantize(
-							Decimal("0.01"), rounding=ROUND_HALF_UP
-						)
+						clean_mv = (face_val * clean_price).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 					else:
 						clean_mv = (face_val * clean_price / Decimal("100")).quantize(
 							Decimal("0.01"), rounding=ROUND_HALF_UP
@@ -217,10 +211,7 @@ class AssetFundValuation(Document):
 		if prev_val and prev_val.get("name"):
 			prev_doc = frappe.get_doc("Asset Fund Valuation", prev_val.name)
 			prev_unrealised = sum(
-				(
-					Decimal(str(flt(getattr(l, "unrealised_gain_loss", 0.0), 2)))
-					for l in prev_doc.lines
-				),
+				(Decimal(str(flt(getattr(l, "unrealised_gain_loss", 0.0), 2))) for l in prev_doc.lines),
 				Decimal("0.00"),
 			).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
@@ -236,9 +227,7 @@ class AssetFundValuation(Document):
 		equities = Decimal("0.00")
 
 		for l in self.lines:
-			mv = Decimal(str(flt(l.dirty_market_value, 2))).quantize(
-				Decimal("0.01"), rounding=ROUND_HALF_UP
-			)
+			mv = Decimal(str(flt(l.dirty_market_value, 2))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 			if l.asset_class in ("Treasury Bond", "Corporate Bond"):
 				bonds += mv
 			elif l.asset_class in ("Treasury Bill", "Commercial Paper"):
@@ -267,9 +256,7 @@ class AssetFundValuation(Document):
 			Decimal("0.01"), rounding=ROUND_HALF_UP
 		)
 		if cash_bal == Decimal("0.00") and fund.company:
-			has_ule = frappe.db.exists(
-				"Asset Unit Ledger Entry", {"fund": self.fund, "is_cancelled": 0}
-			)
+			has_ule = frappe.db.exists("Asset Unit Ledger Entry", {"fund": self.fund, "is_cancelled": 0})
 			if has_ule:
 				exclude = ("Asset Fund Valuation", self.name) if self.name else None
 				gl_assets, gl_liab = get_company_gl_assets_and_liabilities(
@@ -295,9 +282,7 @@ class AssetFundValuation(Document):
 			for l in self.lines:
 				mv = Decimal(str(flt(l.dirty_market_value, 2)))
 				l.weight_pct = float(
-					((mv / total_gav) * Decimal("100")).quantize(
-						Decimal("0.01"), rounding=ROUND_HALF_UP
-					)
+					((mv / total_gav) * Decimal("100")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 				)
 
 	def calculate_daily_accrued_expenses(self, fund: Any, prev_val: Any | None) -> None:
@@ -342,7 +327,9 @@ class AssetFundValuation(Document):
 					custody_accrual += amt
 				elif f.fee_type == "Trustee Fee":
 					trustee_accrual += amt
-				elif f.fee_type == "Regulatory Fee (CMA)":
+				elif f.fee_type == "Regulatory Fee" or (
+					f.fee_type and f.fee_type.startswith("Regulatory Fee")
+				):
 					cma_accrual += amt
 				elif f.fee_type == "Audit Fee":
 					audit_accrual += amt
@@ -358,12 +345,7 @@ class AssetFundValuation(Document):
 		self.other_liabilities = float(other_liab)
 
 		total_exp = (
-			mgmt_accrual
-			+ custody_accrual
-			+ trustee_accrual
-			+ cma_accrual
-			+ audit_accrual
-			+ other_liab
+			mgmt_accrual + custody_accrual + trustee_accrual + cma_accrual + audit_accrual + other_liab
 		).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 		self.total_accrued_expenses = float(total_exp)
 
@@ -378,20 +360,14 @@ class AssetFundValuation(Document):
 		if units > Decimal("0.000000"):
 			nav_pu = (total_nav / units).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 		else:
-			init_nav = Decimal(
-				str(flt(self.previous_nav_per_unit or fund.initial_nav_per_unit, 6))
-			)
+			init_nav = Decimal(str(flt(self.previous_nav_per_unit or fund.initial_nav_per_unit, 6)))
 			nav_pu = init_nav.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 
 		self.nav_per_unit = float(nav_pu)
 
 		spread = Decimal(str(flt(self.bid_offer_spread_pct, 6))) / Decimal("100")
-		offer = (nav_pu * (Decimal("1") + spread)).quantize(
-			Decimal("0.000001"), rounding=ROUND_HALF_UP
-		)
-		bid = (nav_pu * (Decimal("1") - spread)).quantize(
-			Decimal("0.000001"), rounding=ROUND_HALF_UP
-		)
+		offer = (nav_pu * (Decimal("1") + spread)).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
+		bid = (nav_pu * (Decimal("1") - spread)).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 		self.offer_price = float(offer)
 		self.bid_price = float(bid)
 
@@ -424,9 +400,9 @@ class AssetFundValuation(Document):
 
 		if missing_securities:
 			frappe.throw(
-				_(
-					"Cannot submit valuation for {0} on {1}. Missing Asset Security Price for: {2}."
-				).format(self.fund, self.valuation_date, ", ".join(sorted(set(missing_securities)))),
+				_("Cannot submit valuation for {0} on {1}. Missing Asset Security Price for: {2}.").format(
+					self.fund, self.valuation_date, ", ".join(sorted(set(missing_securities)))
+				),
 				title=_("Missing Security Price"),
 			)
 
@@ -445,9 +421,9 @@ class AssetFundValuation(Document):
 		)
 		if duplicate:
 			frappe.throw(
-				_(
-					"An Approved valuation ({0}) already exists for fund {1} on {2}."
-				).format(duplicate, self.fund, self.valuation_date),
+				_("An Approved valuation ({0}) already exists for fund {1} on {2}.").format(
+					duplicate, self.fund, self.valuation_date
+				),
 				title=_("Duplicate Valuation"),
 			)
 
@@ -648,7 +624,9 @@ class AssetFundValuation(Document):
 			leaf_acc.parent_account = base_exp
 			leaf_acc.root_type = "Expense"
 			leaf_acc.is_group = 0
-			leaf_acc.account_currency = fund.currency or "UGX"
+			leaf_acc.account_currency = fund.currency or frappe.db.get_value(
+				"Company", fund.company, "default_currency"
+			)
 			leaf_acc.insert(ignore_permissions=True)
 			return leaf_acc.name
 
@@ -671,16 +649,17 @@ class AssetFundValuation(Document):
 		posting_date = str(self.valuation_date)
 
 		# 1. Fee Accrual GL entries
+		reg_label = (
+			frappe.db.get_single_value("Fund Management Settings", "regulatory_fee_label") or "Regulatory Fee"
+		)
 		fee_items = [
 			("Management Fee", Decimal(str(flt(self.management_fee_accrual, 2)))),
 			("Custody Fee", Decimal(str(flt(self.custody_fee_accrual, 2)))),
 			("Trustee Fee", Decimal(str(flt(self.trustee_fee_accrual, 2)))),
-			("Regulatory Fee (CMA)", Decimal(str(flt(self.cma_regulatory_fee_accrual, 2)))),
+			(reg_label, Decimal(str(flt(self.cma_regulatory_fee_accrual, 2)))),
 			("Audit Fee", Decimal(str(flt(self.audit_fee_accrual, 2)))),
 		]
-		rule_accounts = {
-			f.fee_type: getattr(f, "expense_account", None) for f in getattr(fund, "fees", [])
-		}
+		rule_accounts = {f.fee_type: getattr(f, "expense_account", None) for f in getattr(fund, "fees", [])}
 		total_fees = sum((amt for _, amt in fee_items), Decimal("0.00"))
 		fees_payable_acc = getattr(fund, "fees_payable_account", None)
 
@@ -688,9 +667,7 @@ class AssetFundValuation(Document):
 			expense_accounts_used: list[str] = []
 			for fee_type, amt in fee_items:
 				if amt > Decimal("0.00"):
-					exp_acc = self._resolve_fee_expense_account(
-						fund, fee_type, rule_accounts.get(fee_type)
-					)
+					exp_acc = self._resolve_fee_expense_account(fund, fee_type, rule_accounts.get(fee_type))
 					expense_accounts_used.append(exp_acc)
 					rows.append(
 						{
@@ -714,9 +691,7 @@ class AssetFundValuation(Document):
 					"credit": total_fees,
 					"against": ", ".join(sorted(set(expense_accounts_used))),
 					"posting_date": posting_date,
-					"remarks": _("Daily fees payable accrual for {0} on {1}").format(
-						self.fund, posting_date
-					),
+					"remarks": _("Daily fees payable accrual for {0} on {1}").format(self.fund, posting_date),
 				}
 			)
 
